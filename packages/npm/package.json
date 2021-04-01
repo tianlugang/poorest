@@ -1,6 +1,6 @@
 {
     "name": "@poorest/clover",
-    "version": "2.0.0",
+    "version": "2.0.1",
     "description": "Private npm repository serve",
     "main": "./lib/index.js",
     "files": [
@@ -37,9 +37,9 @@
         "watch": "tsc --watch"
     },
     "dependencies": {
-        "@poorest/ejs": "^2.0.0",
-        "@poorest/util": "^2.0.0",
-        "@poorest/utils": "^2.0.0",
+        "@poorest/ejs": "^2.0.1",
+        "@poorest/util": "^2.0.1",
+        "@poorest/utils": "^2.0.1",
         "commander": "^2.20.3",
         "fuse.js": "^6.4.6",
         "graceful-fs": "^4.2.6",
@@ -65,7 +65,7 @@
         "xss": "^1.0.8"
     },
     "devDependencies": {
-        "@poorest/webpack": "^2.0.0",
+        "@poorest/webpack": "^2.0.1",
         "@types/bunyan": "^1.8.6",
         "@types/graceful-fs": "^4.1.5",
         "@types/inflation": "^2.0.0",

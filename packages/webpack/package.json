@@ -1,6 +1,6 @@
 {
   "name": "@poorest/webpack",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "license": "MIT",
   "publishConfig": {
     "access": "public"
@@ -22,8 +22,8 @@
     "webpack": "^4.46.0"
   },
   "dependencies": {
-    "@poorest/util": "^2.0.0",
-    "@poorest/utils": "^2.0.0",
+    "@poorest/util": "^2.0.1",
+    "@poorest/utils": "^2.0.1",
     "assets-webpack-plugin": "^7.0.0",
     "autoprefixer": "^10.2.4",
     "chokidar": "^3.5.1",
