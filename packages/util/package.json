@@ -1,6 +1,6 @@
 {
   "name": "@poorest/util",
-  "version": "1.1.1",
+  "version": "2.0.0",
   "description": "my nodejs utils",
   "license": "MIT",
   "files": [
@@ -20,7 +20,7 @@
     "docs": "typedoc --options tdoptions.json src"
   },
   "dependencies": {
-    "@poorest/utils": "^1.1.1"
+    "@poorest/utils": "^2.0.0"
   },
   "devDependencies": {
     "@types/chai": "^3.4.35",
