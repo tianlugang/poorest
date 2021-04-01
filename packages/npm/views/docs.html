@@ -1,0 +1,70 @@
+<% var {seo, asset, registryURL, content, contentRenderError, files, filename} = locals;%>
+<!doctype html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Language" content="zh-CN">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <title><%= locals.title %> | <%- t('simple npm private server') %></title>
+    <meta name="keywords" content="<%= seo.keywords %>">
+    <meta name="description" itemprop="description" content="<%= seo.description %>">
+    <meta itemprop="name" content="<%= seo.title %>">
+    <meta itemprop="image" content="/images/favicon.ico">
+    <meta name="applicable-device" content="pc">
+    <meta http-equiv="imagetoolbar" content="no">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+    <link rel="icon" type="image/png" href="/images/favicon.png" />
+    <% if(Array.isArray(asset.css)) {%>
+        <% for(let url of asset.css) {%>
+        <link rel="stylesheet" href="<%= url %>" />
+        <%}%>
+    <%}%>
+</head>
+
+<body class="docs">
+    <div class="docs-header clearable">
+        <div class="logod fl">
+            <img src="/images/logo.png" />
+        </div>
+        <h1 class="fl docs-title"><%-t('Welcome to Lite NPM')%></h1>
+        <div class="exts fr">
+            <a href="/login" class="button md primary"><%- t('sign in')%></a>
+        </div>
+    </div>
+
+    <div class="docs-content clearable">
+        <div class="aside fl">
+            <ul class="fileList">
+                <%files.forEach(file=>{ %> 
+                    <li<%-filename==file.dest?' class="active"':''%>>
+                        <a href="/docs?f=<%-file.dest%>"><%-file.name%></a>
+                    </li>
+                <%})%>
+            </ul>
+        </div>
+        <div class="main fr">
+            <%if(contentRenderError){%>
+                <pre><%-contentRenderError%></pre>
+            <%}else{%>
+                <div class="wrapper markdown">  
+                    <%-content%>
+                </div>
+            <%}%>
+        </div>
+    </div>
+
+    <div class="docs-footer"><%-t('I am Daniel Tian(田路刚), Welcome to use my development results.') %></div>
+    <% if(Array.isArray(asset.js)) {%>
+        <% for (let url of asset.js) {%>
+        <script src="<%= url %>"></script>
+        <%}%>
+    <%}%>
+</body>
+
+</html>

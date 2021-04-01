@@ -1,0 +1,172 @@
+<% var {seo, asset, asideOrders, asideOrdersActive, relatedLinks, searchKeyword} = locals;%>
+<!doctype html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Language" content="zh-CN">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <title><%= locals.title %> - <%- t('simple npm private server') %></title>
+  <meta name="keywords" content="<%= seo.keywords %>">
+  <meta name="description" itemprop="description" content="<%= seo.description %>">
+  <meta itemprop="name" content="<%= seo.title %>">
+  <meta itemprop="image" content="/images/favicon.ico">
+  <meta name="applicable-device" content="pc">
+  <meta http-equiv="imagetoolbar" content="no">
+  <meta name="renderer" content="webkit">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" href="/images/favicon.png" />
+  <% if(Array.isArray(asset.css)) {%>
+    <% for(let url of asset.css) {%>
+    <link rel="stylesheet" href="<%= url %>" />
+    <%}%>
+  <%}%>
+</head>
+
+<body onload="util.onload()">
+  <header class="header">
+    <div class="container clearfix">
+      <a class="logo" href="/">
+        <img style="background-image: url(/images/logo.png);" />
+      </a>
+      <div class="control search">
+        <div class="prefix" onclick="util.search()">
+          <img src="/icon/search.svg" />
+        </div>
+        <input type="text" placeholder="<%- t('search') %>" name="wd" id="kw" value="<%-searchKeyword%>" oninput="util.inputSearch(this)" />
+        <div class="suffux" onclick="util.clearSearch(this)" id="sx"<%-searchKeyword?' style="display: block;"':''%>>
+          <img src="/icon/clearable.svg" />
+        </div>
+      </div>
+
+      <div class="settings clearfix" style="min-width: 90px;">
+        <!-- <div class="message" data-do="modal:message.open">
+          <img src="/icon/comment-dots.svg" />
+        </div> -->
+        
+        <div class="avatars" data-do="drop:settings.open">
+          <img src="/images/avatar.jpg" />
+        </div>
+        <div class="dropList" data-ui="drop:settings">
+          <div class="dropItem">
+            <div class="dropText"><a href="/docs"><%- t('Documents') %></a></div>
+          </div>
+          <div class="dropItem" data-do="drop:settings.miss">
+            <div class="dropText" onclick="util.logout()"><%- t('Logout') %></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container clearfix content">
+    <aside class="aside">
+      <%asideOrders.forEach(item=>{%>
+      <div class="navItem clearfix<%-asideOrdersActive==item.href ?' active':'' %>">
+        <a href="<%-item.href%>">
+          <div class="navText"><%- item.text %></div>
+          <div class="navIcon">
+            <img src="<%-item.icon%>" class="icon icon-1x" />
+          </div>
+        </a>
+      </div>
+      <%})%>
+    </aside>
+    <main class="main"><%-locals.body %></main>
+  </div>
+
+  <div class="container">
+    <div class="links clearfix">
+      <h3 class="head"><%-t('Related Links')%></h3>
+      <%relatedLinks.forEach(item=>{%>
+      <div class="item">
+        <a href="<%-item.href%>" title="<%-item.text%>" ref="friend"><%-item.text%></a>
+      </div>
+      <%})%>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="container">
+      <div class="about clearfix">
+        <dl class="first">
+          <dt><%-t('About Us')%></dt>
+          <dd><a href="//blog.tianlugang.com" title="<%-t('My blog')%>"><%- t('blog')%></a></dd>
+          <dd><a href="//github.com/tianlugang" title="<%-t('My github')%>">github1</a></dd>
+          <dd><a href="//github.com/G-tlg0226" title="<%-t('My github')%>">github2</a></dd>
+        </dl>
+        <dl>
+          <dt><%-t('Contact Us')%></dt>
+          <dd><%-t('Telephone:')%>13384845722</dd>
+          <dd><%-t('E-mail:')%><a href="mailto:541979581@qq.com">541979581@qq.com</a></dd>
+          <dd>QQ：<a href="tencent://message/?uin=541979581&Site=&Menu=yes">541979581</a></dd>
+        </dl>
+        <dl class="block clearfix" style="width: 300px;">
+          <dt><%-t('Discussion and Cooperation')%></dt>
+          <dd>
+            <img class="img80" src="/images/qq_group.jpg" alt="<%-t('QQ Discussion Group')%>:399156969">
+            <div><%-t('QQ Discussion Group')%></div>
+          </dd>
+          <dd>
+            <img class="img80" src="/images/wx.png" alt="<%-t('My WeChat')%>:ttllgg26">
+            <div><%-t('My WeChat')%></div>
+          </dd>
+        </dl>
+        <dl class=" block">
+          <dt><%-t('Sponsor me')%></dt>
+          <dd>
+            <img class="img80" src="/images/qq_zf.png" alt="<%-t('QQ Pay')%>">
+          </dd>
+          <dd>
+            <img class="img80" src="/images/wx_zf.png" alt="<%-t('WeChat Pay')%>">
+          </dd>
+          <dd>
+            <img class="img80" src="/images/zfb.jpg" alt="<%%-t('Alipay')>">
+          </dd>
+        </dl>
+        <dl class="last">
+          <dd>
+            ...<br />
+            从明天起，和每一个亲人通信<br />
+            告诉他们我的幸福<br />
+            那幸福的闪电告诉我的<br />
+            我将告诉每一个人<br />
+            ... 《面朝大海，春暖花开》——海子
+          </dd>
+          <dd style="margin-top: 10px;">惟愿你历尽千帆，不染风尘，半生归来，仍是少年！</dd>
+        </dl>
+      </div>
+
+      <div class="copyright">
+        <div><%-t('current npm stable version')%> 6.14.11</div>
+        <div><%-t('if you nend to upgrade, please run')%>：npm install npm@latest -g</div>
+        <div><%-t('Copyright ownership of NPM and related logos npmjs.com All. It can not be used for commercial sale npmjs.com Commercial competition.')%></div>
+        <div>© 2020 - <%-t('at present * Daniel Tian Copyright')%> </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="modal" data-ui="modal:message">
+    <div class="mask" data-do="modal:message.miss"></div>
+    <div class="main" style="width: 535px;height: 341px;">
+      <div class="head">功能正在计划中......</div>
+      <div class="body"></div>
+      <div class="foot">
+        <button class="button primary">确认</button>
+        <button class="button default" data-do="modal:message.miss">关闭</button>
+      </div>
+    </div>
+  </div> -->
+
+  <% if(Array.isArray(asset.js)) {%>
+    <% for (let url of asset.js) {%>
+    <script src="<%= url %>"></script>
+    <%}%>
+  <%}%>
+</body>
+
+</html>

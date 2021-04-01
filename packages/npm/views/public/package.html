@@ -1,0 +1,30 @@
+<%const { version, username } = locals %>
+<div class="pkg">
+    <div class="pkg-name clearfix">
+        <a href="/package/<%-version.name%>"><%-version.name%></a>
+        <span class="fr">License: <strong class="cmain"><%-version.license||'unknown'%></strong></span>
+    </div>
+    <div class="pkg-desc"><%-version.description || 'No description'%></div>
+    <div class="pkg-intro">
+        <div class="pkg-base">
+            <img src="/icon/user.svg" style="width: 16px; margin-left: -2px;" />
+            <% const owner = username || this.getPackageOwner(version) %>
+            <span class="pkg-author">
+                <% const office = version.officeWebsite %>
+                <a href="<%-(office? office : '') + '/~' + owner%>" target="_blank" class="ndl"><%-owner%></a>
+            </span>
+            <span class="pkg-version">v<%-version.version%></span>
+            <span class="pkg-status">Published</span>
+            <% const latestPublished = version._latestPublished || version.date %>
+            <span class="pkg-update">• <time datetime="<%-latestPublished%>" title="<%-latestPublished%>"><%- latestPublished && this.timespan(latestPublished) || '-'%></time></span>
+        </div>
+        <div class="pkg-exts">
+            <% const keyswords = this.getPackageKeywords(version) %>
+            <% for(let word of keyswords) {%>
+                <span class="button xs default">
+                    <a href="/search?q=keywords:<%-word%>" class="ndl"><%- word %></a>
+                </span>
+            <%}%>
+        </div>
+    </div>
+</div>

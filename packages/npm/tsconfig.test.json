@@ -1,0 +1,31 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./lib",
+    "rootDir": "./src",
+    "allowSyntheticDefaultImports": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "strictNullChecks": true,
+    "target": "es2017",
+    "sourceMap": false,
+    "importHelpers": true,
+    "types": [
+      "jest",
+      "node",
+      "@types/jest",
+      "@types/node",
+    ],
+  },
+  "include": [
+    "./src/*",
+    "global.d.ts" 
+  ],
+  "exclude": [
+    "./build",
+    "./docs",
+    "./lib",
+    "node_modules",
+  ]
+}

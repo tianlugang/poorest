@@ -1,0 +1,102 @@
+# 包存放的地址
+storage: ./storage
+
+# 国际化
+language: zh_CN
+
+# 主标题，将会同步到 process.title/ 日志标题 / ui界面标题
+title: lite-npm
+
+# 服务端反馈的 userAgent 信息, 默认
+userAgent: null
+
+# token secret
+secret: 8d300e7989926e314c08158ba8d664bc
+
+# token expire
+expire: 1d
+
+# 最大用户数
+maxUsers: 1000
+  
+# 镜像源列表
+registry:
+  npmjs:
+    # registry地址，必选项
+    url: https://registry.npmjs.org/
+
+    # 超时时间
+    timeout: 60s
+
+    # 包的最大缓存时间
+    maxAge: 5m
+
+    # 如果两个请求连续失败，在接下来多长时间内不再发出请求
+    onFailedRetryTimes: 2
+
+    # 如果两个请求连续失败，在接下来多久内不再发出请求
+    onFailedRetryIntervalTime: 5m
+
+packages:
+  "**": 
+    mode: '755'
+    proxy: 
+      - npmjs
+    users: []
+
+# 代理时使用的 url.pathname 前缀
+#prefix: ''
+
+# 服务监听地址
+listen: 9000 
+
+# 服务器请求body最大尺寸
+maxBodySize: 10mb
+
+# https配置
+https:
+  enable: false
+# key: path/to/server.key
+# cert: path/to/server.crt
+
+# 日志配置
+logs:
+  # 日志的输出类型：file | stdout | stderr
+  type: stdout
+
+  # 是否格式化日志
+  pretty: true
+
+  # trace | debug | info | message (default) | warn | error | fatal
+  level: trace
+
+  # 日志文件夹
+  logDir: ./logs
+ 
+  # 单个日志的最大大小，默认是: 50M
+  maxFileSize: 5K
+
+# 是否开启
+webEnable: true
+
+# 端口或者路径
+webListen: 9001
+
+# web 检索时，去npm上拉取
+canSearchOnNPM: true
+
+# ui页面的logo
+#logo: logo.png
+
+# web站点的相关链接
+relatedLinks:
+  - 
+    text: 百度
+    href: https://www.baidu.com
+  - 
+    text: react
+    href: https://reactjs.org/
+  - 
+    text: vue
+    href: https://vuejs.org/
+  

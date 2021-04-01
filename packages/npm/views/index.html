@@ -1,0 +1,15 @@
+<%const { versions } = locals%>
+<div class="search-title">
+    <img src="/icon/record.svg" />
+    <span><%-t('All available local packages:')%></span>
+</div>
+<%if(versions.length>0){%>
+    <%versions.forEach(version=>{%>
+        <%-include('public/package.html', { version })%>
+    <%})%>
+<%}else{%>
+    <div class="placeholder pt30">
+        <%-svgIcons.errorOutline%>
+        <p><%- t('No packages available!')%></p>
+    </div>
+<%}%>

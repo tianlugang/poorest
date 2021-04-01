@@ -1,0 +1,80 @@
+<% var {seo, asset, registryURL} = locals;%>
+<!doctype html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Language" content="zh-CN">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <title><%= locals.title %> | <%- t('simple npm private server') %></title>
+    <meta name="keywords" content="<%= seo.keywords %>">
+    <meta name="description" itemprop="description" content="<%= seo.description %>">
+    <meta itemprop="name" content="<%= seo.title %>">
+    <meta itemprop="image" content="/images/favicon.ico">
+    <meta name="applicable-device" content="pc">
+    <meta http-equiv="imagetoolbar" content="no">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+    <link rel="icon" type="image/png" href="/images/favicon.png" />
+    <% if(Array.isArray(asset.css)) {%>
+        <% for(let url of asset.css) {%>
+        <link rel="stylesheet" href="<%= url %>" />
+        <%}%>
+    <%}%>
+</head>
+
+<body class="container">
+    <div class="content">
+        <div class="logo">
+            <img src="/images/logo.png" />
+        </div>
+        <form method="POST" onsubmit="return false;">
+            <div class="formItem">
+                <div class="prefix">
+                    <img src="/icon/user.svg" class="icon icon-1x" />
+                </div>
+                <div class="control">
+                    <input type="text" maxlength="20" minlength="5" placeholder="<%- t('please enter your account')%>"
+                        name="username" oninput="util.validate(this)" onblur="util.validate(this)" />
+                </div>
+                <div class="validMsg" id="J-valid-msg_username">
+                    <%- t('please enter your account')%>
+                </div>
+            </div>
+
+            <div class="formItem">
+                <div class="prefix">
+                    <img src="/icon/passwd.svg" class="icon icon-1x" />
+                </div>
+                <div class="control">
+                    <input type="password" maxlength="20" minlength="6"
+                        placeholder="<%- t('please enter your password')%>" name="password"
+                        oninput="util.validate(this)" onblur="util.validate(this)" />
+                </div>
+                <div class="validMsg" id="J-valid-msg_password">
+                    <%- t('please enter your password')%>
+                </div>
+            </div>
+
+            <div class="formItem" style="margin-top: 18px;">
+                <button class="button primary block lg" type="submit" onclick="util.submit()"><%-t('Login')%></button>
+            </div>
+        </form>
+        <div class="prompt">
+            <code>npm set registry <%-registryURL%></code><br>
+            <code>npm adduser --registry <%-registryURL%></code>
+        </div>
+    </div>
+    <div class="footer"><%-t('I am Daniel Tian(田路刚), Welcome to use my development results.') %></div>
+    <% if(Array.isArray(asset.js)) {%>
+        <% for (let url of asset.js) {%>
+        <script src="<%= url %>"></script>
+        <%}%>
+    <%}%>
+</body>
+
+</html>

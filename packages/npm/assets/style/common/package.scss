@@ -1,0 +1,82 @@
+@import "./config.scss";
+@import "./reset.scss";
+@import "./layout.scss";
+
+.pkgLicense {
+    color: $primary-color;
+}
+
+.pkg {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 22px;
+    padding: 10px 20px;
+    background-color: $white;
+    font-size: 14px;
+    text-align: center;
+    border-bottom: 1px solid rgba(245, 245, 245, 100);
+    min-height: 100px;
+
+    &:hover {
+        border-color: lighten($primary-color, 42%);
+    }
+
+    .pkg-name {
+        font-size: 16px;
+        text-align: left;
+        flex-shrink: 0;
+
+        a {
+            font-weight: 600;
+        }
+    }
+
+    .pkg-desc {
+        color: $muted-color;
+        font-size: 13px;
+        text-align: left;
+        flex: 1 0 auto;
+        padding: 5px 0;
+    }
+
+    .pkg-intro {
+        flex-shrink: 0;
+        display: flex;
+        justify-content: space-between;
+        justify-items: center;
+        align-items: center;
+        flex-wrap: nowrap;
+
+        .pkg-base {
+            flex-shrink: 0;
+            font-size: 14px;
+            text-align: left;
+            font-family: SourceHanSansSC-regular;
+        }
+
+        .pkg-exts {
+            margin-left: 10px;
+            text-align: right;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+    }
+
+    .pkg-author {
+        margin-right: 5px;
+    }
+
+    .pkg-version {
+        color: $gray-color;
+        margin-right: 5px;
+    }
+
+    .pkg-status {
+        @extend .cmain;
+    }
+
+    .pkg-update {
+        color: $gray-color;
+    }
+}
