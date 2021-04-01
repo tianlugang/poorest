@@ -8,14 +8,13 @@
 
 html {
     text-size-adjust: 100%;
-    font-size: 10px;
-    -webkit-tap-highlight-color: $black;
+    -webkit-tap-highlight-color: $base-color;
 }
 
 body {
     margin: 0;
     font-family: "Fira Mono", "Andale Mono", "Consolas", monospace, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 13px;
+    font-size: 14px;
     line-height: 1.42857143;
     color: $base-color;
     background-color: $light-color;
@@ -37,7 +36,7 @@ summary {
 }
 
 a {
-    color: initial;
+    color: $base-color;
     text-decoration: none;
     background-color: transparent;
 
@@ -167,8 +166,9 @@ img {
 .fl {
     float: left;
 }
-
-.ndl:hover {
+ 
+.nonLink,
+.nonLink:hover {
     text-decoration: none;
 }
 
@@ -192,7 +192,6 @@ img {
 }
 
 .clearfix {
-
     &::after,
     &::before {
         display: table;
@@ -302,6 +301,11 @@ img {
     }
 }
 
+.svg {
+    display: inline-block;
+    vertical-align: text-top;
+    fill: currentColor;
+}
 .icon {
     position: relative;
     fill: $muted-color;

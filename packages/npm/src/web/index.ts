@@ -34,14 +34,12 @@ export function createWebApp(rc: IRuntimeConfig) {
     Provider.broadcast('web:start-before', app, router)
     initI18n(rc.language)
 
+    if (rc.prefix && isValidString(rc.prefix)) {
+        router.prefix(rc.prefix)
+    }
     if (NODE_APP_ENVIRONMENT.isDev) {
         app.use(koaDevLogger())
     }
-
-    app.use(mixState(rc))
-    app.use(views())
-    app.use(asset(rc.assetJsonPath))
-
     if (NODE_APP_ENVIRONMENT.isProd) {
         app.use(expires)
         app.use(koaCompress())
@@ -55,10 +53,6 @@ export function createWebApp(rc: IRuntimeConfig) {
         hidden: false
     }))
 
-    if (rc.prefix && isValidString(rc.prefix)) {
-        router.prefix(rc.prefix)
-    }
-
     router.use(koaBody({
         json: true,
         multipart: true,
@@ -66,6 +60,9 @@ export function createWebApp(rc: IRuntimeConfig) {
         parsedMethods: ['POST', 'PUT', 'PATCH', 'DELETE']
     }))
     router.use(authorize)
+    router.use(mixState(rc))
+    router.use(views())
+    router.use(asset(rc.assetJsonPath))
     router.use(denyFrame)
     router.use(redirect)
     router.get('/docs', docsServe)

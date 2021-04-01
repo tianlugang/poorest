@@ -69,6 +69,15 @@
     }
 }
 
+.recordTit {
+    letter-spacing: 0;
+
+    img {
+        position: relative;
+        top: -2px;
+    }
+}
+
 .settings {
     float: right;
     margin-top: 20px;
@@ -79,7 +88,7 @@
         width: 34px;
         height: 34px;
         margin-top: 13px;
-        margin-right: 13px;
+        margin-right: 22px;
         cursor: pointer;
     }
 
@@ -176,16 +185,13 @@
         }
 
         >dd {
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            margin: 0;
+            margin: 0 0 10px 0;
             color: #bbb;
         }
 
         a {
             color: #ccc;
-
+            text-decoration: none;
             &:hover {
                 color: $primary-color;
             }
@@ -208,6 +214,87 @@
     line-height: 1.5;
     color: #ddd;
     text-align: center;
+}
+
+.myblog.first {
+    width: 340px;
+    >dd {
+        margin-bottom: 10px; 
+        float: left;
+        width: 50%;
+    }
+}
+
+.sponsor {
+    position: relative;
+    overflow: visible;
+
+    &:hover {
+        .cover {
+            opacity: 1;
+        }
+
+        .image {
+            // 285 261 296
+            // 192
+            visibility: visible;
+
+            &.qqgroup {
+                height: 260px;
+            }
+
+            &.myWebchat {
+                height: 190px + 26px;
+            }
+
+            &.qq {
+                height: 285px;
+            }
+
+            &.wechat {
+                height: 261px;
+            }
+
+            &.alipay {
+                height: 296px;
+            }
+        }
+    }
+
+    $transition-duration: .3s;
+
+    .cover {
+        position: relative;
+        display: inline-block;
+        width: 64px;
+        height: 64px;
+        cursor: pointer;
+        opacity: .3;
+        transition: $transition-duration ease-in;
+        transition-delay: .3s;
+    }
+
+    .image {
+        visibility: hidden;
+        overflow: hidden;
+        position: absolute;
+        width: 192px;
+        height: 0;
+        bottom: 64px;
+        right: 0;
+        transition: $transition-duration ease-in;
+        z-index: 1;
+        border: 1px solid #efefef;
+        background-color: $white;
+
+        div {
+            text-align: center;
+        }
+
+        img {
+            width: 100%;
+        }
+    }
 }
 
 .navItem {
@@ -374,4 +461,9 @@
     padding: 8px 16px;
     margin: 8px 16px;
     border-radius: 4px;
+}
+
+img[data-avatar] {
+    opacity: 0;
+    transition: opacity ease .3s;
 }

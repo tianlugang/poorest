@@ -38,9 +38,9 @@ type IFileItem = {
 }
 export const docsServe: IRouterMiddleware = async (ctx) => {
     logger.trace({ root: docsRootDir }, '@{root}')
-    const { state, query } = ctx
+    const { query } = ctx
 
-    
+
     if (files.length === 0) {
         await pedding(getFiles(docsRootDir, files))
     }
@@ -51,9 +51,6 @@ export const docsServe: IRouterMiddleware = async (ctx) => {
 
     ctx.render('docs', {
         asset: ctx.asset('docs'),
-        title: state.title,
-        seo: state.seo,
-        registryURL: state.registryBaseURL,
         content: mdRender(content),
         contentRenderError: err ? err.stack : undefined,
         files,

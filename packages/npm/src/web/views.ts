@@ -29,7 +29,7 @@ export function views(opts: IKoaEJSMiddlewareOptions = defaults): IAppMiddleware
   const scope = Object.create(null)
 
   scope.getPackageOwner = Package.getOwner
-  scope.getPackageKeywords = Package.getKeywords 
+  scope.getPackageKeywords = Package.getKeywords
   scope.timespan = timespan
 
   EJS.configure({
@@ -59,13 +59,12 @@ export function views(opts: IKoaEJSMiddlewareOptions = defaults): IAppMiddleware
       ctx.render = (view, data = {}, opts) => {
 
         const { layout, noLayout, noWriteResp, status } = opts || renderOptions
-        let result = EJS.render(view, data, opts)
+        const record = { ...ctx.state, ...data }
+        let result = EJS.render(view, record, opts)
 
         if (!noLayout && layout) {
-          result = EJS.render(layout, {
-            ...data,
-            body: result
-          }, opts)
+          record.body = result
+          result = EJS.render(layout, record, opts)
         }
 
         if (pretty) {

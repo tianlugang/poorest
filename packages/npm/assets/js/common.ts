@@ -1,4 +1,5 @@
 import { util } from './util'
+import { createAvatar } from './avatar'
 
 util.logout = function () {
     util.request({
@@ -54,4 +55,5 @@ util.clearSearch = function (sx: HTMLElement) {
 
 util.onReady(function () {
     document.addEventListener('keypress', util.enterSearch)
+    createAvatar()
 })

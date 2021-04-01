@@ -10,8 +10,8 @@
             <img src="/icon/user.svg" style="width: 16px; margin-left: -2px;" />
             <% const owner = username || this.getPackageOwner(version) %>
             <span class="pkg-author">
-                <% const office = version.officeWebsite %>
-                <a href="<%-(office? office : '') + '/~' + owner%>" target="_blank" class="ndl"><%-owner%></a>
+                <% const office = locals.officeWebsite %>
+                <a href="<%-(office? office : '') + '/~' + owner%>" target="_blank" class="nonLink"><%-owner%></a>
             </span>
             <span class="pkg-version">v<%-version.version%></span>
             <span class="pkg-status">Published</span>
@@ -22,7 +22,7 @@
             <% const keyswords = this.getPackageKeywords(version) %>
             <% for(let word of keyswords) {%>
                 <span class="button xs default">
-                    <a href="/search?q=keywords:<%-word%>" class="ndl"><%- word %></a>
+                    <a href="/search?q=keywords:<%-word%>" class="nonLink"><%- word %></a>
                 </span>
             <%}%>
         </div>

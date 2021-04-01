@@ -68,7 +68,7 @@
 * `config.maxBodySize` 服务器可解析的最大`body`,默认10mb
 * `config.webEnable` 是否开启web服务，默认为`false`
 * `config.webListen` web服务监听的地址或端口，默认为`localhost:9001`
-* `config.canSearchOnNPM` web服务中检索一个包时，是否去`npmjs.org`上检索
+* `config.canSearchFromNPM` web服务中检索一个包时，是否去`npmjs.org`上检索
 * `config.logo` web界面的logo, 是一个指向一张图像的地址，不设置时使用默认的logo 
 * `config.https` https配置
    - `config.https.enable` 默认为 false， 是否为启动`https`服务，开启时必须提供`key` 和 `cert`

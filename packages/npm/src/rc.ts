@@ -35,7 +35,7 @@ export type IAppConfig = {
     // web
     webEnable: boolean
     webListen: string | number
-    canSearchOnNPM: boolean
+    canSearchFromNPM: boolean
     logo?: string
 
     // log
@@ -43,7 +43,7 @@ export type IAppConfig = {
 
     // relatedLinks
     relatedLinks: IRelatedLinks
-    
+
     // runtime
     targetDir?: string
     path: string
@@ -58,8 +58,13 @@ export type IRuntimeConfig = {
     assetJsonPath: string
     registryServerBaseURL: string
     registryAddress: IServerAddress
-    webServerBaseURL: string
+    webBaseURL: string
     webAddress: IServerAddress | null
+    appVersion: string
+    nodeVersion: string
+    officeWebsite: string
+    poweredBy: string
+    githubRepo: string
 } & Omit<Required<IAppConfig>, 'targetDir'>
 
 export interface IAppArguments {

@@ -28,14 +28,20 @@ export type IRelatedLink = {
     href: string
 }
 export type IContextState = {
-    title: string  
+    title: string
     registryBaseURL: string
-    webServerBaseURL: string
-    canSearchOnNPM: boolean
+    webBaseURL: string
+    canSearchFromNPM: boolean
+    appVersion: string
+    nodeVersion: string
+    poweredBy: string
+    officeWebsite: string
     seo: ISEOTemplate
     asideOrders: IAsideOrder[]
     asideOrdersActive: string
     relatedLinks: IRelatedLink[]
+    githubRepo: string
+    username?: string
 }
 export type IContextExtend<B> = {
     reportError(err: INodeError): void

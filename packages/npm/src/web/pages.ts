@@ -7,7 +7,6 @@ import { IRouterMiddleware } from '../types'
 import { mdRender } from './markdown'
 
 export const sign: IRouterMiddleware = async (ctx) => {
-    const { state } = ctx
     const token = ctx.cookies.get('token') || ctx.get('authorization')
 
     if (token) {
@@ -20,16 +19,14 @@ export const sign: IRouterMiddleware = async (ctx) => {
             return ctx.redirect('/')
         }
     }
+    
     ctx.render('login', {
         asset: ctx.asset('login'),
-        title: state.title,
-        seo: state.seo,
-        registryURL: state.registryBaseURL
     }, { noLayout: true })
 }
 
 export const home: IRouterMiddleware = async (ctx, _next) => {
-    const { state, user } = ctx
+    const { user } = ctx
     const versions: IPackage.Version[] = []
     const [] = await pedding(
         Storage.getLocalByCustomizer({
@@ -60,31 +57,19 @@ export const home: IRouterMiddleware = async (ctx, _next) => {
 
     ctx.render('index', {
         asset: ctx.asset('index'),
-        asideOrders: state.asideOrders,
-        asideOrdersActive: state.asideOrdersActive,
-        relatedLinks: state.relatedLinks,
-        seo: state.seo,
-        title: state.title,
         versions: versions
     })
-
 }
 
 export const team: IRouterMiddleware = (ctx, _next) => {
-    const { state } = ctx
     ctx.render('team', {
-        asset: ctx.asset('index'),
-        asideOrders: state.asideOrders,
-        asideOrdersActive: state.asideOrdersActive,
-        relatedLinks: state.relatedLinks,
-        seo: state.seo,
-        title: state.title,
+        asset: ctx.asset('index')
     })
 }
 
 // my page
 export const works: IRouterMiddleware = async (ctx, next) => {
-    const { state, user } = ctx
+    const { user } = ctx
     const page = ctx.query.p || 1
     const [err, info] = await pedding(Auth.userData.getUser(user.name))
 
@@ -95,14 +80,9 @@ export const works: IRouterMiddleware = async (ctx, next) => {
 
         ctx.render('works', {
             asset: ctx.asset('works'),
-            asideOrders: state.asideOrders,
-            asideOrdersActive: state.asideOrdersActive,
             pageCurrent: page,
             pageHref: ctx.path,
             pageTotal: Math.ceil(fuseVersions.length / 20),
-            relatedLinks: state.relatedLinks,
-            seo: state.seo,
-            title: state.title,
             user: rest,
             versions: fuseVersions,
             getVersionError: getPackagesErr ? getPackagesErr.message : undefined
@@ -127,21 +107,15 @@ export const userSpace: IRouterMiddleware = async (ctx, next) => {
     // a local
     if (user) {
         const page = ctx.query.p || 1
-        const { state } = ctx
         const { passwd, key, ...rest } = user
         const [getPackagesErr, versions] = await pedding(Storage.getPackagesByUser(user.account))
         const fuseVersions = versions || []
 
         ctx.render('user', {
             asset: ctx.asset('user'),
-            asideOrders: state.asideOrders,
-            asideOrdersActive: state.asideOrdersActive,
             pageCurrent: page,
             pageHref: ctx.path,
             pageTotal: Math.ceil(fuseVersions.length / 20),
-            relatedLinks: state.relatedLinks,
-            seo: state.seo,
-            title: state.title,
             user: rest,
             versions: fuseVersions,
             getVersionError: getPackagesErr ? getPackagesErr.message : undefined
@@ -188,14 +162,14 @@ export const search: IRouterMiddleware = async (ctx, next) => {
                 latestPackage.date = metadata.time.modified
             }
 
-            latestPackage.officeWebsite = state.webServerBaseURL
+            latestPackage.officeWebsite = state.webBaseURL
             latestPackage.isLocal = true
             versions.push(latestPackage)
         }
     })
 
     await pedding(queryPromises)
-    if (state.canSearchOnNPM) {
+    if (state.canSearchFromNPM) {
         const [, records] = await pedding(Storage.searchFromNPM({
             text,
             from,
@@ -216,16 +190,11 @@ export const search: IRouterMiddleware = async (ctx, next) => {
 
     ctx.render('search', {
         asset: ctx.asset('search'),
-        asideOrders: state.asideOrders,
-        asideOrdersActive: state.asideOrdersActive,
         pageCurrent: from || 1,
         pageHref: ctx.path,
         pageTotal: Math.ceil(total / size),
         pageQuery: 'q=' + text,
-        relatedLinks: state.relatedLinks,
-        seo: state.seo,
         searchKeyword: decodeURIComponent(text),
-        title: state.title,
         versions: versions
     })
 }
@@ -245,8 +214,7 @@ export const detail: IRouterMiddleware = async (ctx, next) => {
         const latestVersion = distTags.latest
 
         version = version || latestVersion
-        if (version in versions) {
-            const { state } = ctx
+        if (version in versions) { 
             const versionData = versions[version]
             const times = metadata.time || EMPTY_OBJECT
             const wrapDistTags: any[] = []
@@ -270,18 +238,12 @@ export const detail: IRouterMiddleware = async (ctx, next) => {
             versionData._latestPublished = times[version] || times.modified
             versionData.maintainers = versionData.maintainers || metadata.maintainers
             ctx.render('detail', {
-                asset: ctx.asset('detail'),
-                asideOrders: state.asideOrders,
-                asideOrdersActive: state.asideOrdersActive,
+                asset: ctx.asset('detail'), 
                 distTags: wrapDistTags,
                 metadata: versionData,
-                inRegistry: metadata._inRegistry,
-                officeWebsite: state.webServerBaseURL,
+                inRegistry: metadata._inRegistry, 
                 npmOfficeWebsite: CONSTANTS.NPM_OFFICE_WEB_SITE_ADDRESS,
                 readmeMarkdown: mdRender(readmeContents),
-                relatedLinks: state.relatedLinks,
-                seo: state.seo,
-                title: state.title,
                 versions,
                 times,
                 repository: Package.getRepository(versionData)

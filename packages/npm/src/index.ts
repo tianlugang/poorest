@@ -58,7 +58,7 @@ export function initConfig(args: Partial<IAppArguments>) {
         logo: getValueByDefault(ac.logo, ''),
         webEnable: webEnable,
         webListen: webListen,
-        canSearchOnNPM: getValueByDefault(ac.canSearchOnNPM, true),
+        canSearchFromNPM: getValueByDefault(ac.canSearchFromNPM, true),
         webAddress,
         maxUsers: getValueByDefault(ac.maxUsers, 1000),
         expire: getValueByDefault(ac.expire, '1d'),
@@ -83,7 +83,12 @@ export function initConfig(args: Partial<IAppArguments>) {
         logs: Object.assign({}, ac.logs),
         registryServerBaseURL: getServerUrl(registryAddress.proto, registryAddress.port)[0],
         registryAddress,
-        webServerBaseURL: webAddress ? getServerUrl(webAddress.proto, webAddress.port)[0] : '',
+        webBaseURL: webAddress ? getServerUrl(webAddress.proto, webAddress.port)[0] : '',
+        appVersion: pkgJson.version,
+        nodeVersion: process.version,
+        officeWebsite: '//npmlite.com',
+        poweredBy: 'Daniel Tian(田路刚)',
+        githubRepo: "https://github.com/tianlugang/poorest/tree/main/packages/npm"
     }
 
     process.title = title

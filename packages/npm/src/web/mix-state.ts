@@ -8,7 +8,7 @@ export function mixState(rc: IRuntimeConfig): IAppMiddleware {
     title: 'welcome sign in - my npm private server',
     description: 'npm 是 JavaScript 世界的包管理工具，并且是 Node.js 平台的默认包管理工具。通过 npm 可以安装、共享、分发代码，管理项目依赖关系。'
   }
-  const asideOrders = [
+  const asideMenu = [
     {
       text: i18n.t('My Profile'),
       icon: '/icon/user.svg',
@@ -27,16 +27,22 @@ export function mixState(rc: IRuntimeConfig): IAppMiddleware {
   ]
   const relatedLinks = mergeRelatedLinks(rc.relatedLinks)
 
-  return async (ctx, next) => {
+  return async (ctx, next) => { 
     ctx.state = {
       title: rc.title,
       registryBaseURL: rc.registryServerBaseURL,
-      webServerBaseURL: rc.webServerBaseURL,
-      canSearchOnNPM: rc.canSearchOnNPM,
+      webBaseURL: rc.webBaseURL,
+      canSearchFromNPM: rc.canSearchFromNPM,
       seo,
-      asideOrders,
+      username: ctx.user ? ctx.user.name : undefined,
+      asideOrders: asideMenu,
       asideOrdersActive: ctx.path,
-      relatedLinks
+      relatedLinks,
+      nodeVersion: rc.nodeVersion,
+      appVersion: rc.appVersion,
+      officeWebsite: rc.officeWebsite,
+      poweredBy: rc.poweredBy,
+      githubRepo: rc.githubRepo
     }
     await next()
   }

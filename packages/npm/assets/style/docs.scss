@@ -47,6 +47,7 @@ $border-color:#eee;
         line-height: $footer-height;
         text-align: center;
         border-top: 1px solid $border-color;
+        padding: 0 $common-spaced;
     }
     
     &-content {

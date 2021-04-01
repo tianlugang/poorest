@@ -238,7 +238,7 @@
                         <%if (typeof item === 'object' && item) {%>
                             <li class="item">
                                 <a href="<%-(inRegistry ? '' : npmOfficeWebsite) +'/~'+ item.name%>" class="subavatar" target="_blank">
-                                    <img src="" alt="<%-item.name%>" title="<%-item.name%>">
+                                    <img data-avatar alt="<%-item.name%>" title="<%-item.name%>">
                                 </a>
                             </li>
                         <%}%>

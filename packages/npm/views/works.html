@@ -1,7 +1,7 @@
 <%const { pageCurrent, pageHref, pageTotal, pageQuery, user, company, versions } = locals%>
 <div class="users clearfix">
     <div class="avatars">
-        <img src="/images/avatar.jpg" />
+        <img alt="<%-user.account%>" data-avatar/>
     </div>
     <div class="intro">
         <b><%- t('self-introduction:')%></b>

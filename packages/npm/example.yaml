@@ -82,8 +82,8 @@ webEnable: true
 # 端口或者路径
 webListen: 9001
 
-# web 检索时，去npm上拉取
-canSearchOnNPM: true
+# 是否可以从 npm 进行检索
+canSearchFromNPM: true
 
 # ui页面的logo
 #logo: logo.png

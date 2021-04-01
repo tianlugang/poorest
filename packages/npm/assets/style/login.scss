@@ -17,6 +17,16 @@
     width: 100%;
     text-align: center;
     background-color: #fff;
+    padding:0 20px;
+    color: $muted-color; 
+    .mLink {
+        border-left: 1px solid $gray-color;
+        padding-left: 8px;
+        margin-left: 5px;
+    }
+    a {
+        text-decoration: none;
+    }
 }
 
 .content {
@@ -31,8 +41,8 @@
     background-color: #fff;
 }
 
-.logo,
-.logo img {
+.logoc,
+.logoc img {
     width: 100%;
 }
 
@@ -43,4 +53,27 @@
 .prompt code {
     color: #888;
     font-size: 12px;
+}
+
+.github-corner {
+    border-bottom: 0;
+    position: fixed;
+    right: 0;
+    text-decoration: none;
+    top: 0;
+    z-index: 1;
+    svg {
+        color: #fff;
+        fill: $primary-color;
+        height: 60px;
+        width: 60px;
+    }
+}
+
+.topNav {
+    margin: 15px 60px 0 0;
+    position: absolute;
+    right: 0;
+    text-align: right;
+    z-index: 10;
 }
