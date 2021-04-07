@@ -1,6 +1,5 @@
 import os from 'os'
 
-// 获取服务器内网URL，方便移动端测试
 export function getServerUrl(protocol: string = 'http', port: number | string = 3000) {
     const ifaces = os.networkInterfaces()
     const addres: os.NetworkInterfaceInfo[] = []

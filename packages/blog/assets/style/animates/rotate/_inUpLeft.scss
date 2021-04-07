@@ -1,0 +1,21 @@
+//
+// $load-keyframes-rotateInUpLeft 变量控制了此'keyframes'是否被输出到css中去
+//
+@if $load-keyframes-rotateInUpLeft == true {
+    @keyframes rotateInUpLeft {
+      from {
+        transform-origin: left bottom;
+        transform: rotate3d(0, 0, 1, 45deg);
+        opacity: 0;
+        visibility: visible;
+      }
+
+      to {
+        transform-origin: left bottom;
+        transform: none;
+        opacity: 1;
+      }
+    }
+
+
+}

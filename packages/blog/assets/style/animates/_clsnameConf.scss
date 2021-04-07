@@ -1,0 +1,121 @@
+// 
+// 以往的日子里在使用css的时候，不论我们使用的是一些优秀的第三方库，或者是自己写的common样式，
+// 都存在一个问题：难以按需加载，当然在webpack等前端脚手架问世以后，动态配置已经不是什么黑科技了，
+// 例如bootstrap就早就可以这么用了，如果你还不知道，那只能说明你的使用水平不够，而我今天要做的无非
+// 也就是这种工作，动态修改下面的变量，就可以实现按需加载了
+//_____________________________________________________________________________________
+// 
+
+// 模块：bounce 
+$load-keyframes-bounceBasic: true;
+$load-keyframes-bounceIn: true;
+$load-keyframes-bounceInDown: true;
+$load-keyframes-bounceInLeft: true;
+$load-keyframes-bounceInRight: true;
+$load-keyframes-bounceInUp: true;
+$load-keyframes-bounceOut: true;
+$load-keyframes-bounceOutDown: true;
+$load-keyframes-bounceOutLeft: true;
+$load-keyframes-bounceOutRight: true;
+$load-keyframes-bounceOutUp: true;
+
+// 模块：drop 
+$load-keyframes-dropIn: true;
+$load-keyframes-dropOut: true;
+$load-keyframes-dropTo: true;
+
+// 模块：fade 
+$load-keyframes-fadeIn: true;
+$load-keyframes-fadeInDown: true;
+$load-keyframes-fadeInDownBig: true;
+$load-keyframes-fadeInLeft: true;
+$load-keyframes-fadeInLeftBig: true;
+$load-keyframes-fadeInRight: true;
+$load-keyframes-fadeInRightBig: true;
+$load-keyframes-fadeInUp: true;
+$load-keyframes-fadeInUpBig: true;
+$load-keyframes-fadeOut: true;
+$load-keyframes-fadeOutDown: true;
+$load-keyframes-fadeOutDownBig: true;
+$load-keyframes-fadeOutLeft: true;
+$load-keyframes-fadeOutLeftBig: true;
+$load-keyframes-fadeOutRight: true;
+$load-keyframes-fadeOutRightBig: true;
+$load-keyframes-fadeOutUp: true;
+$load-keyframes-fadeOutUpBig: true;
+
+// 模块：flip 
+$load-keyframes-flipBasic: true;
+$load-keyframes-flipInX: true;
+$load-keyframes-flipInY: true;
+$load-keyframes-flipOutX: true;
+$load-keyframes-flipOutY: true;
+
+// 模块：light 
+$load-keyframes-lightIn: true;
+$load-keyframes-lightOut: true;
+
+// 模块：roll 
+$load-keyframes-rollIn: true;
+$load-keyframes-rollOut: true;
+
+// 模块：rotate 
+$load-keyframes-rotateBox: true;
+$load-keyframes-rotateHinge: true;
+$load-keyframes-rotateIn: true;
+$load-keyframes-rotateInDownLeft: true;
+$load-keyframes-rotateInDownRight: true;
+$load-keyframes-rotateInUpLeft: true;
+$load-keyframes-rotateInUpRight: true;
+$load-keyframes-rotateOut: true;
+$load-keyframes-rotateOutDownLeft: true;
+$load-keyframes-rotateOutDownRight: true;
+$load-keyframes-rotateOutUpLeft: true;
+$load-keyframes-rotateOutUpRight: true;
+
+// 模块：shake 
+$load-keyframes-shakeBasic: true;
+$load-keyframes-shakeHead: true;
+$load-keyframes-shakeJello: true;
+$load-keyframes-shakeSwing: true;
+$load-keyframes-shakeTada: true;
+$load-keyframes-shakeWobble: true;
+
+// 模块：shine 
+$load-keyframes-shineBulb: true;
+$load-keyframes-shineCode-x: true;
+$load-keyframes-shineCode-y: true;
+$load-keyframes-shineCodeX: true;
+$load-keyframes-shineCodeY: true;
+$load-keyframes-shineGlide: true;
+$load-keyframes-shineGlowIn: true;
+$load-keyframes-shineGlowOut: true;
+$load-keyframes-shineInner: true;
+$load-keyframes-shineOuter: true;
+$load-keyframes-shineSlip: true;
+$load-keyframes-shineWarn: true;
+
+// 模块：slide 
+$load-keyframes-slideInDown: true;
+$load-keyframes-slideInLeft: true;
+$load-keyframes-slideInRight: true;
+$load-keyframes-slideInUp: true;
+$load-keyframes-slideOutDown: true;
+$load-keyframes-slideOutLeft: true;
+$load-keyframes-slideOutRight: true;
+$load-keyframes-slideOutUp: true;
+
+// 模块：zoom 
+$load-keyframes-zoomIn: true;
+$load-keyframes-zoomInDown: true;
+$load-keyframes-zoomInLeft: true;
+$load-keyframes-zoomInRight: true;
+$load-keyframes-zoomInUp: true;
+$load-keyframes-zoomOut: true;
+$load-keyframes-zoomOutDown: true;
+$load-keyframes-zoomOutLeft: true;
+$load-keyframes-zoomOutRight: true;
+$load-keyframes-zoomOutUp: true;
+$load-keyframes-zoomPulse: true;
+$load-keyframes-zoomRubber: true;
+$load-keyframes-zoomSpin: true;

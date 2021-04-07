@@ -1,0 +1,21 @@
+//
+// $load-keyframes-zoomSpin变量控制了此动画是否被输出到css中去
+//
+@if $load-keyframes-zoomSpin == true {
+	@keyframes zoomSpin {
+        0% {
+            transform: rotate(0);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    $zoom-spin-class: get-animate-clsname(zoomSpin);
+    @if type-of($zoom-spin-class) != 'null' {
+        #{$zoom-spin-class}{
+            @include animation-duration(15s);
+            @include animation-timing-function(linear);
+        }
+    }
+}

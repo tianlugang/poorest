@@ -1,0 +1,6 @@
+//
+// $load-keyframes-shineCode-x变量控制了此动画是否被输出到css中去
+//
+@if $load-keyframes-shineCode-x == true {
+	@include barcode(shineCode-x,'-x');
+}

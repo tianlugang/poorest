@@ -1,0 +1,14 @@
+.bubbleLeft {
+    @include card-base;
+    @extend %role-left;
+}
+
+.bubbleDown {
+    @include card-base;
+    @extend %role-top;
+}
+
+.bubbleUp {
+    @include card-base;
+    @extend %role-bottom;
+}

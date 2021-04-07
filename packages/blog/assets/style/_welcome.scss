@@ -1,0 +1,93 @@
+%welcome {
+  @include position(fixed, 0, 0, 0, 0);
+}
+
+%welcome-line {
+  width: 0;
+  height: 2px;
+  background-clip: border-box;
+}
+
+%round-ring {
+  width: 100px;
+  height: 100px;
+}
+
+.welcome {
+  @extend %welcome;
+  background-color: transparent;
+  z-index: map_get($z-index, welcome);
+
+  .welcome-line {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    @include margin(-1px auto 0);
+    @extend %welcome-line;
+    @include boxShadow(0 0 20px lighten($theme-color, 80));
+    background-color: lighten($theme-color, 5);
+
+    @at-root & div {
+      @extend %welcome-line;
+      @include transition(all 1s);
+      @include margin(0 auto);
+      background-color: transparent;
+      background-position: 0 0;
+      background-repeat: no-repeat;
+
+      &.active {
+        $linearStartColor: darken($theme-color, 10%);
+        $linearMiddleColor: lighten($theme-color, 20%);
+        $linearEndColor: lighten($theme-color, 10%);
+        @include linearGradient(background-image, linear-gradient(left, $linearStartColor, $linearMiddleColor, $linearStartColor), $linearStartColor, $linearEndColor);
+      }
+    }
+  }
+
+  .welcome-content {
+    .welcome-round {
+      @include boxSizing();
+      @include position(absolute, -50%, 0, 0, 50%);
+      @extend %round-ring;
+      @include margin(-50px 0 0 -50px);
+      @include borderRadius();
+      @include border(1px solid darken($theme-color, 5%));
+      @include transition(background-color 3s);
+      background-color: lighten($theme-color, 100%);
+      cursor: pointer;
+      overflow: hidden;
+
+      &.active {
+        color: lighten($theme-color, 100);
+        background-color: darken($theme-color, 10%);
+      }
+
+      .welcome-ring {
+        @extend %round-ring;
+
+        span {
+          display: inline-block;
+          float: left;
+          @extend %round-ring;
+          text-align: center;
+          line-height: 100px; 
+
+          em {
+            font-weight: 100;
+            font-size: 40px;
+            font-stretch: normal;
+            font-style: normal;
+          }
+        }
+      }
+    }
+  }
+}
+
+.welcome-mask {
+  @extend %welcome;
+  z-index: map_get($z-index, welcomeMask);
+  background-color: darken($theme-color, 10%);
+  @include opacity(99);
+}

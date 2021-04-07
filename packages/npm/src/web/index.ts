@@ -59,9 +59,9 @@ export function createWebApp(rc: IRuntimeConfig) {
         jsonLimit: rc.maxBodySize,
         parsedMethods: ['POST', 'PUT', 'PATCH', 'DELETE']
     }))
+    router.use(views())
     router.use(authorize)
     router.use(mixState(rc))
-    router.use(views())
     router.use(asset(rc.assetJsonPath))
     router.use(denyFrame)
     router.use(redirect)

@@ -1,0 +1,245 @@
+@import "./config.scss";
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+html {
+    text-size-adjust: 100%;
+    -webkit-tap-highlight-color: $base-color;
+}
+
+body {
+    margin: 0;
+    font-family: "Fira Mono", "Andale Mono", "Consolas", monospace, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: $base-color;
+    background-color: $light-color;
+    overflow-x: hidden;
+}
+
+article,
+aside,
+details,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section,
+summary {
+    display: block;
+}
+
+a {
+    color: $base-color;
+    text-decoration: none;
+    background-color: transparent;
+
+    &:active,
+    &:hover {
+        outline: 0;
+        color: $primary-color;
+    }
+
+    &:hover,
+    &:focus {
+        color: $primary-color;
+        text-decoration: underline;
+        transition: color 300ms ease;
+    }
+
+    &:focus {
+        outline: thin dotted;
+        outline: 5px auto -webkit-focus-ring-color;
+        outline-offset: -2px;
+    }
+}
+
+img {
+    border: 0;
+}
+
+ul,
+ol {
+    padding-left: 0;
+}
+
+ul,
+ol,
+li {
+    list-style: none;
+}
+
+img {
+    vertical-align: middle;
+}
+
+svg {
+    vertical-align: text-top;
+}
+
+svg:not(:root) {
+    overflow: hidden;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+    margin: 0;
+    font: inherit;
+    color: inherit;
+}
+
+button {
+    overflow: visible;
+}
+
+button,
+select {
+    text-transform: none;
+}
+
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+    -webkit-appearance: button;
+    cursor: pointer;
+}
+
+button[disabled],
+html input[disabled] {
+    cursor: default;
+}
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+}
+
+input,
+select,
+textarea,
+button {
+    outline: none;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    box-sizing: border-box;
+    padding: 0;
+}
+
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+.fr {
+    float: right;
+}
+
+.fl {
+    float: left;
+}
+
+.clearfix {
+    &::after,
+    &::before {
+        display: table;
+        content: '';
+        clear: both;
+        width: 0;
+        visibility: hidden;
+    }
+}
+
+.main {
+    @include position(fixed, 0, 0, 0, 0);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: rgba($theme-color, 0.8);
+}
+
+.wrap-box,
+.wrap-abs-box {
+    width: $main-viewport;
+    background-color: $wrap-box-background-color; 
+}
+
+.wrap-title {
+    font-size: 22px;
+    position: relative;
+    color: #fff;
+    padding-bottom: $base-space;
+    font-weight: normal;
+    letter-spacing: 1px;
+    margin-bottom: 25px;
+
+    &:after,
+    &:before {
+        display: block;
+        content: '';
+        height: 0;
+        position: absolute;
+        left: 0;
+    }
+
+    &:after {
+        width: 100%;
+        border-top: 1px solid #fff;
+        bottom: 0;
+    }
+
+    &:before {
+        border-top: 3px dashed $theme-color;
+        z-index: 1;
+        width: 50%;
+        bottom: -1px;
+    }
+}
+
+.wrap-box {
+    position: relative;
+    margin: 0 auto;
+    &:after,
+    &:before {
+        content: "";
+        display: table
+    }
+
+    &:after {
+        clear: both
+    }
+}
+
+.wrap-abs-box {
+    position: absolute;
+    overflow: hidden;
+    top: $top-nav-height + $base-space;
+    bottom: $bottom-nav-height + $base-space;
+    left: 50%;
+    margin-left: -$main-viewport/2;
+    padding: 0 $base-space;
+}
+
+.scroll-wrapper {
+    position: relative;
+  
+    &.yScroll {
+        @include scroller-y(hidden auto); 
+    }
+}
+

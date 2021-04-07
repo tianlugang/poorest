@@ -1,0 +1,30 @@
+// 
+// 基础用法
+// 
+@if $is-use-basic-animation == true{
+    .#{$basic-common-class}{
+        animation-duration: $duration-base;
+        animation-fill-mode: both;
+        // 持续时间
+        &.hinge{
+            animation-duration: $duration-hinge;
+        }
+        &.short{
+            animation-duration: $duration-short;
+        }
+
+        // 无限次数
+        &.infinite{
+            animation-iteration-count: infinite;
+        }
+
+        // 动画名称
+        @each $class-name in $animation-class-name{
+            // 加入前缀并且让其脱离父子继承关系
+            @at-root .#{$basic-common-class}-#{$class-name}{
+                $animation-name : inspect($class-name);
+                @include animation-name($animation-name);
+            }
+        }
+    }
+}

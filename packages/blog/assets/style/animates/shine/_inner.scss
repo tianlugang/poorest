@@ -1,0 +1,6 @@
+//
+// $load-keyframes-shineBasic变量控制了此动画是否被输出到css中去
+//
+@if $load-keyframes-shineInner == true {
+	@include shine(shineInner,'inset');
+}

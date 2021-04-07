@@ -1,0 +1,220 @@
+.timeline-wrapper,
+.timeline-wrapper * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.timeline-wrapper {
+    max-width: 100%;
+    height: calc(100% - 100px);
+    overflow: hidden;
+}
+
+$timeline-colors: (
+    red: #F25B5A,
+    opal: #76BBDA,
+    blue: #2196F3,
+    grey: #7E8DA3,
+    pink: #F282C7,
+    green: #75CE66,
+    white: $white,
+    purple: #9C27B0,
+    indigo: #3F51B5,
+    orange: #F0CA45,
+    turqoise: #28C0C6,
+    brown: #E46D2B,
+    black: #2F3949
+);
+
+@mixin long-line {
+    &:before {
+        content: "";
+        background-color: #C1C1C1;
+        background-image: linear-gradient(top, #EAF0F2 0%, #C1C1C1 8%, #C1C1C1 92%, #EAF0F2 100%);
+        border-radius: 2px;
+        margin-left: -2px;
+        position: absolute;
+        display: block;
+        height: 100%;
+        width: 4px;
+        left: 50%;
+        top: 0
+    }
+}
+
+.timeline { 
+    position: relative;
+    .timeline-post {
+        margin: 0;
+        border: 0 none;
+        padding: 0 60px 5px 0;
+        width: 50%;
+        position: relative;
+        @include long-line;
+        &:before {
+            background-image: none;
+            border-radius: 0;
+            margin-left: -1px;
+            width: 2px
+        }
+        
+        &:before, .timeline-icon, .timeline-meta {
+            left: 100%
+        }
+
+        &:nth-child(even) {
+            margin-left: 50%;
+            padding: 0 0 5px 60px;
+            &:before, .timeline-icon {
+                left: 0
+            }
+
+            .timeline-meta {
+                left: auto;
+                margin: 25px 50px 0 0;
+                text-align: right;
+                right: 100%
+            }
+
+            .timeline-content {
+                &:before {
+                    border: 15px solid transparent;
+                    border-right-color: $white;
+                    left: -30px;
+                    right: auto
+                }
+                &:after {
+                    border: 14px solid transparent;
+                    border-right-color: $white;
+                    left: -28px;
+                    right: auto
+                }
+            }
+        }
+
+        &:last-child, &:nth-child(even):last-child {
+            padding-bottom: 0
+        }
+
+        .icon-dot-small {
+            background: $white;
+            margin: 30px 0 0 -7px;
+            box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+            height: 14px;
+            width: 14px;
+        }
+
+        .timeline-meta { 
+            color: #999;
+            margin: 28px 0 0 50px;
+            position: absolute;
+            font-weight: 500;
+
+            .meta-details {
+                color: rgba($white, 0.5);
+                white-space: nowrap
+            }
+        } 
+
+        .timeline-icon {
+            background: $white;
+            line-height: 70px;
+            position: absolute;
+            text-align: center;
+            border-radius: 40px;
+            font-size: 18px;
+            z-index: 10;
+            &.large {
+                margin: 22px 0 0 -35px;
+                height: 70px;
+                width: 70px;
+            }
+        }
+
+        .timeline-bar {
+            height: 4px;
+            width: 4px; 
+            border-radius: 4px;
+            position: absolute;
+            left: 5px;
+            top: 5px
+        }
+
+        .timeline-content { 
+            position: relative; 
+            transition: all .4s;
+            border-radius: 5px;
+            padding: 30px;
+
+            &:before,
+            &:after {
+                content: "";
+                display: block;
+                border: 15px solid transparent;
+                border-left-color: $white;
+                position: absolute;
+                right: -30px;
+                top: 26px
+            }
+
+            &:after {
+                border: 14px solid transparent;
+                border-left-color: $white;
+                right: -28px;
+                top: 27px
+            }
+
+            .content-title {
+                font-size: 24px;
+                font-family: "Alegreya Sans", Arial, Helvetica, sans-serif;
+                margin: 0 0 10px;
+                font-weight: 500;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            .content-details {
+                margin: 0
+            }
+        }
+    }
+
+    @each $color, $color-value in $timeline-colors {
+        .#{$color}-post {
+            &:before, .icon-dot-small .timeline-bar {
+                background: $color-value;
+            }
+            
+            &:nth-child(even) {
+                .timeline-content {
+                    &:after, &:before {
+                        border: 15px solid transparent;
+                        border-right-color: $color-value
+                    }
+                }
+            }
+
+            .timeline-content {
+                background: $color-value;
+                border: 1px solid $color-value;
+                color: $white;
+
+                &:after,
+                &:before {
+                    border-left-color: $color-value
+                }
+
+                .content-title {
+                    color: $white
+                }
+            }
+            
+            .icon-dot-small {
+                box-shadow: 0 0 0 2px $color-value;
+            } 
+        }
+    }
+}

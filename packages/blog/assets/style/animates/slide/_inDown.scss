@@ -1,0 +1,6 @@
+//
+// $load-keyframes-slideInDown 变量控制了此'keyframes'是否被输出到css中去
+//
+@if $load-keyframes-slideInDown == true {
+    @include slideIn(slideInDown,'y',-100%,0);
+}

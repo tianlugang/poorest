@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<% const { seo } = locals %>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Language" content="zh-CN">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <title><%= locals.title %> | my(LuGang Tian) simple npm private server</title>
+    <meta name="keywords" content="<%= seo.keywords %>">
+    <meta name="description" itemprop="description" content="<%= seo.description %>">
+    <meta itemprop="name" content="<%= seo.title %>">
+    <meta itemprop="image" content="/images/favicon.ico">
+    <meta name="applicable-device" content="pc">
+    <meta http-equiv="imagetoolbar" content="no">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+    <link rel="icon" type="image/png" href="/images/favicon.png" />
+</head>
+
+<body>
+    <div style="text-align: center;padding-top: 5%; width:50%;margin: 0 auto;">
+        <img src="/images/logo.png" alt="logo" height="64">
+        <h4>Limited Access: <a href="/sign">please login</a></h4>
+        <pre style="color: red;"><%= JSON.stringify(locals.err) %></pre>
+    </div>
+</body>
+
+</html>

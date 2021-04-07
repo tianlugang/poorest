@@ -1,0 +1,6 @@
+//
+// $load-keyframes-rollOut 变量控制了此'keyframes'是否被输出到css中去
+//
+@if $load-keyframes-rollOut == true {
+    @include rollOut(rollOut);
+}

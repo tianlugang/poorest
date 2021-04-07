@@ -1,0 +1,71 @@
+.footer {
+    position: fixed;
+    left: 0;
+    width: 100%;
+    background-color: $header-and-footer-background-color;
+    bottom: 0;
+    z-index: map_get($z-index, footer);
+    height: $bottom-nav-height;
+    line-height: $bottom-nav-height;
+    font-size: 12px;
+    overflow: hidden;
+    color: $white;
+
+    .net-search {
+        float: left;
+        padding-left: 3px;
+
+        input {
+            float: left;
+            height: $bottom-nav-height;
+            background-color: transparent;
+            border: none; 
+            border-top: 0;
+            padding-left: 6px;
+
+            &.search-txt {
+                width: 300px;
+            }
+
+            &.search-btn {
+                width: 60px;
+                height: 100%;
+                padding-left: $base-space;
+                padding-right: $base-space;
+                margin-left: -1px;
+                font-size: 12px;
+                cursor: pointer;
+                background-image: url(../images/search.png);
+                background-position: center center;
+                background-repeat: no-repeat;
+                border: none;
+                @include transition(all 300ms);
+                &:hover {
+                    background-color: $active-theme-color;
+                }
+            }
+        }
+    }
+
+    a {
+        float: left;
+        padding-left: 5px;
+        margin-right: 5px;
+        text-decoration: none;
+        color: $white;
+
+        &:hover {
+            color: $active-theme-color;
+            text-decoration: none;
+        }
+
+        &+a {
+            border-left: $base-border-style;
+        }
+
+        svg {
+            margin-right: 3px;
+            margin-top: -1px;
+        }
+    }
+}

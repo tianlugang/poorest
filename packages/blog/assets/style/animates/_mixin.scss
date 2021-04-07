@@ -1,0 +1,122 @@
+// 
+// CSS3 animation 的常用 mixin 
+// 感谢来自于github上 https://github.com/nickpettit/glide
+// 【代号】 ANIMATION FUNCTION
+// 【说明】 常用的动画功能 mixin、% 等等
+//
+
+// -------------------------- ANIMATION FUNCTION START --------------------------------
+// <string> 动画名称
+@mixin animation-name ($name...){
+    //- debug 测试compact函数的作用
+    // $aa: compact(ease , linear , ease-in , ease-out , ease-in-out);
+    // @include debugs($aa);
+    //- debug 结论：返回一个删除非真值的新列表
+    $full: compact($name);
+    animation-name: $name;
+}
+
+// <number> 持续时间
+@mixin animation-duration ($time: 0,$times...){
+    $full: $time;
+    @if $times{
+        $full: append($full , $times, 'comma');
+    }
+    animation-duration: $full;
+}
+
+// <string> 时间曲线
+// ease | linear | ease-in | ease-out | ease-in-out
+@mixin animation-timing-function ($motion: ease, $motions...){
+    $full: $motion;
+    @if $motions{
+        $full: append($full , $motions, 'comma');
+    }
+    animation-timing-function: $full;
+}
+
+// 执行次数
+// infinite | <number>
+@mixin animation-iteration-count ($value: 1, $values...){
+    $full: $value;
+    @if $values{
+        $full: append($full , $values, 'comma');
+    }
+    animation-iteration-count: $full;
+}
+
+// 执行方向
+// normal | alternate
+@mixin animation-direction ($direction: normal, $directions...){
+    $full: $direction;
+    @if $directions{
+        $full: append($full , $directions, 'comma');
+    }
+    animation-direction: $full;
+}
+
+// 动画状态
+// running | paused
+@mixin animation-play-state ($state: running, $state...){
+    $full: $state;
+    @if $states{
+        $full: append($full , $states, 'comma');
+    }
+    animation-play-state: $full;
+}
+
+// 动画延迟
+// <number> 秒、毫秒
+@mixin animation-delay ($time: 0, $times...){
+    $full: $time;
+    @if $times{
+        $full: append($full , $times, 'comma');
+    }
+    animation-delay: $full;
+}
+
+// 应用到元素的样式
+//  none | forwards | backwards | both
+@mixin animation-fill-mode ($mode: none, $modes...){
+
+    $full: $mode;
+    @if $modes {
+        $full: append($full , $modes, 'comma');
+    }
+    animation-fill-mode: $full;
+}
+
+// 基本用法
+// 例如: @include animation-basic((slideup, fadein), (1.0s, 2.0s), ease-in);
+@mixin animation-basic ($name, $time: 0, $motion: ease) {
+    $length-of-name: length($name);
+    $length-of-time: length($time);
+    $length-of-motion: length($motion);
+
+    @if $length-of-name > 1 {
+        @include animation-name(zip($name));
+    } @else {
+        @include animation-name($name);
+    }
+
+    @if $length-of-time > 1 {
+        @include animation-duration(zip($time));
+    } @else {
+        @include animation-duration($time);
+    }
+
+    @if $length-of-motion > 1 {
+        @include animation-timing-function(zip($motion));
+    } @else {
+        @include animation-timing-function($motion);
+    }
+}
+
+// 通用简写方式
+@mixin animation-logogram($animation...) {
+    @if $animation {
+        animation: $animation;
+    }
+}
+//
+// --------------------------- ANIMATION FUNCTION END ---------------------------------

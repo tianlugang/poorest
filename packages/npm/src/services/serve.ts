@@ -41,7 +41,7 @@ export function serve({ address, handleRequest, httpsOptions, started, root }: I
                     secureOptions: constants.SSL_OP_NO_SSLv2 | constants.SSL_OP_NO_SSLv3,
                     key: fs.readFileSync(keyPath),
                     cert: fs.readFileSync(certPath)
-                })
+                }, handleRequest)
             } else {
                 const keyPath = path.join(certsDir, './key.pem')
                 const csrPath = path.join(certsDir, './csr.pem')
@@ -60,7 +60,7 @@ export function serve({ address, handleRequest, httpsOptions, started, root }: I
                     '    key: key.pem',
                     '    cert: cert.pem',
                 ].join('\n'))
-                
+
                 throw new Error('Server start with `https`, but failed.')
             }
         } else {

@@ -1,0 +1,16 @@
+//
+// $load-keyframes-fadeInLeftBig 变量控制了此'keyframes'是否被输出到css中去
+//
+@if $load-keyframes-fadeInLeftBig == true {
+    @keyframes fadeInLeftBig {
+      from {
+        opacity: 0;
+        transform: translate3d(-2000px, 0, 0);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+}

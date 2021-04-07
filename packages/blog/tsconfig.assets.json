@@ -1,0 +1,21 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./assets",
+    "target": "ES5",
+    "module": "CommonJS",
+    "sourceMap": false,
+    "importHelpers": true,
+    "watch": true
+  },
+  "include": [
+    "./assets" 
+  ],
+  "exclude": [
+    "./docs",
+    "./lib",
+    "./dist",
+    "node_modules"
+  ]
+}

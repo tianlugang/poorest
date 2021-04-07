@@ -1,0 +1,16 @@
+//
+// $load-keyframes-zoomIn 变量控制了此'keyframes'是否被输出到css中去
+//
+@if $load-keyframes-zoomIn == true {
+    @keyframes zoomIn {
+      from {
+        opacity: 0;
+        transform: scale3d(.3, .3, .3);
+      }
+
+      50% {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+}
