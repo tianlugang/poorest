@@ -15,11 +15,10 @@ import { IContextState, IContextExtend } from '../types'
 import { authorize } from './authorize'
 import { asset } from './asset'
 import { expires } from './expires'
-import { docsServe } from './docs'
 import { denyFrame } from './deny-frame'
 import { favicon } from './favicon'
 import { mixState } from './mix-state'
-import { home, team, works, search, detail, sign, userSpace } from './pages'
+import { docsServe, home, team, works, search, detail, sign, userSpace } from './pages'
 import { redirect } from './redirect'
 import { tolerant } from './tolerant'
 import { login, logout } from './user'
@@ -60,12 +59,12 @@ export function createWebApp(rc: IRuntimeConfig) {
         parsedMethods: ['POST', 'PUT', 'PATCH', 'DELETE']
     }))
     router.use(views())
-    router.use(authorize)
     router.use(mixState(rc))
+    router.use(authorize)
     router.use(asset(rc.assetJsonPath))
     router.use(denyFrame)
     router.use(redirect)
-    router.get('/docs', docsServe)
+    router.get(/^\/docs/, docsServe)
     router.get('/favicon.ico', favicon)
     router.post('/login', login)
     router.post('/logout', logout)

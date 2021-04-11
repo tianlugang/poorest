@@ -1,30 +1,15 @@
 import { logger } from '@poorest/util'
 import { IRouterMiddleware } from '../types'
 
-/*
-    npm access public [<package>]
-    npm access restricted [<package>]
-
-    npm access grant <read-only|read-write> <scope:team> [<package>]
-    npm access revoke <scope:team> [<package>]
-
-    npm access 2fa-required [<package>]
-    npm access 2fa-not-required [<package>]
-
-    npm access ls-packages [<user>|<scope>|<scope:team>]
-    npm access ls-collaborators [<package> [<user>]]
-    npm access edit [<package>]
-*/
-
 // GET /-/package/my-demo-x/collaborators?format=cli&user=ddd
 // npm access ls-collaborators [<package> [<user>]]
 export const listCollaboratorsAccess: IRouterMiddleware = async ctx => {
     const name = ctx.params.name || ctx.params[0]
-    const body = ctx.request.body
+    // const body = ctx.request.body
 
     logger.trace({ name, }, 'list package collaborators access @{name}')
 
-    console.log(name, body, ctx.query)
+    // console.log(name, body, ctx.query)
     ctx.body = {
         message: 'subcommand is not implemented yet'
     }
@@ -84,11 +69,11 @@ export const revokePackageAccess: IRouterMiddleware = async ctx => {
     // { package: 'my-demo-x' }
     const scope = ctx.params.scope || ctx.params[0]
     const team = ctx.params.scope || ctx.params[1]
-    const body = ctx.request.body
+    // const body = ctx.request.body
 
     logger.trace({ scope, team }, 'revoke package access @{scope}:@{team} ')
 
-    console.log(scope, body)
+    // console.log(scope, body)
     ctx.body = {
         message: 'subcommand is not implemented yet'
     }

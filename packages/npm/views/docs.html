@@ -43,17 +43,11 @@
 
     <div class="docs-content clearable">
         <div class="aside fl">
-            <ul class="fileList">
-                <%locals.files.forEach(file=>{ %> 
-                    <li<%-locals.filename==file.dest?' class="active"':''%>>
-                        <a href="/docs?f=<%-file.dest%>"><%-file.name%></a>
-                    </li>
-                <%})%>
-            </ul>
+            <%-this.renderDocsTree(locals.filename, locals.files)%>
         </div>
         <div class="main fr">
             <%if(locals.contentRenderError){%>
-                <pre><%-locals.contentRenderError%></pre>
+                <pre> <%-locals.contentRenderError%></pre>
             <%}else{%>
                 <div class="wrapper markdown">  
                     <%-locals.content%>

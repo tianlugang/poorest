@@ -1,10 +1,27 @@
-// import { Auth } from '../Auth' 
+import path from 'path'
 import { logger } from '@poorest/util'
 import { Auth, PackageAuth } from '../auth'
-import { pedding, EMPTY_OBJECT, HttpError, CONSTANTS } from '../services'
+import { pedding, Documents, EMPTY_OBJECT, HttpError, CONSTANTS, mdRender } from '../services'
 import { Storage, IPackage, PackageUtility, Package } from '../storage'
 import { IRouterMiddleware } from '../types'
-import { mdRender } from './markdown'
+
+const docUtility = new Documents({
+    root: path.resolve(__dirname, '../../docs')
+})
+
+export const docsServe: IRouterMiddleware = async ctx => {
+    const filename = docUtility.getName(ctx.path)
+    const filePath = docUtility.getPath(filename)
+    const [err, content] = await pedding(docUtility.render(filePath))
+
+    ctx.render('docs', {
+        asset: ctx.asset('docs'),
+        content,
+        contentRenderError: err ? err.stack : undefined,
+        files: docUtility.toJson(),
+        filename
+    }, { noLayout: true })
+}
 
 export const sign: IRouterMiddleware = async (ctx) => {
     const token = ctx.cookies.get('token') || ctx.get('authorization')
@@ -19,7 +36,7 @@ export const sign: IRouterMiddleware = async (ctx) => {
             return ctx.redirect('/')
         }
     }
-    
+
     ctx.render('login', {
         asset: ctx.asset('login'),
     }, { noLayout: true })
@@ -28,7 +45,8 @@ export const sign: IRouterMiddleware = async (ctx) => {
 export const home: IRouterMiddleware = async (ctx, _next) => {
     const { user } = ctx
     const versions: IPackage.Version[] = []
-    const [] = await pedding(
+    
+    await pedding(
         Storage.getLocalByCustomizer({
             filter: name => {
                 const sepc = PackageUtility.getPackageSpec(name)
@@ -214,7 +232,7 @@ export const detail: IRouterMiddleware = async (ctx, next) => {
         const latestVersion = distTags.latest
 
         version = version || latestVersion
-        if (version in versions) { 
+        if (version in versions) {
             const versionData = versions[version]
             const times = metadata.time || EMPTY_OBJECT
             const wrapDistTags: any[] = []
@@ -238,10 +256,10 @@ export const detail: IRouterMiddleware = async (ctx, next) => {
             versionData._latestPublished = times[version] || times.modified
             versionData.maintainers = versionData.maintainers || metadata.maintainers
             ctx.render('detail', {
-                asset: ctx.asset('detail'), 
+                asset: ctx.asset('detail'),
                 distTags: wrapDistTags,
                 metadata: versionData,
-                inRegistry: metadata._inRegistry, 
+                inRegistry: metadata._inRegistry,
                 npmOfficeWebsite: CONSTANTS.NPM_OFFICE_WEB_SITE_ADDRESS,
                 readmeMarkdown: mdRender(readmeContents),
                 versions,
