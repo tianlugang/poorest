@@ -34,7 +34,8 @@ import { views } from './middleware/views'
 import { mustLogin } from './middleware/must-login'
 import { home, tolerant, about, article, grow, bdMap } from './routes/page'
 import { logout, login, showUser, addUser } from './routes/endpoint'
-import { listHooks, updateHooks, addHooks, findHook, removeHooks, getProfile, setProfile, createToken, removeToken, listTokens } from './routes/endpoint'
+import { getProfile, setProfile, createToken, removeToken } from './routes/endpoint'
+import { resources } from './routes/resources'
 
 const pkgJson = require('../package.json')
 const appRoot = path.resolve(__dirname, '..')
@@ -173,17 +174,11 @@ export function createApp(targetDir?: string, ) {
     router.get(/^\/-\/user\:([a-zA-Z0-9-_]+)/, authorize, mustLogin, showUser) // show user
     router.put(/^\/-\/user\:([a-zA-Z0-9-_]+)/, addUser) // create user
     router.post('/-/user', authorize, mustLogin, setProfile) // set profile
-    router.get('/-/token', authorize, mustLogin, listTokens) // list Tokens
     router.post('/-/token', authorize, mustLogin, createToken) // create Token
     router.delete('/-/token/:token', authorize, mustLogin, removeToken) // remove Token
 
-    router.get('/-/hooks/hook/:id', authorize, mustLogin, findHook)
-    router.get('/-/hooks', authorize, mustLogin, listHooks)
-    router.delete('/-/hooks/hook/:id', authorize, mustLogin, removeHooks)
-    router.put('/-/hooks/hook/:id', authorize, mustLogin, updateHooks)
-    router.post('/-/hooks/hook', authorize, mustLogin, addHooks)
-
     router.get('/favicon.ico', favicon)
+    router.get(/^\/static/, resources)
     router.post('/login', login)
     router.post('/logout', logout)
 

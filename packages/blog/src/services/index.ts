@@ -1,6 +1,7 @@
 export * from './constants'
 export * from './crypto'
 export * from './db-driver'
+export * from './download'
 export * from './fsw' 
 export * from './http-error'
 export * from './logger'
