@@ -1,4 +1,4 @@
-import { dateFormat } from '@poorest/utils/lib/date/format'
+import { dateFormat } from '@poorest/date/lib/format'
 import { i18n } from './i18n'
 
 /**

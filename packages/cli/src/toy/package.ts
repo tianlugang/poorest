@@ -1,6 +1,6 @@
 import fs from 'fs'
 import path from 'path'
-import { hasOwnProperty } from '@poorest/utils'
+import { hasOwnProperty } from '@poorest/base'
 import { logger } from '@poorest/util'
 import { configProvider } from '../soldier/config'
 

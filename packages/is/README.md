@@ -1,0 +1,2 @@
+**My typeof Helper**
+ 

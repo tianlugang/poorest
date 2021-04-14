@@ -8,6 +8,7 @@ export class HttpError implements NodeJS.ErrnoException {
     name!: string
     message!: string
     status: number
+    
     constructor(errno: number, msg?: string | Error, code?: string, name?: string, path?: string) {
         const status = STATUS_CODES[errno] ? errno : 500
         this.errno = status

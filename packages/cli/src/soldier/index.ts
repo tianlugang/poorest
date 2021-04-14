@@ -1,5 +1,5 @@
 import { logger } from '@poorest/util'
-import { hasOwnProperty } from '@poorest/utils'
+import { hasOwnProperty } from '@poorest/base'
 import { configMixed,configMerged, configLoader, configProvider } from './config'
 import project from './project'
 import template from './template'

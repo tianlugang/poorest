@@ -20,7 +20,7 @@
     "docs": "typedoc --options tdoptions.json src"
   },
   "dependencies": {
-    "@poorest/utils": "^2.0.1"
+    "@poorest/base": "^2.0.1"
   },
   "devDependencies": {
     "@types/chai": "^3.4.35",

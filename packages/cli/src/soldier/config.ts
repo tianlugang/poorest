@@ -2,8 +2,8 @@ import path from 'path'
 import inquirer from 'inquirer'
 import validator from 'validator'
 import { logger, Yaml, configFinder, mkdirp, colorize, directoryExists } from '@poorest/util'
-import { extend } from '@poorest/utils/lib/object/extend'
-import { isEmptyObject } from '@poorest/utils/lib/type/is-empty-object'
+import { extend } from '@poorest/object'
+import { isEmptyObject } from '@poorest/is/lib/is-empty-object'
 
 const CONFIG_YAML_EXAMPLE = `
 # 日志等级

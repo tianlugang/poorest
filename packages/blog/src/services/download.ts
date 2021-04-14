@@ -1,4 +1,3 @@
-
 import assert from 'assert'
 import crypto from 'crypto'
 import zlib from 'zlib'
@@ -6,7 +5,7 @@ import http, { Agent as HttpAgent, OutgoingHttpHeaders } from 'http'
 import https, { Agent as HttpsAgent } from 'https'
 import Stream, { PassThrough } from 'stream'
 import { SecureContextOptions } from 'tls'
-import { getValueByDefault } from '@poorest/utils/lib/base/get-value-by-default'
+import { getValueByDefault } from '@poorest/base'
 import { logger } from '@poorest/util'
 import { HttpError } from './http-error'
 
@@ -50,7 +49,7 @@ export type IRequestConfig = {
     version: string
 }
 
-class Utility {
+export class Download {
     config: IRequestConfig
     private httpAgent: HttpAgent | undefined
     private httpsAgent: HttpsAgent | undefined
@@ -292,4 +291,4 @@ function addParameters(usp: URLSearchParams | FormData, value: any, key: string 
     }
 }
 
-export const download = new Utility()
+export const download = new Download()

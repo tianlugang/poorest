@@ -1,4 +1,3 @@
-import { logger } from '@poorest/util'
 import { UserData, IUserAccount, IUserInitList } from '../model'
 import { IRuntimeConfig } from '../types'
 import { Token, ITokenBody, ITokenParsed, IRuntimeUser } from './token'
@@ -108,7 +107,6 @@ export class AuthControllor {
 }
 export const Auth = new AuthControllor()
 export function initAuthorized(rc: IRuntimeConfig) {
-    logger.trace({ root: rc.root }, 'init auth root: @{root}')
     const opts = {
         maxUsers: 1000,
         users: {
@@ -128,9 +126,9 @@ export function initAuthorized(rc: IRuntimeConfig) {
         opts.maxUsers = Infinity
     }
 
-    Auth.init(rc.root, opts as any)
+    Auth.init(rc.storage, opts as any)
     Token.init({
-        root: rc.root,
+        root: rc.storage,
         expire: rc.expire,
         secret: rc.secret
     })

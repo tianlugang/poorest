@@ -11,7 +11,7 @@
     overflow: hidden;
     color: $white;
 
-    .net-search {
+    .search {
         float: left;
         padding-left: 3px;
 
@@ -19,15 +19,15 @@
             float: left;
             height: $bottom-nav-height;
             background-color: transparent;
-            border: none; 
+            border: none;
             border-top: 0;
             padding-left: 6px;
 
-            &.search-txt {
+            &.enter {
                 width: 300px;
             }
 
-            &.search-btn {
+            &.button {
                 width: 60px;
                 height: 100%;
                 padding-left: $base-space;
@@ -35,11 +35,12 @@
                 margin-left: -1px;
                 font-size: 12px;
                 cursor: pointer;
+                border: none;
                 background-image: url(../images/search.png);
                 background-position: center center;
                 background-repeat: no-repeat;
-                border: none;
                 @include transition(all 300ms);
+
                 &:hover {
                     background-color: $active-theme-color;
                 }
@@ -47,25 +48,28 @@
         }
     }
 
-    a {
-        float: left;
-        padding-left: 5px;
-        margin-right: 5px;
-        text-decoration: none;
-        color: $white;
+    .markup {
+        float: right;
 
-        &:hover {
-            color: $active-theme-color;
+        a,
+        span {
+            float: left;
+            padding-left: 5px;
+            margin-right: 5px;
+        }
+
+        a {
+            color: $white;
             text-decoration: none;
+
+            &:hover {
+                color: $active-theme-color;
+                text-decoration: none;
+            }
         }
 
-        &+a {
-            border-left: $base-border-style;
-        }
-
-        svg {
-            margin-right: 3px;
-            margin-top: -1px;
+        svg { 
+            margin-top: -2px;
         }
     }
 }

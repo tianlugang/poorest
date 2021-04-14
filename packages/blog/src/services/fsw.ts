@@ -2,7 +2,7 @@ import fs from 'graceful-fs'
 import path from 'path'
 import { Stream, PassThrough } from 'stream'
 import { logger } from '@poorest/util'
-import { noop } from '@poorest/utils'
+import { noop } from '@poorest/base'
 import { HttpError } from './http-error'
 import { IErrorFirstCallback } from '../types'
 

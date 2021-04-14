@@ -85,14 +85,14 @@ const startDevelopmentServer = async function () {
             Provider.subscribe('create-before', (app: Koa) => {
                 app.use(koaWebpackMiddleware)
             })
-            const app = createApp('F:r/')
+            const app = createApp()
             webServer.reload(app, 9002, noticeRefreshBrowser)
         }
     }, () => {
         Provider.subscribe('create-before', (app: Koa) => {
             app.use(koaWebpackMiddleware)
         })
-        const app = createApp('F:r/')
+        const app = createApp()
         webServer.listen(app, 9002)
     })
 }

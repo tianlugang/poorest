@@ -1,2 +1,2 @@
-export * from './token-data'
-export * from './user-data'
+export * from './token'
+export * from './user'

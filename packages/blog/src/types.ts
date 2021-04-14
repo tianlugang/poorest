@@ -38,6 +38,7 @@ export type IContextState = {
     phoneNO: string
     myEmail: string
     pathname: string
+    myResume: string
 }
 export type IContextExtend<B> = {
     reportError(err: INodeError): void
@@ -66,7 +67,7 @@ export type IHttpsConfig = {
     cert?: string
 }
 
-export type IAppConfig = {
+export type IRuntimeConfig = {
     language: string
     expire: number | string
     maxUsers: number
@@ -74,20 +75,9 @@ export type IAppConfig = {
     secret: string
     maxBodySize: string
     title: string
-    prefix?: string
-    listen: string | number
     storage: string
     https: IHttpsConfig
-    logo?: string
     logs: ILoggerConfig
-    targetDir?: string
-    path: string
-}
-
-export type IRuntimeConfig = {
-    root: string
-    path: string
-    storage: string
     serverId: string
     resourceDirectory: string
     assetJsonPath: string
@@ -95,4 +85,4 @@ export type IRuntimeConfig = {
     address: IServerAddress
     appVersion: string
     nodeVersion: string
-} & Omit<Required<IAppConfig>, 'targetDir'>
+}
