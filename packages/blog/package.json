@@ -31,7 +31,7 @@
         "test": "yarn jest --forceExit --coverage --verbose --detectOpenHandles",
         "lint": "eslint .",
         "prebuild": "npm run clean",
-        "build:dev": "set NODE_ENV=production&& tsc --build&& node ./lib/build",
+        "build:dev": "cross-env NODE_ENV=production&& tsc --build&& node ./lib/build",
         "dev": "node ./lib/build",
         "clean": "rimraf ./lib",
         "watch": "tsc --watch"
