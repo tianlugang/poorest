@@ -1,7 +1,7 @@
 
 import fs, { Mode, NoParamCallback, Stats, BigIntStats, BigIntOptions, StatOptions } from 'fs'
 import path from 'path'
-import { never } from '@poorest/utils'
+import { never } from '@poorest/base'
 import { isSubdir } from './is-subdir'
 
 type IFilter = {

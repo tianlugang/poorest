@@ -3,13 +3,13 @@ import * as fs from 'fs'
 type IJsonObject = NonNullable<Record<string | number, any>>
 
 const toJson = (content: string) => {
-    return require('js-yaml').safeLoad(content, {
+    return require('js-yaml').load(content, {
         json: true
     })
 }
 
 const toYaml = (jsonLike: IJsonObject) => {
-    return require('js-yaml').safeDump(jsonLike, {
+    return require('js-yaml').dump(jsonLike, {
         indent: 2
     })
 }
@@ -17,7 +17,7 @@ const toYaml = (jsonLike: IJsonObject) => {
 const readJson = (yamlPath: string) => {
     let yamlContent = fs.readFileSync(yamlPath, 'utf8')
 
-    return require('js-yaml').safeLoad(yamlContent, {
+    return require('js-yaml').load(yamlContent, {
         json: true
     })
 }

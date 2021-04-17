@@ -1,5 +1,5 @@
 import fs, { PathLike, MakeDirectoryOptions, Mode, NoParamCallback } from 'fs'
-import { noop } from '@poorest/utils'
+import { noop } from '@poorest/base'
 
 type Callback = { (err: NodeJS.ErrnoException | null, successfully: boolean): void }
 

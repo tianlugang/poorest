@@ -1,6 +1,6 @@
 import fs from 'fs'
 import path from 'path'
-import { returnString } from '@poorest/utils'
+import { returnString } from '@poorest/base'
 import { fileExists, folderExists } from './fs-utils'
 import { mkdirp } from './mkdirp'
 import { Yaml } from './yaml'

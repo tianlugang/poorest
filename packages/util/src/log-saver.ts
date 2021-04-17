@@ -1,6 +1,6 @@
 import fs from 'fs'
 import path from 'path'
-import { getValueByDefault } from '@poorest/utils/lib/base/get-value-by-default'
+import { getValueByDefault } from '@poorest/base'
 import { mkdirp } from './mkdirp'
 import { rmdirpSync } from './rmdirp'
 

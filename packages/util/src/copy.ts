@@ -1,7 +1,7 @@
 
 import fs, { Mode, NoParamCallback, Stats, BigIntStats, BigIntOptions, StatOptions, PathLike } from 'fs'
 import path from 'path'
-import { never, noop } from '@poorest/utils'
+import { never, noop } from '@poorest/base'
 import { mkdirp } from './mkdirp'
 import { isSubdir } from './is-subdir'
 
