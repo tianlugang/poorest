@@ -1,34 +1,21 @@
 {
-  "name": "poorest",
+  "name": "gang",
   "version": "1.0.0",
   "devDependencies": {
     "@microsoft/api-extractor": "^7.6.0",
-    "@types/chai": "^3.4.35",
     "@types/jest": "^26.0.22",
-    "@types/koa": "^2.13.1",
-    "@types/mocha": "^2.2.39",
     "@types/node": "^14.14.24",
     "@typescript-eslint/eslint-plugin": "^4.9.0",
     "@typescript-eslint/parser": "^4.9.0",
-    "chai": "^3.5.0",
     "eslint": "^7.15.0",
     "eslint-config-prettier": "^7.0.0",
     "eslint-plugin-jest": "^24.1.3",
     "eslint-plugin-prettier": "^3.2.0",
     "eslint-plugin-react": "^7.21.5",
     "jest": "^26.6.3",
-    "karma": "^4.4.1",
-    "karma-chrome-launcher": "^2.0.0",
-    "karma-firefox-launcher": "^1.0.0",
-    "karma-ie-launcher": "^1.0.0",
-    "karma-mocha": "^1.3.0",
-    "karma-mocha-reporter": "^2.2.2",
     "lerna": "^3.22.1",
-    "mocha": "^6.2.2",
-    "supertest": "^6.1.3",
     "ts-jest": "^26.5.4",
     "typescript": "^4.2.3",
-    "webpack": "^4.46.0",
     "yorkie": "^2.0.0"
   },
   "gitHooks": {
@@ -37,12 +24,10 @@
   "author": {
     "name": "LuGang Tian",
     "email": "541979581@qq.com",
-    "url": "http://blog.npmlite.com"
+    "url": "http://blog.tianlugang.com"
   },
   "publishConfig": {
     "access": "public"
   },
-  "dependencies": {
-    "rollup": "^2.45.2"
-  }
+  "dependencies": {}
 }

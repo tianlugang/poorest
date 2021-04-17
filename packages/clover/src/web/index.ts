@@ -6,7 +6,7 @@ import koaCacheControl from 'koa-cache-control'
 import koaDevLogger from 'koa-logger'
 import koaHelmet from 'koa-helmet'
 import koaStatic from 'koa-static'
-import { logger, NODE_APP_ENVIRONMENT } from '@poorest/util'
+import { NODE_APP_ENVIRONMENT } from '@poorest/util'
 import { isValidString } from '@poorest/is/lib/is-valid-string'
 import { IRuntimeConfig } from '../rc'
 import { Provider } from '../services'
@@ -48,7 +48,6 @@ export function createWebApp(rc: IRuntimeConfig) {
         app.use(koaHelmet.xssFilter())
     }
 
-    logger.debug({st: rc.resourceDirectory}, 'resource directory @{st}')
     app.use(koaStatic(rc.resourceDirectory, {
         hidden: false
     }))

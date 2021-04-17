@@ -22,3 +22,10 @@ export function forThrough<T = any>(start: number, end: number, callback: IForCa
 
     return array;
 }
+
+
+// export function forEach(start: number, end: number, callback:) {
+//     for (var index = start; index < length; index++) {
+//         callback(index, length);
+//     }
+// }

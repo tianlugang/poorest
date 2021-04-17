@@ -21,7 +21,7 @@
    1 Bronto Byte（BB） = 1024 YB
    1 Nona Byte（NB）= 1024 BB
    1 Dogga Byte（DB）= 1024 NB
-   1 Corydon Byte（CB）= 1024 DB
+   1 Corydon Byte（CB）= 1024DB
    
    注意上面Kibi这一系列的定义。
    Kibi来自英语kilo-binary(二进制的千)， 1998年10月在IEC60027-2中订位标准。
@@ -46,20 +46,21 @@
    giga，[吉]咖，  G. 10^9，
    mega，[兆]，    M. 10^6
 */
-const units = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB", "BB", "NB", "DB", "CB"]
+const suffix = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB", "BB", "NB", "DB", "CB"]
 
 /**
  * 计算文件大小
- * @param {number} size
+ * @param {number} size 
  */
 export function transformByte(size: number, fixed: number = 2) {
-  for (let i = 0; i < units.length; i++) {
+
+  for (let i = 0; i < suffix.length; i++) {
     const spec = Math.pow(1024, i)
 
     if (size < 1000 * spec) {
-      return (size / spec).toFixed(fixed) + units[i]
+      return (size / spec).toFixed(fixed) + suffix[i]
     }
   }
 
-  return size + units[0]
+  return size + suffix[0]
 }

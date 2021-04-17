@@ -4,7 +4,6 @@ import webpack from 'webpack'
 import koaWebpack from 'koa-webpack'
 import { logger, colorize } from '@poorest/util'
 import { createWatcher } from '../utils/watch'
-/// <reference path="../../node_modules/@types/koa/index.d.ts" />
 interface ISSRDevelopOfKoa2Options<T> {
     assetsStatsContext: string
     appRoot: string
@@ -15,9 +14,6 @@ interface ISSRDevelopOfKoa2Options<T> {
     hotReplaceIngore?: RegExp
 }
 
-// type koaSSRDevelopStart<T> = {
-//     (opts: ISSRDevelopOfKoa2Options<T>, cb: () => void): ReturnType<typeof koaWebpack>
-// }
 export async function koaSSRDevelopStart<T>(opts: ISSRDevelopOfKoa2Options<T>, cb: () => void) {
     logger.debug(null, colorize.red('start run webpack with koa2, current env: developemnt.'))
     const watchContext = path.resolve(opts.appRoot, 'lib')

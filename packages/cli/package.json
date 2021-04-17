@@ -22,12 +22,10 @@
     "watch": "tsc --build --watch"
   },
   "dependencies": {
-    "@poorest/base": "^2.0.1",
-    "@poorest/is": "^2.0.1",
-    "@poorest/object": "^2.0.1",
     "@poorest/util": "^2.0.1",
-    "chalk": "^4.1.0",
-    "commander": "^7.2.0",
+    "@poorest/base": "^2.0.1",
+    "@poorest/object": "^2.0.1",
+    "@poorest/is": "^2.0.1",
     "download": "^8.0.0",
     "ejs": "^3.1.6",
     "glob": "^7.1.6",
@@ -42,7 +40,6 @@
     "@types/download": "^6.2.4",
     "@types/ejs": "^3.0.6",
     "@types/inquirer": "^7.3.1",
-    "@types/koa": "^2.13.1",
     "@types/rimraf": "^3.0.0",
     "@types/validator": "^13.1.3"
   },

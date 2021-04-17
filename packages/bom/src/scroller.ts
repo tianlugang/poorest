@@ -40,56 +40,58 @@ const eScrollTo = (el: HTMLElement, v: number, dir: IScrollDir) => {
   el[dir] = v
 }
 
-export function getScroller(target: IScrollTarget, dir: IScrollDir = 'scrollTop') {
-  let result = 0;
+export namespace Scroller {
+  export function get(target: IScrollTarget, dir: IScrollDir = 'scrollTop') {
+    let result = 0;
 
-  if (target instanceof Window) {
-    result = target[dir === 'scrollTop' ? 'pageYOffset' : 'pageXOffset'];
-  } else if (target instanceof Document) {
-    result = target.documentElement[dir];
-    if (typeof result !== 'number') {
-      result = (target.ownerDocument || target).documentElement[dir];
+    if (target instanceof Window) {
+      result = target[dir === 'scrollTop' ? 'pageYOffset' : 'pageXOffset'];
+    } else if (target instanceof Document) {
+      result = target.documentElement[dir];
+      if (typeof result !== 'number') {
+        result = (target.ownerDocument || target).documentElement[dir];
+      }
+
+    } else if (target) {
+      result = target[dir];
     }
 
-  } else if (target) {
-    result = target[dir];
+    return result;
   }
 
-  return result;
-}
+  export const set = (el: IScrollTarget, value: number, dir: IScrollDir = 'scrollTop') => {
+    el instanceof Window
+      ? wScrollTo(el, value, dir)
+      : el instanceof HTMLDocument
+        ? dScrollTo(el, value, dir)
+        : eScrollTo(el, value, dir);
+  }
 
-export function setScroller (el: IScrollTarget, value: number, dir: IScrollDir = 'scrollTop') {
-  el instanceof Window
-    ? wScrollTo(el, value, dir)
-    : el instanceof HTMLDocument
-      ? dScrollTo(el, value, dir)
-      : eScrollTo(el, value, dir);
-}
+  export const to = (y: number = 0, {
+    duration = 400,
+    dir = 'scrollTop',
+    container = () => window,
+    cancel = never,
+    onEnd = noop,
+  }: Partial<IScrollToOption>) => {
+    const el = typeof container === 'function' ? container() : container;
+    const setScroll = el instanceof Window ? wScrollTo : el instanceof HTMLDocument ? dScrollTo : eScrollTo;
 
-export function scrollTo (y: number = 0, {
-  duration = 400,
-  dir = 'scrollTop',
-  container = () => window,
-  cancel = never,
-  onEnd = noop,
-}: Partial<IScrollToOption>) {
-  const el = typeof container === 'function' ? container() : container;
-  const setScroll = el instanceof Window ? wScrollTo : el instanceof HTMLDocument ? dScrollTo : eScrollTo;
+    const timeStart = Date.now();
+    const prevValue = Scroller.get(el, dir);
+    const frame = () => {
+      const timeEnd = Date.now() - timeStart;
+      const nextValue = easeInOut(timeEnd > duration ? duration : timeEnd, prevValue, y, duration);
 
-  const timeStart = Date.now();
-  const prevValue = getScroller(el, dir);
-  const frame = () => {
-    const timeEnd = Date.now() - timeStart;
-    const nextValue = easeInOut(timeEnd > duration ? duration : timeEnd, prevValue, y, duration);
+      setScroll(el as any, nextValue, dir);
 
-    setScroll(el as any, nextValue, dir);
+      if (timeEnd <= duration && cancel() !== true) {
+        return raf(frame);
+      }
 
-    if (timeEnd <= duration && cancel() !== true) {
-      return raf(frame);
-    }
+      onEnd();
+    };
 
-    onEnd();
-  };
-
-  raf(frame);
+    raf(frame);
+  }
 }

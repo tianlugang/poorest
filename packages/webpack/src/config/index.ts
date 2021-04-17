@@ -198,7 +198,8 @@ export function createDevelopConfig(config: IDevelopConfig & IBaseConfig) {
         },
         plugins: [
             // 热更新插件，详见：https://github.com/glenjamin/webpack-hot-middleware#installation--usage
-            // new webpack.HotModuleReplacementPlugin(), 
+            // new webpack.HotModuleReplacementPlugin(),
+            new webpack.NoEmitOnErrorsPlugin(),
             new FriendlyErrorsWebpackPlugin()
         ]
     }, overrideConfig)

@@ -2,8 +2,8 @@ import './style/index.scss'
 import './js/popup'
 import './js/common'
 import { addClass, removeClass, } from './js/dom'
-import { dateFormat } from '@poorest/utils/lib/date/format'
-import { getHoursPeriod } from '@poorest/utils/lib/date/get-hours-period'
+import { dateFormat } from '@poorest/date/lib/format'
+import { getHoursPeriod } from '@poorest/date/lib/get-hours-period'
 import { QSlice } from './js/q'
 const oWelcome = document.querySelector('#iWelcome')
 const oWelcomeMask = document.querySelector('#iWelcomeMask')

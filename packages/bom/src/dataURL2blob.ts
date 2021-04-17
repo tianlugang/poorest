@@ -24,5 +24,5 @@ export function dataURL2Blob(dataURL: string) {
 
   return new Blob([u8arr], {
     type: mime
-  })
+  });
 }

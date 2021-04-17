@@ -36,15 +36,17 @@
  *  }
  *  sleepTimeout(function (){ console.log('timeout delay ...') }, 1000);
  */
-export function sleep(time: number = 0) {
-  return new Promise(resolve => setTimeout(resolve, time));
-}
+export namespace Sleep {
+  export function promise(time: number = 0) {
+    return new Promise(resolve => setTimeout(resolve, time));
+  }
 
-export function sleepSync(time: number = 0) {
-  var timeStart = Date.now()
-  while (true) {
-    if (timeStart + time >= Date.now()) {
-      break
+  export function whiled(time: number = 0) {
+    var timeStart = Date.now()
+    while (true) {
+      if (timeStart + time >= Date.now()) {
+        break
+      }
     }
   }
 }

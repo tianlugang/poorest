@@ -6,7 +6,3 @@ export function getValueByDefault<T = any, A = any>(act: A | undefined, def: T) 
     }
     return toString.call(act) === toString.call(def) ? act : def
 }
-
-// export function getValueFromObject(){
-
-// }

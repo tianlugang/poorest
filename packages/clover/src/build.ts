@@ -85,7 +85,7 @@ const startDevelopmentServer = async function () {
                 app.use(koaWebpackMiddleware)
             })
             const { registry, web } = createApp({
-                targetDir: resolve('.demo')
+                targetDir: 'F:\\r'
             })
             registryServer.reload(registry, 9000, noticeRefreshBrowser)
             webServer.reload(web, 9001, noticeRefreshBrowser)
@@ -95,7 +95,7 @@ const startDevelopmentServer = async function () {
             app.use(koaWebpackMiddleware)
         })
         const { registry, web } = createApp({
-            targetDir: resolve('.demo')
+            targetDir: 'F:\\r'
         })
         registryServer.listen(registry, 9000)
         webServer.listen(web, 9001)

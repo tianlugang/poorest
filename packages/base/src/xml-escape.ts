@@ -4,18 +4,17 @@ var HTML_DECODE = {
   "&amp;": "&",
   "&nbsp;": " ",
   "&quot;": "\""
-}
+};
 
 // html escape
 export function escapeXML(xml: string) {
   return xml.replace(/"|&|'|<|>|[\x00-\x20]|[\x7F-\xFF]|[\u0100-\u2700]/g, function ($0) {
     var c = $0.charCodeAt(0), r = ["&#"]
 
-    c = (c == 0x20) ? 0xA0 : c
-    r.push(c.toString(), ';')
-
-    return r.join("")
-  })
+    c = (c == 0x20) ? 0xA0 : c;
+    r.push(c.toString(), ';');
+    return r.join("");
+  });
 }
 
 /**
@@ -29,10 +28,9 @@ export function descapeXML(xml: string) {
       if (!isNaN($1)) {
         c = String.fromCharCode(($1 == 160) ? 32 : $1);
       } else {
-        c = $0
+        c = $0;
       }
     }
-
-    return c
-  })
+    return c;
+  });
 }
