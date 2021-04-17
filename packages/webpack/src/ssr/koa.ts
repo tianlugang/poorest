@@ -1,3 +1,4 @@
+import 'koa'
 import path from 'path'
 import webpack from 'webpack'
 import koaWebpack from 'koa-webpack'

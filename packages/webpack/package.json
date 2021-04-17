@@ -9,8 +9,7 @@
 		"lib/*"
 	],
 	"description": "my webpack",
-	"main": "./lib/index.js",
-	"type": "module",
+	"main": "./lib/index.js", 
 	"scripts": {
 		"api": "api-extractor run --local --verbose",
 		"build": "npm run clean && tsc --build",

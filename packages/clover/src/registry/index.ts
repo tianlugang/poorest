@@ -3,7 +3,7 @@ import KoaRouter from 'koa-router'
 import koaBody from 'koa-body'
 import { NODE_APP_ENVIRONMENT, logger } from '@poorest/util'
 import { isValidString } from '@poorest/is/lib/is-valid-string'
-import { noop } from '@poorest/base/lib/base'
+import { noop } from '@poorest/base'
 import { PackageAuth } from '../auth'
 // import { bodyRaw } from '../middleware/body-raw'
 import { IRuntimeConfig } from '../rc'
@@ -96,7 +96,7 @@ export function createRegistryApp(rc: IRuntimeConfig) {
         ctx.state = {
             registryBaseURL: rc.registryServerBaseURL,
             title: rc.title,
-        }
+        } as any
         await next()
     })
     if (rc.prefix && isValidString(rc.prefix)) {

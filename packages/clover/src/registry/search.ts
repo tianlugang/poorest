@@ -134,7 +134,7 @@ export const listPartialSearch: IRouterMiddleware = async (ctx) => {
         }
         return
     }
-    const [, records] = await pedding(Storage.searchFromNPM(ctx.query))
+    const [, records] = await pedding(Storage.searchFromNPM(ctx.query as any))
 
     if (records) {
         objects = objects.concat(records.objects)
