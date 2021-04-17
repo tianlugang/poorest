@@ -35,6 +35,7 @@ test-storage*
 
 node_modules
 .tmp
+.tlg
 examples
 lerna-debug.log
 coverage
