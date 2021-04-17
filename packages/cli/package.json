@@ -1,6 +1,6 @@
 {
   "name": "@poorest/cli",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "license": "MIT",
   "publishConfig": {
     "access": "public"
@@ -22,10 +22,10 @@
     "watch": "tsc --build --watch"
   },
   "dependencies": {
-    "@poorest/util": "^2.0.1",
-    "@poorest/base": "^2.0.1",
-    "@poorest/object": "^2.0.1",
-    "@poorest/is": "^2.0.1",
+    "@poorest/base": "^2.1.0",
+    "@poorest/is": "^2.1.0",
+    "@poorest/object": "^2.1.0",
+    "@poorest/util": "^2.1.0",
     "download": "^8.0.0",
     "ejs": "^3.1.6",
     "glob": "^7.1.6",

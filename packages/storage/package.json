@@ -1,6 +1,6 @@
 {
   "name": "@poorest/storage",
-  "version": "2.0.3",
+  "version": "2.1.0",
   "description": "my storage utils",
   "license": "MIT",
   "files": [
@@ -27,11 +27,11 @@
     "watch": "tsc --build --watch"
   },
   "dependencies": {
-    "@poorest/is": "^2.0.1"
+    "@poorest/is": "^2.1.0"
   },
   "devDependencies": {
-    "@poorest/rollup": "^2.0.1",
-    "@poorest/util": "^2.0.1",
+    "@poorest/rollup": "^2.1.0",
+    "@poorest/util": "^2.1.0",
     "@types/chai": "^3.4.35",
     "@types/mocha": "^2.2.39",
     "chai": "^3.5.0",
