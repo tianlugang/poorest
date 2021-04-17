@@ -1,0 +1,14 @@
+//
+// $load-keyframes-fadeIn 变量控制了此'keyframes'是否被输出到css中去
+//
+@if $load-keyframes-fadeIn == true {
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+}

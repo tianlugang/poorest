@@ -1,0 +1,114 @@
+.technologyStack,.businessArea,.coreValues{
+  color: $white;
+  margin-bottom: 45px;
+}
+
+.contact {
+  width: 100%;
+  height: 400px;
+
+  .info {
+    width: 39%;
+    float: left;
+
+    p {
+      margin-bottom: 20px;
+      span {
+        display: inline-block;
+        width: 80px;
+        text-align: right;
+        margin-right: 5px;
+        color: $white;
+      }
+    }
+  }
+
+  .map {
+    float: left;
+    margin-left: 1%;
+    width: 60%;
+    height: 100%;
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      opacity: 0.5;
+      transition: all .3s;
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.feedback {
+  width: 724px;
+  margin: 0 auto;
+  font-size: 15px;
+
+  p {
+    margin-bottom: 30px;
+  }
+
+  p>label {
+    color: $white;
+  }
+
+  p>.title {
+    display: inline-block;
+    width: 80px;
+    text-align: right;
+  }
+
+  p>input[type='text'] {
+    height: 40px;
+    line-height: 40px;
+    padding: 0 10px;
+    width: 500px;
+  }
+
+  p>textarea {
+    width: 500px;
+    height: 90px;
+    min-height: 90px;
+    padding: 10px;
+    vertical-align: top;
+    resize: vertical;
+  }
+
+  p>.lab-radio {
+    &+.lab-radio {
+      margin-left: 21.5px;
+    }
+
+    input[type='radio'] {
+      vertical-align: middle;
+      margin-right: 6px;
+      cursor: pointer;
+    }
+  }
+
+  p>span {
+    color: #ff1234;
+    font-size: 13px;
+    margin-left: 10px;
+  }
+
+  p>input[type='button'] {
+    border: none;
+    position: relative;
+    left: 50%;
+    width: 120px;
+    height: 40px;
+    margin-left: -85px;
+    text-align: center;
+    cursor: pointer;
+    background-color: $white;
+    @include transition(all 300ms);
+
+    &:hover {
+      @include opacity(80);
+      color: $theme-color;
+    }
+  }
+}

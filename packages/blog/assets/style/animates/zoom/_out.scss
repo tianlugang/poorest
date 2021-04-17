@@ -1,0 +1,19 @@
+//
+// $load-keyframes-zoomOut 变量控制了此'keyframes'是否被输出到css中去
+//
+@if $load-keyframes-zoomOut == true {
+    @keyframes zoomOut {
+      from {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0;
+        transform: scale3d(.3, .3, .3);
+      }
+
+      to {
+        opacity: 0;
+      }
+    }
+}

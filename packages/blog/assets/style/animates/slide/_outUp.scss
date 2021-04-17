@@ -1,0 +1,6 @@
+//
+// $load-keyframes-slideOutUp 变量控制了此'keyframes'是否被输出到css中去
+//
+@if $load-keyframes-slideOutUp == true {
+  @include slideOut(slideOutUp,'y',0,-100%);
+}

@@ -1,0 +1,10 @@
+.tooltip {
+    background: lighten($primary-color, 47%);
+    border: 1px solid lighten($primary-color, 35%);
+    flex: none;
+    letter-spacing: 0;
+    font-size: 15px;
+    padding: 8px 16px;
+    margin: 8px 16px;
+    border-radius: 4px;
+}

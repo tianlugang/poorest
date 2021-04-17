@@ -1,0 +1,6 @@
+//
+// $load-keyframes-slideInLeft 变量控制了此'keyframes'是否被输出到css中去
+//
+@if $load-keyframes-slideInLeft == true {
+    @include slideIn(slideInLeft,'x', -100%,0);
+}

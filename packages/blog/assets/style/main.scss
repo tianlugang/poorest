@@ -1,0 +1,417 @@
+.main-hots {
+    position: absolute;
+    bottom: 455px;
+    left: 50%;
+    width: 480px;
+    height: 30px;
+    margin-left: -240px;
+    background-color: rgba($white, 0.8);
+    text-align: center;
+    line-height: 30px;
+    color: $theme-color;
+    font-size: 13px; 
+
+    &:before,
+    &:after {
+        width: 0;
+        top: 0;
+        border: 30px solid transparent;
+        border-bottom: 0;
+    }
+
+    &:before {
+        left: -195px;
+        border-right-width: 195px;
+        border-right-color: rgba($white, 0.8);
+        border-left: 0;
+    }
+
+    &:after {
+        right: -195px;
+        border-left-width: 195px;
+        border-left-color: rgba($white, 0.8);
+        border-right: 0;
+    }
+}
+
+.main-hots,
+.main-tabct {
+    &:before,
+    &:after {
+        position: absolute;
+        content: '';
+        height: 0;
+    }
+}
+
+.main-tabct,
+.main-tab {
+    position: absolute;
+    left: 50%;
+}
+
+.main-tabct {
+    z-index: 9;
+    bottom: 110px;
+    width: 900px;
+    height: 327px;
+    margin-left: -450px;
+    background-color: rgba($white, 0.93);
+    border-radius: 2px;
+
+    &:before {
+        width: 900px;
+        border: 5px solid transparent;
+        top: -5px;
+        border-left-width: 15px;
+        border-right-width: 15px;
+        border-top: 0;
+        border-bottom-color: rgba($white, 0.6);
+    }
+
+    &:after {
+        width: 480px;
+        border: 8px solid transparent;
+        bottom: -8px;
+        border-left-width: 210px;
+        border-right-width: 210px;
+        border-bottom: 0;
+        border-top-color: rgba($white, 0.8);
+    }
+
+    li {
+        display: none;
+        width: 100%;
+        height: 100%;
+        padding: 10px;
+        overflow: hidden;
+
+        &.active {
+            display: list-item;
+        }
+
+        &.main-news {
+            div[class^='news-'] {
+                position: relative;
+                float: left;
+                border: $base-border-style;
+                box-shadow: $base-box-shadow;
+                height: 100%;
+                border-radius: 2px;
+            }
+
+            .news-picture {
+                width: 240px;
+            }
+
+            .news-info {
+                width: 380px;
+                margin-left: 10px;
+                margin-right: 10px;
+                padding: 0 10px;
+                overflow: hidden;
+            }
+
+            .news-list {
+                width: 240px;
+                padding: 0 10px;
+                overflow: hidden;
+            }
+        }
+    }
+}
+
+.main-tab {
+    overflow: hidden;
+    z-index: 8;
+    bottom: 2px;
+    width: 480px;
+    height: 100px;
+    margin-left: -240px;
+    border-bottom-right-radius: 50px;
+    border-bottom-left-radius: 50px;
+    background-color: rgba($white, 0.8);
+    box-shadow: 0 10px 10px -10px $theme-color;
+
+    li {
+        float: left;
+        width: 100px;
+        height: 100px;
+        cursor: pointer;
+        @include transition(width 800ms);
+
+        &.active {
+            width: 280px;
+
+            span {
+                visibility: visible;
+                @include opacity(100);
+            }
+        }
+
+        &:hover {
+            i {
+                @include transform(rotate(720deg));
+            }
+
+            span {
+                @include opacity(100);
+            }
+        }
+
+        i {
+            width: 100px;
+            height: 100px;
+            @include transition(all 4s);
+        }
+
+        span {
+            float: right;
+            width: 180px;
+            overflow: hidden;
+            padding: 0 15px;
+            font-size: 14px;
+            margin-top: 17px;
+            visibility: hidden;
+            @include opacity(0);
+            @include transition(all 800ms);
+
+            b {
+                color: $theme-color;
+                font-size: 24px;
+                font-weight: 200;
+            }
+        }
+    }
+}
+
+.news-picture {
+    a {
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 100%;
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    p {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        line-height: 40px;
+        margin: 0;
+        padding-left: 15px;
+        padding-right: 15px;
+        background-color: rgba($theme-color, 0.21);
+        color: #fff;
+        font-size: 15px;
+
+        &:before {
+            position: absolute;
+            content: '';
+            right: -20px;
+            bottom: 0;
+            width: 0;
+            height: 0;
+            border: 20px solid transparent;
+            border-right: 0;
+            border-left-color: rgba($theme-color, 0.21);
+            z-index: 9;
+        }
+    }
+}
+
+.news-info {
+    p {
+        line-height: 1.4;
+        text-indent: 26px;
+        color: #555;
+        font-size: 13px;
+    }
+
+    p:first-child {
+        text-align: right;
+
+        a:hover {
+            color: $hover-theme-color;
+        }
+
+        a+span {
+            margin-left: 10px;
+        }
+
+        span {
+            color: #777;
+        }
+    }
+
+    p:last-child {
+        a {
+            color: $theme-color;
+            font-size: 12px;
+            @include transition(all 300ms);
+
+            &:hover {
+                background-color: $theme-color;
+                color: #fff;
+            }
+        }
+    }
+}
+
+.news-list {
+    .title {
+        font-size: 15px;
+        width: 240px;
+        line-height: 30px;
+        margin: 0;
+        color: opacify($theme-color, 0.7);
+        font-weight: bolder;
+    }
+
+    p {
+        border-bottom: 1px dotted #ebebeb;
+        font-size: 0;
+        height: 28px;
+        line-height: 28px;
+
+        span,
+        a {
+            display: inline-block;
+            font-size: 12px;
+        }
+
+        span {
+            width: 85%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            color: #555;
+        }
+
+        a {
+            width: 15%;
+            color: $theme-color;
+            position: relative;
+            top: -10px;
+            text-align: center;
+            @include transition(all 300ms);
+
+            &:hover {
+                background-color: $theme-color;
+                color: #fff;
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+.grid {
+    width: 100%;
+    height: 100%;
+
+    &:after {
+        clear: both;
+    }
+
+    .item {
+        width: 25%;
+        height: 50%;
+        float: left;
+        text-align: center;
+        transition: all .5s;
+        cursor: pointer;
+        position: relative;
+
+        &:hover {
+            background-color: rgba($theme-color, 1);
+
+            .text {
+                color: #fff;
+                border-color: #fff;
+            }
+        }
+
+        .text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: $theme-color;
+            font-size: 18px;
+            padding: 11px 15px;
+            transition: all .3s;
+            border: 3px solid transparent;
+            white-space: nowrap;
+        }
+    }
+}
+
+.diamondBox {
+    margin: 0 auto;
+    position: relative;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 845px;
+}
+
+$width-total: 900px;
+$diamond-space: 10px;
+$diamond-height: 73px;
+$diamond-width: floor(cos(30deg) * $diamond-height * 2);
+
+.diamond {
+    position: relative;
+    width: $diamond-width;
+    height: (sin(30deg) * 2 + 1) * $diamond-height;
+    float: left;
+    margin-right: $diamond-space;
+
+    &.newline {
+        margin-left: ($diamond-width + $diamond-space) / 2;
+    }
+
+    &.newlinetop {
+        margin-top: -3*$diamond-space;
+    }
+
+    .block {
+        height: $diamond-height;
+        width: tan(60deg) * $diamond-height;
+        position: absolute;
+        overflow: hidden;
+        top: sin(30deg) * $diamond-height;
+        background-color: #003366;
+        text-align: center;
+        color: #fff;
+        box-shadow: inset 0 0 4px #fff;
+
+        @for $i from 1 to 3 {
+            &:nth-child(#{$i}) {
+                transform: rotate($i*60deg);
+            }
+        }
+
+        &:nth-child(2) {
+            z-index: 1;
+        }
+    }
+
+    .bgBox {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        background-image: url(../images/i.png);
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+}

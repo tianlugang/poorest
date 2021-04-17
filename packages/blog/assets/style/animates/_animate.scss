@@ -1,0 +1,67 @@
+@charset "UTF-8";
+//
+// css3动画参考
+// https://github.com/daneden/animate.css
+// https://github.com/nickpettit/glide
+// 感谢以上CSS3动画库的作者的贡献
+//
+// ** 以下的导入顺序不能改变，当然usage1和usage2的顺序可以调换
+//          @import './animate/conf';
+//          @import './animate/clsname';
+//          @import './animate/clsnameConf';
+//          @import './animate/mixin';
+//          @import './animate/keyframes';
+//          @import './animate/modules';
+//          @import './animate/usage1';
+//          @import './animate/usage2';
+// ** 帧动画名称与className相同（前缀不算），这是大前提
+// ** 帧动画名称由其所在的文件的名称（名）与此文件所属于的文件夹（属）构成，
+//    即className由模块（文件夹名称）、 子模块（具象文件）相加组成，使用驼峰规则;
+// ** _clsname.scss中的内容由下面的文件执行生成：
+//          < node ./orders/hoc/animateGenerateClassNameList.js >
+// ** _modules.scss中的内容由下面的文件执行生成：
+//          < node ./orders/hoc/writeAniImport.js >
+// ** _clsnameConf.scss中的内容由下面的文件执行生成：
+//          < node ./orders/hoc/generateAnimationClassNameConf.js >
+// ** 还可以使用如下命令一键生成如上文件，当然这需要在unit项目的根目录下执行
+//          < npm run animate >
+//
+
+//
+//*******
+//    * 1 伪元素在webkit内核浏览器中不能执行帧动画
+//    * 2 提供两种用法：
+//    *   Usage 1: 动画的持续时间、周期等由库开发者默认，使用者（CSS 开发者）无法改变
+//    *   Usage 2: 使用预定义的宏，预定义一些很复杂的复合动画
+//    * 3 当然这两种用法都不影响（使用者）用预定义的mixin在项目中重新开发动画
+//    * 4 前缀类名将延续之前的风格，使用中划线连接英文单词
+//    * 5 扩展开发的方式与方法：口头讲过《此处省略10万字》
+//    * 6 知识面不够宽敞，如有不对的地方，请及时斧正
+//*******
+//
+
+/*
+    ________________________________________________________________________________________
+    CSS3 animation 说明:
+               animation-name     指定要绑定到选择器的关键帧的名称
+           animation-duration	  动画指定需要多少秒或毫秒完成
+    animation-timing-function	  设置动画将如何完成一个周期
+              animation-delay	  设置动画在启动前的延迟间隔。
+    animation-iteration-count	  定义动画的播放次数。
+          animation-direction	  指定是否应该轮流反向播放动画。
+          animation-fill-mode	  规定当动画不播放时（当动画完成时，或当动画有一个延迟未开始播放时），要应用到元素的样式。
+         animation-play-state	  指定动画是否正在运行或已暂停。
+    ________________________________________________________________________________________
+    http://www.runoob.com/cssref/css3-pr-animation.html
+    https://www.w3.org/TR/css3-animations/
+    如果你对 CSS3 animation 知识不够熟悉，那么请看移步上述链接所指的站点
+*/
+
+@import 'config';      // 动画模块的基础配置
+@import 'clsname';     // 规定动画在被HTML调用时的类名（className）
+@import 'clsnameConf'; // 控制帧动画是否动态输出
+@import 'mixin';       // 常用的动画功能宏
+@import 'keyframes';   // 常用的帧动画宏
+@import 'modules';     // 所有模块(帧动画)的入口
+@import 'usage1';      // 用法一
+@import 'usage2';      // 用法二[默认使用]

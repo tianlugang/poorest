@@ -1,0 +1,22 @@
+<h3 class="wrap-title">成长编年史</h3>
+<div class="timeline-wrapper">
+    <div class="scroll-wrapper yScroll">
+        <div class="yScroller"></div>
+        <div class="timeline">
+            <% locals.timelines.forEach(item=>{%>
+                <div class="timeline-post <%-item.color%>-post <%-item.color%>-trail">
+                    <div class="timeline-meta">
+                        <div class="meta-details"><%-item.date%></div>
+                    </div>
+                    <div class="timeline-icon icon-dot-small">
+                        <div class="timeline-bar"></div>
+                </div>
+                <div class="timeline-content">
+                    <h2 class="content-title"><%-item.title%></h2>
+                    <div class="content-details"><%-item.content%></div>
+                </div>
+            </div>
+            <%})%>
+        </div>
+    </div>
+</div>

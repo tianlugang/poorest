@@ -1,0 +1,49 @@
+<%const { pageCurrent, pageHref, pageTotal, pageQuery, user, company, versions } = locals%>
+<div class="users clearfix">
+    <div class="avatars">
+        <img alt="<%-user.account%>" data-avatar/>
+    </div>
+    <div class="intro">
+        <b><%- t('self-introduction:')%></b>
+        <%- user.intro || t('I hope you can write a paragraph to introduce yourself.') %>
+    </div>
+</div>
+<div class="users clearfix">
+    <div class="item"><b><%-t('name:')%></b> <%-user.name||user.account%></div>
+    <div class="item"><b><%-t('gander:')%></b> <span><%-[t('unknown'),t('Mr.'),t('Ms.')][user.sex||0]%></span></div>
+    <div class="item"><b><%-t('E-mail:')%></b> <span><%-user.mail || t('unset')%></span></div>
+    <div class="item"><b><%-t('Telephone:')%></b> <span><%-user.phone || t('unset') %></span></div>
+    <div class="item"><b><%-t('blog:')%></b> <span><%-user.blog || user.github || t('unset')%></span></div>
+    <div class="item"><b><%-t('For who work:')%></b> <span><%-user.company || company || t('unset')%></span></div>
+</div>
+<div class="tabs" data-ui="tabs:works">
+    <div class="panes clearfix">
+        <div class="tab active"><%-t('packages')%></div>
+        <!-- <div class="tab"><%- t('messages')%></div> -->
+    </div>
+    <div class="cards">
+        <div class="card active">
+            <%if(versions.length>0){%>
+                <%versions.forEach(version=>{%>
+                    <%-include('public/package.html', { version, username: user.account})%>
+                <%})%>
+                <%if(pageTotal>1){%>
+                    <div class="paging">
+                        <%-paging(pageCurrent, pageTotal, pageHref, pageQuery)%>
+                    </div>
+                <%}%>
+            <%}else{%>
+                <div class="placeholder">
+                    <%-svgIcons.errorOutline%>
+                    <p><%- t(`You haven't released a package yet.`) %></p>
+                </div>
+            <%}%>
+        </div>
+        <!-- <div class="card">
+            <div class="placeholder">
+                <%-svgIcons.errorOutline%>
+                <p><%- t('No messages!')%></p>
+            </div>
+        </div> -->
+    </div>
+</div>

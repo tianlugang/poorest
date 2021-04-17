@@ -1,0 +1,603 @@
+// 
+// _keyframes.scss 中定义了一些基于 _mixin.scss (同目录)的常用的动画效果，
+//                  但不会输出任何css样式
+//
+// 【代号】 ANIMATION NAMES
+// 【说明】 预定义了一些常用动画效果的mixin、%
+
+// -------------------------- TOOLS FUNCTIONS START --------------------------------
+// 
+// translate3d轴
+@function translate-sort($axis:'x',$value: 0){
+    $queue: (0, 0, $value);
+    @if $axis == 'x' {
+        $queue:($value, 0, 0);
+    }@else if $axis == 'y'{
+        $queue:(0, $value, 0);
+    }
+    @return $queue;
+}//end
+
+//
+//获取动画名称
+@function get-animate-clsname($name){
+    @if type-of($name) {
+        $return: ();
+        @if $is-use-basic-animation == true {
+            $return: unquote('.#{$basic-common-class}.#{$basic-common-class}-#{$name}');
+        }@else if  $is-use-high-animation == true{
+            $return: unquote('.#{$name}');
+        }
+        // @debug #{$return};
+        @return $return;
+    }
+    @return null;
+}//end
+// --------------------------- TOOLS FUNCTIONS END ---------------------------------
+
+// -------------------------- KEYFRAMES MIXIN START --------------------------------
+// 
+// <string> $name       动画名称
+// <number> $start      开始明度
+// <number> $to         结束明度
+// <string> $transform  变化过程中使用到的transform效果，
+//                      默认值error只用来辨别是否包含它，
+//                      原生的transform是不存在error这个值
+//
+//        [name] fade 透明度的变化，即淡入淡出
+// [instruction] 透明度的变化，默认是淡出的效果
+@mixin fadeTo($name , $start: 1, $to: 0,$transform:'error') {
+    @if type-of($name) == 'string' {
+        @keyframes #{$name} {
+            from {
+                opacity: $start;
+                @if $transform != 'error' {
+                    transform: $transform;
+                }
+                visibility: visible;
+            }
+            to {
+                opacity: $to;
+                @if $to == 0 {
+                    visibility: hidden;
+                }
+                @if $transform != 'error' {
+                    transform: $transform;
+                }
+            }  
+        }
+    }
+}//end
+
+//   
+// <string> $name    动画名称
+// <number> $start   translateX起始量 
+// <number> $midd    translateX中间量
+// <number> $end     translateX终止量
+// <number> $rotateZ rotateZ的量，表示了旋转的方向
+// <number> $angle   rotate3d的旋转角度
+//
+//        [name] roll 卷动
+// [instruction] 默认的roll效果是对称的，并且在执行结束之后，元素将获得动画属性
+//               目前，本动画不涉及变形，而且都是顺时针动画
+// @mixin roll($name , $start: -100%, $midd  : 0px, $end: 100%,$rotateZ:1,$angle:120deg) {
+//     @if type-of($name) == 'string' {
+//         @keyframes #{$name} {
+//             0% {
+//                 opacity: 0;
+//                 visibility: visible;
+//                 transform: translate3d($start,0,0) rotate3d(0,0,$rotateZ,-$angle);
+//             }
+//             20%,80% {
+//                 opacity: 1;
+//                 transform: translate3d($midd  ,0,0) rotate3d(0,0,0,0);
+//             }
+//             100% {
+//                 opacity: 0;
+//                 visibility: hidden;
+//                 transform: translate3d($end,0,0) rotate3d(0,0,$rotateZ,$angle);
+//             }
+//         }
+//     }
+// }//end
+
+//
+// <string> $name    动画名称
+// <number> $start   translateX起始量 
+// <number> $end     translateX终止量
+// <number> $rotateZ rotateZ的量，表示了旋转的方向
+// <number> $angle   rotate3d的旋转角度
+//
+//        [name] rollIn 卷动进入视线
+// [instruction] rollIn可以看作roll的特例
+@mixin rollIn($name, $start: -100%, $end: 0px, $rotateZ: 1, $angle: -120deg) {
+    @if type-of($name) == 'string' {
+        @keyframes #{$name} {
+            0% {
+                opacity: 0;
+                visibility: visible;
+                transform: translate3d($start,0,0) rotate3d(0,0,$rotateZ,$angle);
+            }
+            100% {
+                opacity: 1;
+                @if $end == 0px {
+                    transform: none;
+                }@else {
+                    transform: translate3d($end,0,0) rotate3d(0,0,0,0);
+                }
+            }
+        }
+    }
+}//end
+
+//
+// <string> $name    动画名称
+// <number> $start   translateX起始量 
+// <number> $end     translateX终止量
+// <number> $rotateZ rotateZ的量，表示了旋转的方向
+// <number> $angle   rotate3d的旋转角度
+//
+//        [name]     rollOut 卷动进入视线
+// [instruction]     rollOut可以看作roll的特例
+@mixin rollOut($name, $start: 0px, $end: 100%, $rotateZ: 1, $angle: 120deg) {
+    @if type-of($name) == 'string' {
+        @keyframes #{$name} {
+            0% {
+                opacity: 1;
+                visibility: visible;
+                @if $start == 0px {
+                    transform: none;
+                }@else {
+                    transform: translate3d($start,0,0) rotate3d(0,0,0,0);
+                }
+            }
+            100% {
+                opacity: 0;
+                visibility: hidden;
+                transform: translate3d($end,0,0) rotate3d(0,0,$rotateZ,$angle);
+            }
+        }
+    }
+}//end
+
+//
+// <string> $name     动画名称
+// <number> $start    translateY起始量 
+// <number> $midd     translateY中间量 
+// <number> $end      translateY终止量
+//
+//        [name]      drop 
+// [instruction]      drop 落到一定高度然后继续下落直到消失
+// @mixin drop($name, $start: -100%, $midd: 0px, $end: 100%) {
+//     @if type-of($name) {
+//         @keyframes #{$name} {
+//             0% {
+//                 opacity: 0;
+//                 visibility: visible;
+//                 transform: translate3d(0,$start,0);
+//             }
+//             20%, 80% {
+//                 opacity: 1;
+//                 transform: translate3d(0,$midd,0);
+//             }
+//             100% {
+//                 opacity: 0;
+//                 visibility: hidden;
+//                 transform: translate3d(0,$end,0);
+//             }
+//         }
+//     }
+// }//end
+
+//
+// <string> $name    动画名称
+// <number> $start   translateY起始量 
+// <number> $end     translateY终止量
+//
+//        [name]     dropIn
+// [instruction]     下落到一定高度并出现在视野里
+@mixin dropIn($name, $start: -100%, $end: 0px) {
+    @if type-of($name) == 'string'{
+        @keyframes #{$name} {
+            0% {
+                opacity: 0;
+                visibility: visible;
+                transform: translate3d(0,$start,0);
+            }
+            100% {
+                opacity: 1;
+                transform: translate3d(0,$end,0);
+            }
+        }
+    }
+}//end
+
+//
+// <string> $name    动画名称
+// <number> $start   translateY起始量 
+// <number> $end     translateY终止量
+//
+//        [name]     dropOut 
+// [instruction]     落到一定高度然后消失在视野里
+@mixin dropOut($name, $start: 0px, $end: 100%) {
+    @if type-of($name) == 'string'{
+        @keyframes #{$name} {
+            0% {
+                opacity: 1;
+                transform: translate3d(0,$start,0);
+            }
+            100% {
+                opacity: 0;
+                transform: translate3d(0,$end,0);
+            }
+        }
+    }
+}//end
+
+//
+// <string> $name    动画名称
+// <number> $start   translateY起始量 
+// <number> $end     translateY终止量
+//
+//        [name]     dropTo 
+// [instruction]     从天而降（跺脚）
+//                   动画在执行过程中box-shadow用的是白色，因此要看出效果需要非白色的背景
+@mixin dropTo($name, $start: -100%, $end: 0px) {
+    @if type-of($name) == 'string' {
+        @keyframes #{$name} {
+            0% {
+                visibility: visible;
+            }
+
+            0%,20% {
+                opacity: 0;
+                transform: translate3d(0,$start,0);
+                box-shadow:none;
+            }
+            
+            25% {
+                opacity: 1;
+                transform: translate3d(0,$end,0);
+                box-shadow: none;
+            }
+            29% {
+                box-shadow: -3.5rem 3rem 4rem -2rem rgba(255,255,255,.5),
+                            0     3rem 4rem -2rem rgba(255,255,255,.75),
+                            3.5rem  3rem 4rem -2rem rgba(255,255,255,.6);
+            }
+            80%,100% {
+                box-shadow: -7rem 3.5rem 4rem -0.5rem rgba(255,255,255,.0),
+                            0     3.5rem 4rem -0.5rem rgba(255,255,255,.0),
+                            7rem  3.5rem 4rem -0.5rem rgba(255,255,255,.0);
+            }
+        }
+        $style-class:get-animate-clsname($name);
+        @if type-of($style-class) != 'null' {
+            #{$style-class}{
+                @include animation-duration(2s);
+                @include animation-timing-function(cubic-bezier(0.550, 0.085, 0.680, 0.530));
+            }
+        }
+    }
+}//end
+
+//
+// <string> $name     动画名称
+// <number> $start    translateX起始量 
+// <number> $midd     translateX中间量 
+// <number> $end      translateX终止量
+//
+//        [name]      slide 
+// [instruction]      slide 从左到由的消失过程
+// @mixin slide($name, $start: -100%, $midd: 0px, $end: 100%) {
+//     @iftype-of($name) == 'string'{
+//         @keyframes #{$name} {
+//             0% {
+//                 opacity: 0;
+//                 visibility: visible;
+//                 transform: translate3d($start,0,0);
+//             }
+//             20% , 80% {
+//                 opacity: 1;
+//                 transform: translate3d($midd,0,0);
+//             }
+//             100% {
+//                 opacity: 0;
+//                 visibility: hidden;
+//                 transform: translate3d($end,0,0);
+//             }
+//         }
+//     }
+// }
+
+//
+// <string> $name     动画名称
+// <string> $axis     translate平移的轴线的代号，值为x、y、z，默认是x
+// <number> $start    translateX起始量 
+// <number> $end      translateX终止量
+//
+//        [name]      slideIn 
+// [instruction]      slideIn 滑入视口
+@mixin slideIn($name, $axis: 'x', $start: -100%, $end: 0px ) {
+    @if type-of($name) == 'string' {
+        $start : translate-sort($axis, $start);
+        $end   : translate-sort($axis, $end);
+        @keyframes #{$name} {
+            0% {
+                opacity: 0;
+                visibility: visible;
+                transform: translate3d(#{$start});
+            }
+            100% {
+                opacity: 1;
+                transform: translate3d(#{$end});
+            }
+        }
+    }
+}//end
+
+//
+// <string> $name     动画名称
+// <number> $start    translateX起始量 
+// <number> $end      translateX终止量
+//
+//        [name]      slideOut 
+// [instruction]      slideOut 滑出视口
+@mixin slideOut($name, $axis: 'x', $start: 0px, $end: 100%) {
+    @if type-of($name) == 'string' {
+        $start : translate-sort($axis, $start);
+        $end   : translate-sort($axis, $end);
+        @keyframes #{$name} {
+            0% {
+                opacity: 1;
+                visibility: visible;
+                transform:  translate3d(#{$start});
+            }
+            100% {
+                opacity: 0;
+                visibility: hidden;
+                transform: translate3d(#{$end});
+            }
+        }
+    }
+}//end
+
+//
+// <string> $name     动画名称
+// <number> $type     box-shadow的类型，inset
+// <number> $color    box-shadow用到的color
+//
+//        [name]      shine 
+// [instruction]      shine 单闪耀
+@mixin shine ($name, $type, $color: rgba(255,255,255,1) ) {
+    @if type-of($name) == 'string' {
+        $box-shadow: 0px 0px 100vw 100vw $color;
+        @if $type == 'inset' {
+            $box-shadow: inset 0px 0px 100vw 100vw $color; 
+        }
+        @keyframes #{$name} {
+            50% {
+                box-shadow: #{$box-shadow};
+            }
+        }
+    }
+}//end
+
+//
+// <string> $name     动画名称
+// <number> $type     box-shadow的类型，inset
+// <number> $color    box-shadow用到的color
+//
+//        [name]      shineBulb 
+// [instruction]      shineBulb 闪耀，像灯泡
+@mixin shineBulb ($name,$type, $color:rgba(255,255,220,1)){
+    @if type-of($name) == 'string' {
+        $box-shadow: 0px 0px 100vw 100vw $color;
+        @if $type == 'inset' {
+            $box-shadow: inset 0px 0px 100vw 100vw $color,0px 0px 30px 10px $color; 
+        }
+        @keyframes #{$name} {
+            50% {
+                box-shadow: #{$box-shadow};
+            }
+        }
+    }
+}//end
+
+//
+// <string> $name     动画名称
+//
+//        [name]      shineGlide 
+// [instruction]      shineGlide 闪耀划过
+@mixin shineSlip($name,$names...) {
+    @if type-of($name) == 'string' {
+        @keyframes #{$name} {
+            0% {
+                background-position: 100% 100%;
+                visibility: visible;
+            }
+            100% {
+                background-position: 0% 0%;
+            }
+        }
+        $style-class:get-animate-clsname($name);
+        @if type-of($style-class) != 'null' {
+            $linear-background: linear-gradient(-45deg,
+                            rgba(255,255,255,0) 30%,
+                            rgba(255,255,255,0.4) 45%,
+                            rgba(255,255,255,1) 50%,
+                            rgba(255,255,255,0.4) 55%,
+                            rgba(255,255,255,0) 70%);
+            #{$style-class}{
+                background-image:  $linear-background;
+                background-repeat: no-repeat;
+                background-size: 500% 300%;
+                @include animation-name(#{$name},#{$names});
+                @include animation-timing-function(ease-in,ease);
+                @include animation-direction(alternate, normal);
+            }
+        }
+    }
+}//end
+
+//
+// <string> $name     动画名称
+// <string> $axis     滑翔的轴线，可选值：x、y、z
+// <number> $start    translateX的起始量
+// <number> $end      translateX的终止量
+//
+//        [name]      shineGlide 
+// [instruction]      shineGlide 滑翔闪耀
+@mixin shineGlide($name, $axis: 'x', $start: -100%, $end: 0px) {
+    @if type-of($name) == 'string' {
+        $start : translate-sort($axis,$start);
+        $end   : translate-sort($axis,$end);       
+        @keyframes #{$name} {
+            0% {
+                opacity: 0;
+                visibility: visible;
+                transform: translate3d(#{$start});
+                background-position: 0% 0%;
+            }
+            100% {
+                opacity: 1;
+                transform: translate3d(#{$end});
+                background-position: 100% 100%;
+            }
+        }
+        $style-class:get-animate-clsname($name);
+        @if type-of($style-class) != 'null' {
+            $linear-background: linear-gradient(-45deg,
+                            rgba(255,255,255,0) 30%,
+                            rgba(255,255,255,0.4) 45%,
+                            rgba(255,255,255,1) 50%,
+                            rgba(255,255,255,0.4) 55%,
+                            rgba(255,255,255,0) 70%);
+            #{$style-class}{
+                background-image:  $linear-background;
+                background-repeat: no-repeat;
+                background-size: 500% 300%;
+            }
+        }
+    }
+}//end
+
+//
+// <string> $name     动画名称
+// <string> $type     box-shadow type,可选值：inset
+// <number> $start    box-shadow blur 的起始量
+// <number> $end      box-shadow blur 的终止量
+// <color>  $end      box-shadow color的终止量
+//
+//        [name]      shineGlide 
+// [instruction]      shineGlide 发光
+@mixin shineGlow($name , $type: '', $start: 0px, $end: 25px, $color: hsla(50,100%,100%,0.9)) {
+    @if type-of( $name ) == 'string' {
+        $box-shadow-from : 0px 0px $start $color;
+        $box-shadow-end  : 0px 0px $end $color;
+        @if $type == 'inset' {
+            $box-shadow-from : inset 0px 0px $start $color;
+            $box-shadow-end  : inset 0px 0px $end $color;
+        }
+        @keyframes #{$name} {
+            0% {
+                box-shadow: $box-shadow-from;
+            }
+            100% {
+                box-shadow: $box-shadow-end;
+            }
+        }
+    }
+}//end
+
+//
+// <string> $name     动画名称
+// <string> $type     box-shadow type,可选值：inset
+// <number> $start    box-shadow blur 的起始量
+// <number> $end      box-shadow blur 的终止量
+// <color>  $end      box-shadow color的终止量
+//
+//        [name]      shineWarn 
+// [instruction]      shineWarn 警示
+@mixin shineWarn($name , $start: -100%, $end: 0px) {
+    @if type-of( $name ) == 'string' {
+        @keyframes #{$name} {
+            50% {
+                box-shadow: -100px 0px 50px  -50px rgba(255,50,50,1),
+                    100px 0px 50px  -50px rgba(255,50,50,1),
+                    inset 0px 0px  200px rgba(255,50,50,1);
+                background-color: #FFF;
+            }
+        }
+    }
+}//end
+
+//
+// <string> $name     动画名称
+// <number> $start    scale的起始量
+// <number> $end      scale的终止量
+//
+//        [name]      zoom 
+// [instruction]      zoom 缩放
+// @mixin zoom($name, $start: 1, $end: 1.1) {
+//     @if type-of($name) == 'string' {
+//         @keyframes #{$name} {
+//             0% {
+//                 visibility: visible;
+//                 transform: scale($start);
+//             }
+//             100% {
+//                 transform: scale($end);
+//             }
+//         }
+//     }
+// }//end
+
+//
+// <string> $name     动画名称
+// <string> $axis     backgroud-position的x、y，可选值: x、-x、y、-y
+// <color>  $radial-start-color radial-gradient的起始颜色
+//        [name]      barcode 
+// [instruction]      barcode 扫条码
+@mixin barcode($name,$axis: 'x',$radial-start-color:#BA1515) {
+    @if type-of( $name ) == 'string' {
+        $position-begin: center 2%;
+        $position-over : center 98%;
+        $size-begin: 92% 1%;
+        @if  $axis == 'x' {
+            $position-begin: 2% center;
+            $position-over : 98% center;
+            $size-begin: 1% 92%;
+        }@else if $axis == '-x' {
+            $position-begin: 98% center;
+            $position-over : 2% center;
+            $size-begin: 1% 92%;
+        }@else if $axis == '-y' {
+            $position-begin: center 98%;
+            $position-over : center 2%;
+            $size-begin: 92% 1%;
+        }
+        @keyframes #{$name} {
+            0%,100% {
+                opacity: 1;
+                visibility: visible;
+                background-size: $size-begin;
+                background-position: $position-begin;
+            }
+            99% {
+                background-position: $position-over;
+            }
+        }
+        $barcode-class: get-animate-clsname($name);
+        @if type-of($barcode-class) != 'null' {
+            #{$barcode-class}{
+                background-image: radial-gradient($radial-start-color,rgba(255,255,255,0.01));
+                background-repeat: no-repeat;
+                background-color: rgba(255,255,255,0);
+                @include animation-duration(5s);
+                @include animation-direction(normal);
+            }
+        }
+    }
+}//end
+// --------------------------- KEYFRAMES MIXIN END ---------------------------------

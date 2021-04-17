@@ -1,0 +1,124 @@
+<h3 class="wrap-title">技术特长</h3>
+<div class="technologyStack">
+    <p>
+        <span>基础：</span>
+        <% locals.baisc.forEach(text=>{%>
+        <span class="tag"><%-text%></span>
+        <%})%>
+    </p>
+
+    <p>
+        <span>样式：</span>
+        <% locals.style.forEach(text=>{%>
+        <span class="tag"><%-text%></span>
+        <%})%>
+    </p>
+    <p>
+        <span>脚本：</span>
+        <% locals.master.forEach(text=>{%>
+        <span class="tag"><%-text%></span>
+        <%})%>
+    </p>
+    <p>
+        <span>工具：</span>
+        <% locals.tools.forEach(text=>{%>
+        <span class="tag"><%-text%></span>
+        <%})%>
+    </p>
+</div>
+
+<h3 class="wrap-title">业务领域</h3>
+<div class="businessArea">
+    <p>对于一个web前端开发人员而言，本身对业务需求的理解是不触及业务市场部分的，作为产品的第一批用户，
+        我们往往并不会考虑产品的生存之道，这不是说我们想不到，而是工作安排和环境氛围不许可，
+        一般情况下我们基本上都没有时间去考虑更好的用户体验方案，在紧促的开发工作中，大多数时候都是为了完成任务，领到工资。
+        一个认真研究，想搞出成绩的人是突出的，被孤立的，因为你和别人不一样。
+    </p>
+    <p>磕磕碰碰中，我猜很多人和我一样，都在放弃自己的初衷，学会去适应团队或者大环境，不断地随大流，随便个几年下来，就都差不多了。</p>
+    <p>早期的我做网页的时候，会用PS去切图，后来基本上都不用我来切了。
+        我做过电商（ERP）管理平台，漫画网站，男装导购网站，scratch3二次开发，jupyterlab 扩展开发，
+        多种站点管理端等等，这大概就是我所在的业务领域</p>
+    <p>因此，从这个角度来定位我：中台、数据对接。</p>
+</div>
+
+<h3 class="wrap-title">核心价值观</h3>
+<div class="coreValues">
+    <p>我猜，每个人都可能会想过：我为什么活着，我是谁？
+        等等这种没有意义的问题，毕竟考虑这些问题，往往不会有切合实际的答案，相反会影响情绪，浪费开心的时间。</p>
+    <p>我是这一部分中一员，每次辞职后我都会想这些，都想再次认识下自己，掂量下自己。</p>
+    <p>当我看着自己的简历，那一段一段的工作经历，我都觉得自己臭名昭著。每当回想起每次的辞职经历，我都有些急躁，可能这就是我吧！
+        我不是那个讨人欢心的人，不是不会而是不想，觉得没有必要。如果有人提醒我要时刻注意领导的喜怒哀乐，那么我觉得我该换工作。
+        同样是人，如果非得让别人迁就你，那么反过来我是不是可以要求你来迁就我。
+        如果正向成立，反向不成立，那么请你离我远点，或者我滚远点。
+    </p>
+    <p>人生路太短，活给自己看还是活给比人看？</p>
+    <p>走自己的路，让别人看去、说去吧！你的评价和你的情绪，都来自于你，并且作用于你，我听不到，看不到，那么它们影响不到我。
+        我自己的开心快乐，你又怎能理解？</p>
+    <p>就像两家人有仇，吵架与打架对于他们而言，已经完全没有意义了~~~他们要看到对方的尸体才会有快感，
+        甚至在心里时刻想着怎么无声无息、避开人类社会的律法的惩罚，而置对方于死地，并且还乐此不疲绞尽脑汁彻夜不眠。
+    </p>
+    <p>这就是人，只有你死了，才会暂时平息一下别人的情绪，不然的话，你的开心快乐在比人眼里都是那么可笑，
+        什么loser、穷逼、白莲花、绿茶婊等等，总有一个标签适合你， 他们要把自己搞的爽爽的，别人惨惨的，
+        他们才会暂时觉得知足。</p>
+    <p>所以，你不想搞他们，也不想看见他们，那只有你远离他们，你才会得到安全和快乐。
+        毕竟，动不动就威胁你恐吓你，这种人不值得你把他们当人看，没有结束这一切的决心，就别放狠话。
+        即便，你的开心快乐就像小丑的恶作剧，对他们而言可笑的一塌糊涂。
+        即便，你的努力在别人看来就是痴心妄想，想都别想，他们的白菜要找个好下家，即便让猪拱了，也轮不到你。
+        即便，如此，你还是要努力的活着，直到没有意义为止。
+    </p>
+</div>
+
+<h3 class="wrap-title">联系方式</h3>
+<div class="contact clearfix">
+    <div class="info">
+        <p><span>姓名：</span><b class="bubbleLeft">田路刚</b></p>
+        <p><span>手机：</span><b class="bubbleLeft"><%- locals.phoneNO %></b></p>
+        <p><span>座机：</span><b class="bubbleLeft"><%- locals.phoneNO %></b></p>
+        <p><span>邮箱：</span><b class="bubbleLeft"><%- locals.myEmail %></b></p>
+        <p><span>地址：</span><b class="bubbleLeft">陕西省西安市</b></p>
+    </div>
+    <div class="map">
+        <iframe src="/bd-map" frameborder="0"></iframe>
+    </div>
+</div>
+
+<h3 class="wrap-title">意见反馈</h3>
+<div class="feedback" id="jFeedback">
+    <p>
+        <label class="title" for="feedTitle">标题：</label>
+        <input type="text" name="title" id="feedTitle" maxlength="40" placeholder="主旨描述">
+        <span>40个汉字以内</span>
+    </p>
+
+    <p>
+        <label class="title" for="feedDescription">联系电话：</label>
+        <input type="text" name="title" id="feedUserTelePhone" maxlength="20" placeholder="您的常用电话" />
+        <span>长度小于20的数字</span>
+    </p>
+
+    <p>
+        <label class="title" for="feedClassify">反馈类型：</label>
+        <label class="lab-radio"><input type="radio" name="feedClassify">技术太菜</label>
+        <label class="lab-radio"><input type="radio" name="feedClassify">网站设计</label>
+        <label class="lab-radio"><input type="radio" name="feedClassify">赞美一下</label>
+        <label class="lab-radio"><input type="radio" name="feedClassify">臭骂一顿</label>
+        <label class="lab-radio"><input type="radio" name="feedClassify">综合型</label>
+        <span>必选</span>
+    </p>
+
+    <p>
+        <label class="title" for="feedReason">反馈原因：</label>
+        <input type="text" name="title" id="feedReason" maxlength="100" placeholder="说明您留言的理由">
+        <span>100个汉字以内</span>
+    </p>
+
+    <p>
+        <label class="title" for="feedDescription">具体描述：</label>
+        <textarea name="title" id="feedDescription" maxlength="250" placeholder="具体描述，250个汉字以内"></textarea>
+        <span>250个汉字以内</span>
+    </p>
+
+    <p>
+        <input type="button" value="确认提交">
+    </p>
+</div>

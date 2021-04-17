@@ -1,0 +1,30 @@
+{
+  "name": "@poorest/util",
+  "version": "2.0.3",
+  "description": "my nodejs utils",
+  "license": "MIT",
+  "files": [
+    "lib/*"
+  ],
+  "main": "lib/index.js",
+  "browser": {
+    "crypto": false
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "api": "api-extractor run --local --verbose",
+    "build": "tsc --build",
+    "clean": "rimraf ./lib && rimraf *.tsbuildinfo && rimraf ./types",
+    "docs": "typedoc --options tdoptions.json src"
+  },
+  "dependencies": {
+    "@poorest/base": "^2.0.1",
+    "js-yaml": "^4.1.0"
+  },
+  "gitHead": "92dce488efe9873eec3d7123b4072f79e7e99eb1",
+  "devDependencies": {
+    "@types/koa": "^2.13.1"
+  }
+}

@@ -1,0 +1,39 @@
+//
+//-------------------------------------
+// CSS3 动画配置
+
+// 公用的配置
+// _________________________________________________
+// 是否开启帧动画的导入
+// 由于目前sass中@import只能置顶（顶部注释可忽略）且不能被sass语句嵌套，
+// 因此这个变量只能在每个动画文件中使用
+
+// 是否启用帧动画
+$is-use-keyframes: true !default;
+
+// 正常动画持续时间
+$duration-base: 1s !default;
+
+// 双倍动画持续时间
+$duration-hinge: $duration-base * 2 !default;
+
+// 较短的动画持续时间
+$duration-short: ($duration-base * 3 / 4) !default;
+
+// 公用类名
+$basic-common-class: animate !default;
+// _________________________________________________
+
+// _________________________________________________
+// 用法一：动画的公用类名，即公用类名、前缀
+// 例如：<div class="ani ani-shake">我会执行动画</div>
+// 这种用法我称之为 basic 用法，由变量 $is-use-basic-animation 控制它对应的css是否输出
+
+// 是否启用basic用法
+$is-use-basic-animation: false !default;
+// _________________________________________________
+
+
+// _________________________________________________
+// 用法二：
+$is-use-high-animation: true !default;

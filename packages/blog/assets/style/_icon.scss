@@ -1,0 +1,23 @@
+%icon {
+  position: relative;
+  display: inline-block;
+  background-repeat:no-repeat;
+  background-color: transparent;
+  vertical-align: middle;
+}
+
+.icon-news,
+.icon-service,
+.icon-guide{
+  @extend %icon;
+  background-image: url(../images/icons.png);
+}
+.icon-news{
+  background-position: 0 0;
+}
+.icon-service{
+  background-position: -107px 0;
+}
+.icon-guide{
+  background-position: -218px 0;
+}

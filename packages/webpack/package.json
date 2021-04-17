@@ -1,0 +1,72 @@
+{
+	"name": "@poorest/webpack",
+	"version": "2.0.3",
+	"license": "MIT",
+	"publishConfig": {
+		"access": "public"
+	},
+	"files": [
+		"lib/*"
+	],
+	"description": "my webpack",
+	"main": "./lib/index.js",
+	"scripts": {
+		"api": "api-extractor run --local --verbose",
+		"build": "npm run clean && tsc --build",
+		"clean": "rimraf ./lib && rimraf *.tsbuildinfo && rimraf ./types",
+		"docs": "typedoc --options tdoptions.json src",
+		"watch": "tsc --build --watch"
+	},
+	"peerDependencies": {
+		"webpack": "^4.46.0"
+	},
+	"dependencies": {
+		"@poorest/util": "^2.0.1",
+		"assets-webpack-plugin": "^7.0.0",
+		"autoprefixer": "^10.2.4",
+		"chokidar": "^3.5.1",
+		"clean-webpack-plugin": "^3.0.0",
+		"compression-webpack-plugin": "^5.0.2",
+		"copy-webpack-plugin": "^6.4.1",
+		"css-loader": "^5.1.0",
+		"file-loader": "^6.2.0",
+		"friendly-errors-webpack-plugin": "^1.7.0",
+		"glob": "^7.1.6",
+		"hotrun": "^2.3.1",
+		"html-webpack-plugin": "^5.2.0",
+		"koa": "^2.13.1",
+		"koa-webpack": "^6.0.0",
+		"mini-css-extract-plugin": "^1.3.9",
+		"optimize-css-assets-webpack-plugin": "^5.0.4",
+		"ora": "^5.3.0",
+		"postcss": "^8.2.6",
+		"postcss-loader": "^4.2.0",
+		"sass": "^1.32.8",
+		"sass-loader": "^10.1.1",
+		"style-loader": "^2.0.0",
+		"terser": "^4.6.2",
+		"terser-webpack-plugin": "^4.2.3",
+		"ts-loader": "^8.0.17",
+		"typescript": "^4.1.5",
+		"url-loader": "^4.1.1",
+		"validator": "^13.5.2",
+		"webpack": "^4.46.0",
+		"webpack-bundle-analyzer": "^4.4.0",
+		"webpack-manifest-plugin": "^3.0.0",
+		"webpack-merge": "^5.7.3"
+	},
+	"devDependencies": {
+		"@types/assets-webpack-plugin": "^6.1.0",
+		"@types/compression-webpack-plugin": "^6.0.4",
+		"@types/copy-webpack-plugin": "^6.4.0",
+		"@types/friendly-errors-webpack-plugin": "^0.1.2",
+		"@types/koa": "^2.13.1",
+		"@types/koa-webpack": "^6.0.1",
+		"@types/mini-css-extract-plugin": "^1.2.2",
+		"@types/optimize-css-assets-webpack-plugin": "^5.0.2",
+		"@types/terser-webpack-plugin": "^5.0.2",
+		"@types/webpack": "^4.41.26",
+		"@types/webpack-manifest-plugin": "^3.0.3"
+	},
+	"gitHead": "92dce488efe9873eec3d7123b4072f79e7e99eb1"
+}

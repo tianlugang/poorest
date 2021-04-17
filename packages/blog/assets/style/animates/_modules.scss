@@ -1,0 +1,116 @@
+//- 动画模块中的子模块
+//------------------
+
+//- 模块：bounce
+@import 'bounce/basic';
+@import 'bounce/in';
+@import 'bounce/inDown';
+@import 'bounce/inLeft';
+@import 'bounce/inRight';
+@import 'bounce/inUp';
+@import 'bounce/out';
+@import 'bounce/outDown';
+@import 'bounce/outLeft';
+@import 'bounce/outRight';
+@import 'bounce/outUp';
+
+//- 模块：drop
+@import 'drop/in';
+@import 'drop/out';
+@import 'drop/to';
+
+//- 模块：fade
+@import 'fade/in';
+@import 'fade/inDown';
+@import 'fade/inDownBig';
+@import 'fade/inLeft';
+@import 'fade/inLeftBig';
+@import 'fade/inRight';
+@import 'fade/inRightBig';
+@import 'fade/inUp';
+@import 'fade/inUpBig';
+@import 'fade/out';
+@import 'fade/outDown';
+@import 'fade/outDownBig';
+@import 'fade/outLeft';
+@import 'fade/outLeftBig';
+@import 'fade/outRight';
+@import 'fade/outRightBig';
+@import 'fade/outUp';
+@import 'fade/outUpBig';
+
+//- 模块：flip
+@import 'flip/basic';
+@import 'flip/inX';
+@import 'flip/inY';
+@import 'flip/outX';
+@import 'flip/outY';
+
+//- 模块：light
+@import 'light/in';
+@import 'light/out';
+
+//- 模块：roll
+@import 'roll/in';
+@import 'roll/out';
+
+//- 模块：rotate
+@import 'rotate/box';
+@import 'rotate/hinge';
+@import 'rotate/in';
+@import 'rotate/inDownLeft';
+@import 'rotate/inDownRight';
+@import 'rotate/inUpLeft';
+@import 'rotate/inUpRight';
+@import 'rotate/out';
+@import 'rotate/outDownLeft';
+@import 'rotate/outDownRight';
+@import 'rotate/outUpLeft';
+@import 'rotate/outUpRight';
+
+//- 模块：shake
+@import 'shake/basic';
+@import 'shake/head';
+@import 'shake/jello';
+@import 'shake/swing';
+@import 'shake/tada';
+@import 'shake/wobble';
+
+//- 模块：shine
+@import 'shine/bulb';
+@import 'shine/code-x';
+@import 'shine/code-y';
+@import 'shine/codeX';
+@import 'shine/codeY';
+@import 'shine/glide';
+@import 'shine/glowIn';
+@import 'shine/glowOut';
+@import 'shine/inner';
+@import 'shine/outer';
+@import 'shine/slip';
+@import 'shine/warn';
+
+//- 模块：slide
+@import 'slide/inDown';
+@import 'slide/inLeft';
+@import 'slide/inRight';
+@import 'slide/inUp';
+@import 'slide/outDown';
+@import 'slide/outLeft';
+@import 'slide/outRight';
+@import 'slide/outUp';
+
+//- 模块：zoom
+@import 'zoom/in';
+@import 'zoom/inDown';
+@import 'zoom/inLeft';
+@import 'zoom/inRight';
+@import 'zoom/inUp';
+@import 'zoom/out';
+@import 'zoom/outDown';
+@import 'zoom/outLeft';
+@import 'zoom/outRight';
+@import 'zoom/outUp';
+@import 'zoom/pulse';
+@import 'zoom/rubber';
+@import 'zoom/spin';

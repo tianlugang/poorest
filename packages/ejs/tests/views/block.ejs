@@ -1,0 +1,11 @@
+<h1><%= locals.title %></h1>
+<p><%- locals.message %></p>
+
+<div class="box">
+    <% for (var i =0; i < 10; i++) {%>
+    <%# 注释 %>
+    <p><%_ i %></p>
+    <%}%>
+</div>
+
+<%- include('include.ejs') %>

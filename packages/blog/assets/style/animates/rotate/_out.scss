@@ -1,0 +1,19 @@
+//
+// $load-keyframes-rotateOut 变量控制了此'keyframes'是否被输出到css中去
+//
+@if $load-keyframes-rotateOut == true {
+    @keyframes rotateOut {
+      from {
+        transform-origin: center;
+        opacity: 1;
+        visibility: visible;
+      }
+
+      to {
+        transform-origin: center;
+        transform: rotate3d(0, 0, 1, 200deg);
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+}

@@ -1,0 +1,20 @@
+//
+// $load-keyframes-bounceOut 变量控制了此'keyframes'是否被输出到css中去
+//
+@if $load-keyframes-bounceOut == true {
+    @keyframes bounceOut {
+      20% {
+        transform: scale3d(.9, .9, .9);
+      }
+
+      50%, 55% {
+        opacity: 1;
+        transform: scale3d(1.1, 1.1, 1.1);
+      }
+
+      to {
+        opacity: 0;
+        transform: scale3d(.3, .3, .3);
+      }
+    }
+}

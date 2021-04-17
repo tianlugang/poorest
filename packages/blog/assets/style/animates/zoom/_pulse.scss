@@ -1,0 +1,18 @@
+//
+// $load-keyframes-zoomPulse 变量控制了此'keyframes'是否被输出到css中去
+//
+@if $load-keyframes-zoomPulse == true {
+    @keyframes pulse {
+      from {
+        transform: scale3d(1, 1, 1);
+      }
+
+      50% {
+        transform: scale3d(1.05, 1.05, 1.05);
+      }
+
+      to {
+        transform: scale3d(1, 1, 1);
+      }
+    }
+}

@@ -1,0 +1,31 @@
+{
+	"name": "@poorest/ejs",
+	"version": "2.0.2",
+	"description": "my ejs.",
+	"license": "MIT",
+	"files": [
+		"dist/*",
+		"lib/*"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
+	"keywords": [
+		"ES6",
+		"Nodejs"
+	],
+	"main": "lib/index.js",
+	"module": "dist/index.esm.js",
+	"scripts": {
+		"api": "api-extractor run --local --verbose",
+		"build": "npm run clean && tsc --build",
+		"build:test": "tsc --build tests && cd tests",
+		"clean": "rimraf dist && rimraf lib",
+		"docs": "typedoc --options tdoptions.json src",
+		"minimize": "set NODE_ENV=production && npm run clean && rollup -c",
+		"watch": "npm run clean && rollup -c --watch"
+	},
+	"devDependencies": {
+		"@types/koa": "^2.13.1"
+	}
+}

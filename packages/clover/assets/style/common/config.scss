@@ -1,0 +1,27 @@
+$white:#fff;
+$primary-darken-color: #14BB42;
+$primary-active-color: #54BB42;
+$primary-color: #64BB42;
+$primary-lighten-color: #84BB42;
+$danger-color:#f00;
+$warn-color:#ff0;
+$muted-color:#777;
+$gray-color:#aaa;
+$base-color: #383838;
+$light-color:#f9f9f9;
+$black: #000;
+
+$button-size: (
+    lg: (
+        padding: 10px 16px,
+        font-size: 18px
+    ),
+    sm: (
+        padding: 5px 10px,
+        font-size: 12px
+    ),
+    xs: (
+        padding: 1px 5px,
+        font-size: 12px
+    )
+);

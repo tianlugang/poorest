@@ -1,0 +1,6 @@
+//
+// $load-keyframes-shineOut变量控制了此动画是否被输出到css中去
+//
+@if $load-keyframes-shineOuter == true {
+	@include shine(shineOuter,'');
+}

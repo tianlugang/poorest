@@ -1,0 +1,20 @@
+<%const { pageCurrent, pageHref, pageTotal, pageQuery, versions } = locals%>
+<div class="recordTit">
+    <img src="/icon/record.svg" />
+    <span><%-t('Search results:')%></span>
+</div>
+<%if(versions.length>0){%>
+    <%versions.forEach(version=>{%>
+        <%-include('public/package.html', { version })%>
+    <%})%>
+    <%if(pageTotal>1){%>
+        <div class="paging">
+            <%-paging(pageCurrent, pageTotal, pageHref, pageQuery)%>
+        </div>
+    <%}%>
+<%}else{%>
+    <div class="placeholder pt30">
+        <%-svgIcons.errorOutline%>
+        <p><%- t('No relevant information was retrieved!')%></p>
+    </div>
+<%}%>

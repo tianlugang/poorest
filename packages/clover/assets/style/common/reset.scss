@@ -1,0 +1,396 @@
+@import "./config.scss";
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+html {
+    text-size-adjust: 100%;
+    -webkit-tap-highlight-color: $base-color;
+}
+
+body {
+    margin: 0;
+    font-family: "Fira Mono", "Andale Mono", "Consolas", monospace, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: $base-color;
+    background-color: $light-color;
+    overflow-x: hidden;
+}
+
+article,
+aside,
+details,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section,
+summary {
+    display: block;
+}
+
+a {
+    color: $base-color;
+    text-decoration: none;
+    background-color: transparent;
+
+    &:active,
+    &:hover {
+        outline: 0;
+        color: $primary-color;
+    }
+
+    &:hover,
+    &:focus {
+        color: $primary-color;
+        text-decoration: underline;
+        transition: color 300ms ease;
+    }
+
+    &:focus {
+        outline: thin dotted;
+        outline: 5px auto -webkit-focus-ring-color;
+        outline-offset: -2px;
+    }
+}
+
+img {
+    border: 0;
+}
+
+svg:not(:root) {
+    overflow: hidden;
+    vertical-align: middle;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+    margin: 0;
+    font: inherit;
+    color: inherit;
+}
+
+button {
+    overflow: visible;
+}
+
+button,
+select {
+    text-transform: none;
+}
+
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+    -webkit-appearance: button;
+    cursor: pointer;
+}
+
+button[disabled],
+html input[disabled] {
+    cursor: default;
+}
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+}
+
+input {
+    line-height: normal;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0;
+}
+
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+input,
+button,
+select,
+textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+img {
+    vertical-align: middle;
+}
+
+.dib {
+    list-style: none;
+    display: inline-block;
+}
+
+.mr8 {
+    margin-right: 8px;
+}
+
+.pt30 {
+    padding-top: 30px;
+}
+
+.list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.cmain {
+    color: #14865c;
+}
+
+.fr {
+    float: right;
+}
+
+.fl {
+    float: left;
+}
+ 
+.nonLink,
+.nonLink:hover {
+    text-decoration: none;
+}
+
+.placeholder {
+    text-align: center;
+    margin-top: 10px;
+
+    svg {
+        width: 64px;
+        height: 64px;
+    }
+}
+
+.link,
+.link:active,
+.link:focus,
+.link:hover,
+.link:link,
+.link:visited {
+    transition: color .15s ease-in;
+}
+
+.clearfix {
+    &::after,
+    &::before {
+        display: table;
+        content: '';
+        clear: both;
+        width: 0;
+        visibility: hidden;
+    }
+}
+
+.button {
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    touch-action: manipulation;
+    outline: none;
+    cursor: pointer;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+
+    &:hover,
+    &:focus,
+    &:active,
+    &:active:focus {
+        text-decoration: none;
+    }
+
+    &.disabled,
+    &[disabled] {
+        pointer-events: none;
+        cursor: not-allowed;
+        filter: alpha(opacity=65);
+        box-shadow: none;
+        opacity: 0.65;
+    }
+
+    &.default {
+        background-color: $white;
+        border-color: #ccc;
+
+        &:hover,
+        &:focus,
+        &:active {
+            background-color: $light-color;
+            border-color: #adadad;
+        }
+
+        &.disabled,
+        &.disabled:hover,
+        &.disabled:focus,
+        &.disabled:active {
+            background-color: $white;
+            border-color: #ccc;
+        }
+    }
+
+    &.primary {
+        color: $white;
+        background-color: $primary-color;
+        border-color: $primary-active-color;
+
+        &:hover,
+        &:focus,
+        &:active {
+            background-color: $primary-darken-color;
+            border-color: $primary-color;
+            box-shadow: inset 0 0 3px 0 $primary-color;
+        }
+
+        &.disabled,
+        &.disabled:hover,
+        &.disabled:focus,
+        &.disabled:active {
+            background-color: $primary-lighten-color;
+            border-color: $primary-color;
+        }
+    }
+
+    @each $size,
+    $css-map in $button-size {
+        &.#{$size} {
+
+            @each $prop,
+            $value in $css-map {
+                #{$prop}: $value;
+            }
+        }
+    }
+
+    &+& {
+        margin-left: 5px;
+    }
+
+    &.block {
+        display: block;
+        width: 100%;
+
+        &+& {
+            margin-top: 5px;
+        }
+    }
+}
+
+.svg {
+    display: inline-block;
+    vertical-align: text-top;
+    fill: currentColor;
+}
+.icon {
+    position: relative;
+    fill: $muted-color;
+    color: currentColor;
+
+    &-1x {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+.formItem {
+    position: relative;
+    margin-bottom: 7px;
+
+    .prefix {
+        height: 24px;
+        line-height: 24px;
+        margin: 0;
+    }
+
+    .control {
+        position: relative;
+        margin: 7px auto;
+    }
+}
+
+.control {
+    .prefix {
+        position: absolute;
+        left: 9px;
+        top: 50%;
+        transform: translate(0, -50%);
+        cursor: pointer;
+
+        &+input {
+            padding-left: 49px;
+        }
+    }
+
+    input {
+        width: 100%;
+        height: 48px;
+        padding-left: 15px;
+        padding-right: 40px;
+        background-color: $white;
+        color: $muted-color;
+        font-size: 14px;
+        text-align: left;
+        font-family: Microsoft Yahei;
+        border: 1px solid #bbb;
+        outline: none;
+        transition: ease border-color .6s;
+
+        &:focus {
+            border-color: $primary-color;
+            box-shadow: 0px 0px 3px 0px $primary-color;
+        }
+    }
+
+    .suffux {
+        position: absolute;
+        right: 9px;
+        top: 50%;
+        transform: translate(0, -50%);
+        cursor: pointer;
+        display: none;
+    }
+}
+
+.validMsg {
+    position: relative;
+    height: 16px;
+    line-height: 16px;
+    font-size: 12px;
+    color: transparent;
+    transition: ease color .3s;
+
+    &.visible {
+        color: $danger-color;
+    }
+}
+
+.truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

@@ -1,0 +1,19 @@
+//
+// $load-keyframes-rotateOutUpRight 变量控制了此'keyframes'是否被输出到css中去
+//
+@if $load-keyframes-rotateOutUpRight == true {
+    @keyframes rotateOutUpRight {
+      from {
+        transform-origin: right bottom;
+        opacity: 1;
+        visibility: visible;
+      }
+
+      to {
+        transform-origin: right bottom;
+        transform: rotate3d(0, 0, 1, 90deg);
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+}

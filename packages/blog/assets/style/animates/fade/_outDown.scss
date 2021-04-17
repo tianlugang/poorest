@@ -1,0 +1,15 @@
+//
+// $load-keyframes-fadeOutDown 变量控制了此'keyframes'是否被输出到css中去
+//
+@if $load-keyframes-fadeOutDown == true {
+    @keyframes fadeOutDown {
+      from {
+        opacity: 1;
+      }
+
+      to {
+        opacity: 0;
+        transform: translate3d(0, 100%, 0);
+      }
+    }
+}

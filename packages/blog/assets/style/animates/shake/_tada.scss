@@ -1,0 +1,26 @@
+//
+// $load-keyframes-shakeTada 变量控制了此'keyframes'是否被输出到css中去
+//
+@if $load-keyframes-shakeTada == true {
+    @keyframes shakeTada {
+      from {
+        transform: scale3d(1, 1, 1);
+      }
+
+      10%, 20% {
+        transform: scale3d(.9, .9, .9) rotate3d(0, 0, 1, -3deg);
+      }
+
+      30%, 50%, 70%, 90% {
+        transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+      }
+
+      40%, 60%, 80% {
+        transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+      }
+
+      to {
+        transform: scale3d(1, 1, 1);
+      }
+    }
+}

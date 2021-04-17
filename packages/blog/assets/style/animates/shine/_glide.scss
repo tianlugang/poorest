@@ -1,0 +1,6 @@
+//
+// $load-keyframes-shineGlide变量控制了此动画是否被输出到css中去
+//
+@if $load-keyframes-shineGlide == true {
+	@include shineGlide(shineGlide,'x');
+}

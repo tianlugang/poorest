@@ -1,0 +1,30 @@
+//
+// 用法二：又称高级用法
+//        没时间了，不解释了
+//
+@if $is-use-high-animation == true {
+    // common class
+    @if $basic-common-class{
+        .#{$basic-common-class}{
+            animation-duration: $duration-base;
+            animation-fill-mode: both;
+            // every class
+            @each $class-name in $animation-class-name{
+                &.#{$class-name}{
+                    @include animation-name(inspect($class-name));
+                }
+            }
+            // 持续时间
+            &.hinge{
+                animation-duration: $duration-hinge;
+            }
+            &.short{
+                animation-duration: $duration-short;
+            }
+            // 无限次数
+            &.infinite{
+                animation-iteration-count: infinite;
+            }
+        }
+    }
+}

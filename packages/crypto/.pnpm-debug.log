@@ -1,0 +1,21 @@
+{
+  "0 debug pnpm:scope": {
+    "selected": 1
+  },
+  "1 error pnpm": {
+    "code": "ELIFECYCLE",
+    "errno": "ENOENT",
+    "syscall": "spawn",
+    "file": "sh",
+    "pkgid": "@poorest/crypto@2.0.3",
+    "stage": "build",
+    "script": "tsc --build",
+    "pkgname": "@poorest/crypto",
+    "err": {
+      "name": "Error",
+      "message": "@poorest/crypto@2.0.3 build: `tsc --build`\nspawn ENOENT",
+      "code": "ELIFECYCLE",
+      "stack": "Error: @poorest/crypto@2.0.3 build: `tsc --build`\nspawn ENOENT\n    at ChildProcess.<anonymous> (/home/daniel/.nvm/versions/node/v14.16.1/lib/node_modules/pnpm/dist/pnpm.cjs:88853:20)\n    at ChildProcess.emit (events.js:315:20)\n    at maybeClose (internal/child_process.js:1048:16)\n    at Process.ChildProcess._handle.onexit (internal/child_process.js:288:5)"
+    }
+  }
+}

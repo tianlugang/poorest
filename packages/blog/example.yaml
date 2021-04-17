@@ -1,0 +1,32 @@
+storage: ./storage
+language: zh_CN
+title: my blog
+userAgent: null
+secret: 8d300e7989926e314c08158ba8d664bc
+expire: 1d
+maxUsers: 1000
+#prefix: ''
+listen: 9000 
+maxBodySize: 10mb
+https:
+  enable: false
+# key: path/to/server.key
+# cert: path/to/server.crt
+logs:
+  # 日志的输出类型：file | stdout | stderr
+  type: stdout
+
+  # 是否格式化日志
+  pretty: true
+
+  # trace | debug | info | message (default) | warn | error | fatal
+  level: trace
+
+  # 日志文件夹
+  logDir: ./logs
+ 
+  # 单个日志的最大大小，默认是: 50M
+  maxFileSize: 50M
+
+#logo: logo.png
+ 

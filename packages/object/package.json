@@ -1,0 +1,36 @@
+{
+	"name": "@poorest/object",
+	"version": "2.0.3",
+	"description": "my object utils",
+	"license": "MIT",
+	"files": [
+		"lib/*",
+		"dist/*",
+		"types/*"
+	],
+	"main": "lib",
+	"publishConfig": {
+		"access": "public"
+	},
+	"scripts": {
+		"api": "api-extractor run --local --verbose",
+		"build": "tsc --build",
+		"build:test": "tsc --build tests",
+		"clean": "rimraf ./lib && rimraf *.tsbuildinfo && rimraf ./types && rimraf ./dist",
+		"clean:test": "rimraf tests/build",
+		"docs": "typedoc --options tdoptions.json src",
+		"minimize": "terser dist/*/index.js -c -m -o dist/*/index.min.js",
+		"test": "npm run test:firefox",
+		"test:chrome": "cd tests && karma start --browsers=Chrome",
+		"test:firefox": "cd tests && karma start --browsers=Firefox",
+		"test:ie": "cd tests && karma start --browsers=IE",
+		"watch": "tsc --build --watch"
+	},
+	"dependencies": {
+		"@poorest/is": "^2.0.1"
+	},
+	"gitHead": "92dce488efe9873eec3d7123b4072f79e7e99eb1",
+	"devDependencies": {
+		"@types/koa": "^2.13.1"
+	}
+}

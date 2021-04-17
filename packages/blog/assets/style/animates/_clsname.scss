@@ -1,0 +1,127 @@
+//
+// 使用时的class名称，与动画名称必须相同，
+// 具体原因请看./eggs/exts/_animate.scss中的代码说明
+// 分析名称规则，就可以‘顾名思义’，名字为了形象描述动画内容
+//_____________________________________________________________________________________
+//**** 如果你是个开发者，你需要为库添加一个库里不存在的动画效果,很简单的
+//   * 你只要阅读了，我写在开始的注解，就明白了，我的简单的管理方式
+//**** 需要时间问题，我没有给下面的类名加入言语注解，如果你是个乐观的开发者，希望你延续我的工作
+//_____________________________________________________________________________________
+//
+// 变量 $animation-class-name: (a,b,c) !default;
+
+$animation-class-name: (
+	// 模块：bounce
+	bounceBasic,
+	bounceIn,
+	bounceInDown,
+	bounceInLeft,
+	bounceInRight,
+	bounceInUp,
+	bounceOut,
+	bounceOutDown,
+	bounceOutLeft,
+	bounceOutRight,
+	bounceOutUp,
+
+	// 模块：drop
+	dropIn,
+	dropOut,
+	dropTo,
+
+	// 模块：fade
+	fadeIn,
+	fadeInDown,
+	fadeInDownBig,
+	fadeInLeft,
+	fadeInLeftBig,
+	fadeInRight,
+	fadeInRightBig,
+	fadeInUp,
+	fadeInUpBig,
+	fadeOut,
+	fadeOutDown,
+	fadeOutDownBig,
+	fadeOutLeft,
+	fadeOutLeftBig,
+	fadeOutRight,
+	fadeOutRightBig,
+	fadeOutUp,
+	fadeOutUpBig,
+
+	// 模块：flip
+	flipBasic,
+	flipInX,
+	flipInY,
+	flipOutX,
+	flipOutY,
+
+	// 模块：light
+	lightIn,
+	lightOut,
+
+	// 模块：roll
+	rollIn,
+	rollOut,
+
+	// 模块：rotate
+	rotateBox,
+	rotateHinge,
+	rotateIn,
+	rotateInDownLeft,
+	rotateInDownRight,
+	rotateInUpLeft,
+	rotateInUpRight,
+	rotateOut,
+	rotateOutDownLeft,
+	rotateOutDownRight,
+	rotateOutUpLeft,
+	rotateOutUpRight,
+
+	// 模块：shake
+	shakeBasic,
+	shakeHead,
+	shakeJello,
+	shakeSwing,
+	shakeTada,
+	shakeWobble,
+
+	// 模块：shine
+	shineBulb,
+	shineCode-x,
+	shineCode-y,
+	shineCodeX,
+	shineCodeY,
+	shineGlide,
+	shineGlowIn,
+	shineGlowOut,
+	shineInner,
+	shineOuter,
+	shineSlip,
+	shineWarn,
+
+	// 模块：slide
+	slideInDown,
+	slideInLeft,
+	slideInRight,
+	slideInUp,
+	slideOutDown,
+	slideOutLeft,
+	slideOutRight,
+	slideOutUp,
+
+	// 模块：zoom
+	zoomIn,
+	zoomInDown,
+	zoomInLeft,
+	zoomInRight,
+	zoomInUp,
+	zoomOut,
+	zoomOutDown,
+	zoomOutLeft,
+	zoomOutRight,
+	zoomOutUp,
+	zoomPulse,
+	zoomRubber,
+	zoomSpin,
+)!default;

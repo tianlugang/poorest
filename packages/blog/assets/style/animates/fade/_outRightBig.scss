@@ -1,0 +1,15 @@
+//
+// $load-keyframes-fadeOutRightBig 变量控制了此'keyframes'是否被输出到css中去
+//
+@if $load-keyframes-fadeOutRightBig == true {
+    @keyframes fadeOutRightBig {
+      from {
+        opacity: 1;
+      }
+
+      to {
+        opacity: 0;
+        transform: translate3d(2000px, 0, 0);
+      }
+    }
+}

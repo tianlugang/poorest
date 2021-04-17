@@ -1,0 +1,6 @@
+//
+// $load-keyframes-shineWarn变量控制了此动画是否被输出到css中去
+//
+@if $load-keyframes-shineWarn == true {
+	@include shineWarn(shineWarn);
+}

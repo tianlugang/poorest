@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+        body, html,#allmap {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+    </style>
+</head>
+<body>
+<div id="allmap"></div>
+
+<script type="text/javascript">
+
+    //百度地图API功能
+    function loadJScript() {
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src = "http://api.map.baidu.com/api?v=2.0&ak=pbsq2aG7ECwqpRnZc6QG3th8VmNKC7Uq&callback=init";
+        document.body.appendChild(script);
+    }
+
+    function init() {
+        var myLocation = "陕西省西安市";
+        var map = new BMap.Map("allmap");
+        var myGeo = new BMap.Geocoder();
+        var point = new BMap.Point(116.404, 39.915);
+        var marker = new BMap.Marker(point);
+
+        map.centerAndZoom(point,15);
+        map.enableScrollWheelZoom();
+        map.addOverlay(marker);
+        myGeo.getPoint(myLocation, function(point){
+            if (point) {
+                map.centerAndZoom(point, 16);
+                map.addOverlay(new BMap.Marker(point));
+            }else{
+                alert("您选择地址没有解析到结果!");
+            }
+        }, "西安市");
+        var opts = {
+            width : 200,
+            height: 100,
+            title : "古城西安" ,
+            enableMessage:true,
+            message:"我们在这里，欢迎光临！戳下面的链接看下地址喔~"
+        }
+        var infoWindow = new BMap.InfoWindow(myLocation, opts);
+        marker.addEventListener("click", function(){
+            map.openInfoWindow(infoWindow,point);
+        });
+    }
+    window.onload = loadJScript;
+</script>
+</body>
+</html>

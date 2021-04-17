@@ -1,0 +1,27 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./lib",
+    "rootDir": "./src",
+    "allowSyntheticDefaultImports": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "strictNullChecks": true,
+    "target": "es2017",
+    "sourceMap": false,
+    "importHelpers": true 
+  },
+  "include": [
+    "./src/*", 
+    "!./src/**/__tests__/*"
+  ],
+  "exclude": [
+    "./build",
+    "./docs",
+    "./lib",
+    "node_modules",
+    "**/*.test.ts",
+    "__tests__"
+  ]
+}

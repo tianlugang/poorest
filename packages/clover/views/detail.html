@@ -1,0 +1,251 @@
+<% const { metadata, npmOfficeWebsite, inRegistry, versions, distTags, times,repository } = locals; %>
+<div class="summary">
+    <h2 class="title truncate" title="@writ/command"><%-metadata.name%></h2>
+    <span class="info"><%-metadata.version%> &nbsp;•&nbsp;</span>
+    <span class="info cmain"><%- metadata.private ? 'Private' : 'Public' %> &nbsp;•&nbsp;Published </span>
+    <span class="info">
+        <time datetime="<%-metadata._latestPublished%>" title="<%-metadata._latestPublished%>"><%- metadata._latestPublished && this.timespan(metadata._latestPublished) || '-'%></time>
+    </span>
+</div>
+<% const { devDependencies, dependencies, dist={}, bugs, homepage, maintainers, keywords } = metadata %>
+<% const dependenciesCount = dependencies && typeof dependencies === 'object' ? Object.keys(dependencies).length :0 %>
+<% const devDependenciesCount = devDependencies && typeof devDependencies === 'object'? Object.keys(devDependencies).length :0 %>
+<div class="flex" data-ui="tabs:detail">
+    <ul class="panes" role="tablist" aria-owns="pkg-readme pkg-dependencies pkg-dependents pkg-versions">
+        <li class="tab readme active" tabindex="0">
+            <a class="link" aria-selected="true" role="tab" aria-controls="tabpanel-readme" id="pkg-readme">
+                <span><%- svgIcons.file %></span>
+                <span> Readme</span>
+            </a>
+        </li>
+    
+        <li class="tab dependencies" tabindex="-1" >
+            <a class="link" aria-selected="false" role="tab" aria-controls="tabpanel-dependencies"
+                id="pkg-dependencies">
+                <span><%- svgIcons.cube %></span>
+                <span><%- dependenciesCount + devDependenciesCount %></span>
+                <span>Dependencies</span>
+            </a>
+        </li>
+    
+        <li class="tab dependents" tabindex="-1" >
+            <a class="link" aria-selected="false" role="tab" aria-controls="tabpanel-dependents"
+                id="pkg-dependents">
+                <span><%- svgIcons.cubes %></span>
+                <span>0</span>
+                <span>Dependents</span>
+            </a>
+        </li>
+    
+        <li class="tab versions" tabindex="-1" >
+            <a class="link" aria-selected="false" role="tab" aria-controls="tabpanel-versions"
+                id="pkg-versions">
+                <span><%- svgIcons.tags %></span>
+                <span><%- Object.keys(versions).length %></span>
+                <span>Versions</span>
+            </a>
+        </li>
+    </ul>
+
+    <div class="cards">
+        <div class="card active" id="tabpanel-readme" aria-labelledby="pkg-readme" tabindex="0" role="tabpanel" data-attribute="">
+            <div class="markdown" id="readme" tabindex="0"> <%-locals.readmeMarkdown%> </div>
+
+            <% if (Array.isArray(keywords) && keywords.length > 0) {%>
+                <div tabindex="0">
+                    <h2 id="user-content-keywords">Keywords</h2>
+                    <ul class="list">
+                        <% for (const word of keywords) {%>
+                            <li class="dib mr8">
+                                <a href="/search?p=1&q=keywords:Nodejs"><%-word%></a>
+                            </li>
+                        <%}%>
+                    </ul>
+                </div>
+            <%}%>
+        </div>
+
+        <div class="card cardDependencies" id="tabpanel-dependencies" aria-labelledby="pkg-dependencies" tabindex="0" role="tabpanel" data-attribute="hidden">
+            <h3 class="threeTitle">dependencies(<%-dependenciesCount%>)</h3>
+            <%if(dependenciesCount > 0) {%>
+                <% for(const name in dependencies){%>
+                    <a href="/package/<%-name%>"><%-name%></a>
+                <%}%>
+            <%}%>
+            <h3 class="threeTitle">devDependencies(<%-devDependenciesCount%>)</h3>
+            <%if(devDependenciesCount> 0){%>
+                <% for(const name in devDependencies){%>
+                    <a href="/package/<%-name%>"><%-name%></a>
+                <%}%>
+            <%}%>
+        </div>
+
+        <div class="card" id="tabpanel-dependents" aria-labelledby="pkg-dependents" tabindex="0" role="tabpanel" data-attribute="hidden">
+            <div class="tooltip">
+                <strong><%-t('Tip:')%></strong>
+                <span><%-t('This function is being designed')%></span>
+            </div>
+        </div>
+
+        <div class="card cardVersions" id="tabpanel-versions" aria-labelledby="pkg-versions" tabindex="0" role="tabpanel" data-attribute="hidden">
+            <h3 class="threeTitle">Current Tags</h3>
+            <ul class="listTable">
+                <li>
+                    <span>Version</span>
+                    <div class="dotted"></div>
+                    <span>Downloads (Last 7 Days)</span>
+                    <div class="dotted"></div>
+                    <span>Published</span>
+                </li>
+                <% for(let tag of distTags) {%>
+                    <li> 
+                        <a href="/package/<%-metadata.name%>/v/<%-tag.version%>"><%-tag.version%></a>
+                        <div class="dotted"></div>
+                        <code><%-tag.downloads%></code>
+                        <div class="dotted"></div>
+                        <time><%-tag.published ? `${this.timespan(tag.published)} [${tag.tag}]`: tag.tag %> </time>
+                    </li>
+                <%}%>
+            </ul>
+            <h3 class="threeTitle">Version History</h3>
+            <div class="showDeprecated">
+                <input type="checkbox" id="showDeprecated" name="showDeprecated">
+                <label for="showDeprecated">show deprecated versions</label>
+            </div>
+            <ul class="listTable" id="historyVersion">
+                <li>
+                    <span>Version</span>
+                    <div class="dotted"></div>
+                    <span>Downloads (Last 7 Days)</span>
+                    <div class="dotted"></div>
+                    <span>Published</span>
+                </li>
+                <% for(const ver in versions) { const verData = versions[ver],published=times[ver]; %>
+                    <li <%-verData.deprecated ? ' class="deprecated"':''%>> 
+                        <a href="/package/<%-metadata.name%>/v/<%-ver%>"><%-ver%></a>
+                        <div class="dotted"></div>
+                        <code><%-verData.downloads || '-'%></code>
+                        <div class="dotted"></div>
+                        <time><%-published && this.timespan(published) || '-'%></time>
+                    </li>
+                <%}%>
+            </ul>
+        </div>
+    </div>
+
+    <div class="statusbar">
+        <h3 class="subTit">Install</h3>
+        <p class="command" id="cpIC">
+            <svg viewBox="0 0 12.32 9.33">
+                <g>
+                    <line class="st1" x1="7.6" y1="8.9" x2="7.6" y2="6.9"></line>
+                    <rect width="1.9" height="1.9"></rect>
+                    <rect x="1.9" y="1.9" width="1.9" height="1.9"></rect>
+                    <rect x="3.7" y="3.7" width="1.9" height="1.9"></rect>
+                    <rect x="1.9" y="5.6" width="1.9" height="1.9"></rect>
+                    <rect y="7.5" width="1.9" height="1.9"></rect>
+                </g>
+            </svg>
+            <input type="hidden" value="npm i <%-metadata.name%>">
+            <code class="truncate" title="Copy Command to Clipboard">
+                <span>npm i <%-metadata.name%></span>
+            </code>
+        </p>
+
+        <div class="clearfix">
+            <div class="subCol w50">
+                <h3 class="subTit">Version</h3>
+                <p class="truncate"><%-metadata.version%></p>
+            </div>
+
+            <% if (metadata.license>0) {%>
+            <div class="subCol w50">
+                <h3 class="subTit">License</h3>
+                <p class="truncate"><%-metadata.license%></p>
+            </div>
+            <%}%>
+
+            <% if (dist.unpackedSize>0) {%>
+            <div class="subCol w50">
+                <h3 class="subTit">Unpacked Size</h3>
+                <p class="truncate"><%-(dist.unpackedSize / 1024).toFixed(2) + 'kB'%></p>
+            </div>
+            <%}%>
+            
+            <% if (dist.fileCount) {%>
+            <div class="subCol w50">
+                <h3 class="subTit">Total Files</h3>
+                <p class="truncate"><%-dist.fileCount%></p>
+            </div>
+            <%}%>
+
+            <% const issuesURL = bugs && typeof bugs === 'object' ? bugs.url: bugs; %>
+            <% if(typeof issuesURL === 'string') {%>
+            <div class="subCol w50">
+                <h3 class="subTit">Issues</h3>
+                <p class="truncate">
+                    <a class="link" href="<%- issuesURL %>" target="_blank">0</a>
+                </p>
+            </div>
+            <%}%>
+
+            <% let repoURL=repository.url, repo=repository.type %>
+            <% if(typeof repoURL === 'string') {%>
+            <div class="subCol w50">
+                <h3 class="subTit">Pull Requests</h3>
+                <p class="truncate">
+                    <a class="link" href="<%-repoURL%>/pulls" target="_blank">0</a>
+                </p>
+            </div>
+            <%}%>
+
+            <% if (typeof homepage === 'string') {%>
+            <div class="subCol w100">
+                <h3 class="subTit">Homepage</h3>
+                <p class="truncate">
+                    <a class="link" rel="noopener noreferrer nofollow" href="<%-homepage%>" target="_blank">
+                        <%-homepage%>
+                    </a> 
+                </p>
+            </div>
+            <%}%>
+
+            <% if(typeof repoURL === 'string') {%>
+            <div class="subCol w100">
+                <h3 class="subTit">Repository</h3>
+                <p class="truncate"> 
+                    <a class="link" rel="noopener noreferrer nofollow" href="<%-repoURL%>" target="_blank">
+                        <span class="dib"><%-repo==='git'?svgIcons.git:''%></span>
+                        <% const doubleSlashIndex = repoURL.search('//') %>
+                        <span><%- doubleSlashIndex===-1 ? repoURL: repoURL.substr(doubleSlashIndex+2) %></span>
+                    </a>
+                </p>
+            </div>
+            <%}%>
+
+            <div class="subCol w100">
+                <h3 class="subTit">Last publish</h3>
+                <p class="truncate">
+                    <time datetime="<%-metadata._latestPublished%>" title="<%-metadata._latestPublished%>"><%- metadata._latestPublished && this.timespan(metadata._latestPublished) || '-'%></time>
+                </p>
+            </div>
+
+            <% if(Array.isArray(maintainers) && maintainers.length>0 ) {%>
+            <div class="subCol w100">
+                <h3 class="subTit">Collaborators</h3>
+                <ul class="collaborators">
+                    <%maintainers.forEach(item=>{%>
+                        <%if (typeof item === 'object' && item) {%>
+                            <li class="item">
+                                <a href="<%-(inRegistry ? '' : npmOfficeWebsite) +'/~'+ item.name%>" class="subavatar" target="_blank">
+                                    <img data-avatar alt="<%-item.name%>" title="<%-item.name%>">
+                                </a>
+                            </li>
+                        <%}%>
+                    <%})%>
+                </ul>
+            </div>
+            <%}%>
+        </div>
+    </div>
+</div>
