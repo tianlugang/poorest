@@ -3,7 +3,7 @@
 ## Install AND Usage
 
 ```bash
-    $ npm i @poorest/npm -g
+    $ npm i @poorest/clover -g
     $ poorest-npm -h  # help
     $ poorest-npm  # start
     
