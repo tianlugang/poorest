@@ -30,8 +30,8 @@ export function mixState(rc: IRuntimeConfig): IAppMiddleware {
   return async (ctx, next) => { 
     ctx.state = {
       title: rc.title,
-      registryBaseURL: rc.registryServerBaseURL,
-      webBaseURL: rc.webBaseURL,
+      registryBaseURL: rc.registryHost,
+      webBaseURL: rc.webHost,
       canSearchFromNPM: rc.canSearchFromNPM,
       seo,
       username: ctx.user ? ctx.user.name : undefined,
@@ -42,7 +42,9 @@ export function mixState(rc: IRuntimeConfig): IAppMiddleware {
       appVersion: rc.appVersion,
       officeWebsite: rc.officeWebsite,
       poweredBy: rc.poweredBy,
-      githubRepo: rc.githubRepo
+      githubRepo: rc.githubRepo,
+      CN_beianURL: rc.CN_beianURL,
+      CN_licenseNumber: rc.CN_licenseNumber
     }
     await next()
   }

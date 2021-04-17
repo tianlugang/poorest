@@ -21,20 +21,20 @@ export type IAppConfig = {
     maxBodySize: string
     users: IUserInitList
     title: string
-    prefix?: string
+    prefix?: string 
     listen: string | number
-
+    
     // 包的存储相关
     storage: string
     registry: IRegistryConfigs
     packages: ILegacyPackageSpecList
 
     // https
-    https: IHttpsConfig
-
+    https: IHttpsConfig 
+    
     // web
-    webEnable: boolean
     webListen: string | number
+    webEnable: boolean 
     canSearchFromNPM: boolean
     logo?: string
 
@@ -43,6 +43,10 @@ export type IAppConfig = {
 
     // relatedLinks
     relatedLinks: IRelatedLinks
+    
+    // CN
+    CN_beianURL: string
+    CN_licenseNumber: string
 
     // runtime
     targetDir?: string
@@ -56,16 +60,16 @@ export type IRuntimeConfig = {
     serverId: string
     resourceDirectory: string
     assetJsonPath: string
-    registryServerBaseURL: string
+    registryHost: string
     registryAddress: IServerAddress
-    webBaseURL: string
+    webHost: string
     webAddress: IServerAddress | null
     appVersion: string
     nodeVersion: string
     officeWebsite: string
     poweredBy: string
     githubRepo: string
-} & Omit<Required<IAppConfig>, 'targetDir'>
+} & Omit<Required<IAppConfig>, 'targetDir' | 'webListen' | 'listen'>
 
 export interface IAppArguments {
     targetDir: string

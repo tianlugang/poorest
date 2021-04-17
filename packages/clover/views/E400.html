@@ -19,7 +19,7 @@
     <meta name="renderer" content="webkit">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="/images/favicon.ico">
-    <link rel="icon" type="image/png" href="/images/favicon.png" />
+    <link rel="icon" type="image/png" href="/images/favicon.png" /> 
 </head>
 
 <body>
@@ -27,6 +27,10 @@
         <img src="/images/logo.png" alt="logo" height="64">
         <h4>Limited Access: <a href="/login">please login</a></h4>
         <pre style="color: red;"><%= JSON.stringify(locals.err) %></pre>
+        
+        <% if (locals.CN_beianURL && locals.CN_licenseNumber) {%>
+            网站备案/许可证号：<a href="<%- locals.CN_beianURL %>" target="_blank"><%- locals.CN_licenseNumber %></a>
+        <%}%>
     </div>
 </body>
 

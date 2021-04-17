@@ -24,10 +24,27 @@ process.on('uncaughtException', err => {
     process.exit(255)
 })
 
+function getServerNetURL(addr: IServerAddress){
+    const regLocal = /(localhost)|(127\.0\.0)|(0\.0\.0)/i 
+
+    if (addr.host && !regLocal.test(addr.host)) {
+        return `${addr.proto}://${addr.host}` 
+    }
+    const urls = getServerUrl(addr.proto, addr.port)
+
+    for (const url of urls) {
+        if (!regLocal.test(url)) {
+            return url
+        }
+    }
+    
+    return urls[0]
+}
+
 export { createRegistryApp, createWebApp, getConfig, Provider, serve }
 export function initConfig(args: Partial<IAppArguments>) {
     const ac = getConfig(args)
-    const registryListen = getValueByDefault(ac.listen.toString(), '9000')
+    const registryListen = (ac.listen || 9000).toString()
     const registryAddress = parseAddress(registryListen)
 
     if (!registryAddress) {
@@ -39,7 +56,7 @@ export function initConfig(args: Partial<IAppArguments>) {
     }
 
     const webEnable = getValueByDefault(ac.webEnable, false)
-    const webListen = getValueByDefault(ac.webListen.toString(), '9001')
+    const webListen = (ac.webListen || 9001).toString()
     let webAddress!: IServerAddress | null
     if (webEnable) {
         webAddress = parseAddress(webListen)
@@ -56,15 +73,13 @@ export function initConfig(args: Partial<IAppArguments>) {
     const title = getValueByDefault(ac.title, process.title || 'tlg:npm')
     const rc: IRuntimeConfig = {
         logo: getValueByDefault(ac.logo, ''),
-        webEnable: webEnable,
-        webListen: webListen,
+        webEnable,
         canSearchFromNPM: getValueByDefault(ac.canSearchFromNPM, true),
         webAddress,
         maxUsers: getValueByDefault(ac.maxUsers, 1000),
         expire: getValueByDefault(ac.expire, '1d'),
         users: getValueByDefault(ac.users, {} as any),
-        language: getValueByDefault(ac.language, 'zh_CN'),
-        listen: getValueByDefault(ac.listen, 9000),
+        language: getValueByDefault(ac.language, 'zh_CN'), 
         maxBodySize: getValueByDefault(ac.maxBodySize, '50mb'),
         storage: path.resolve(root, ac.storage || 'storage'),
         prefix: getValueByDefault(ac.prefix, ''),
@@ -80,15 +95,19 @@ export function initConfig(args: Partial<IAppArguments>) {
         assetJsonPath: resolve('./asset.json'),
         registry: Object.assign({}, ac.registry),
         packages: Object.assign({}, ac.packages),
+        CN_beianURL: ac.CN_beianURL,
+        CN_licenseNumber: ac.CN_licenseNumber,
+        
         logs: Object.assign({}, ac.logs),
-        registryServerBaseURL: getServerUrl(registryAddress.proto, registryAddress.port)[0],
         registryAddress,
-        webBaseURL: webAddress ? getServerUrl(webAddress.proto, webAddress.port)[0] : '',
+        registryHost: getServerNetURL(registryAddress),
+        webHost: webAddress ? getServerNetURL(webAddress) : '',
+
         appVersion: pkgJson.version,
         nodeVersion: process.version,
         officeWebsite: '//npmlite.com',
         poweredBy: 'Daniel Tian(田路刚)',
-        githubRepo: "https://github.com/tianlugang/poorest/tree/main/packages/npm"
+        githubRepo: 'https://github.com/tianlugang/poorest',
     }
 
     process.title = title

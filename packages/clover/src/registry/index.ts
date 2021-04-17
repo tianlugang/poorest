@@ -94,7 +94,7 @@ export function createRegistryApp(rc: IRuntimeConfig) {
     // app.use(middleware.statistics)
     app.use(async (ctx, next) => {
         ctx.state = {
-            registryBaseURL: rc.registryServerBaseURL,
+            registryBaseURL: rc.registryHost,
             title: rc.title,
         } as any
         await next()

@@ -90,8 +90,11 @@
             <span class="mLink"><%-t('Nodejs') +'-'+ locals.nodeVersion %></span>
         </div>
         <div class="fl">
-            <%-t('Powered by ') +locals.poweredBy +' '%><%-t('Version:') + locals.appVersion %>
-            <%-t('Welcome to use it.') %>
+            <%-t('Powered by ') +': '+ locals.poweredBy +' '%>
+            <%-t('Version:') + locals.appVersion %>
+            <% if (locals.CN_beianURL && locals.CN_licenseNumber) {%>
+                网站备案/许可证号：<a href="<%- locals.CN_beianURL %>" target="_blank"><%- locals.CN_licenseNumber %></a>
+            <%}%>
         </div>
     </div>
     <% if(Array.isArray(asset.js)) {%>

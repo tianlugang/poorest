@@ -42,6 +42,8 @@ export type IContextState = {
     relatedLinks: IRelatedLink[]
     githubRepo: string
     username?: string
+    CN_beianURL: string
+    CN_licenseNumber: string
 }
 export type IContextExtend<B> = {
     reportError(err: INodeError): void
