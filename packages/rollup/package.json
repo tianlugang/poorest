@@ -1,6 +1,6 @@
 {
   "name": "@poorest/rollup",
-  "version": "2.1.0",
+  "version": "2.1.2",
   "license": "MIT",
   "publishConfig": {
     "access": "public"
@@ -21,7 +21,7 @@
     "rollup": "^2.38.5"
   },
   "dependencies": {
-    "@poorest/util": "^2.1.0",
+    "@poorest/util": "^2.1.2",
     "@poorest/utils": "^2.0.1",
     "@rollup/plugin-commonjs": "^17.1.0",
     "@rollup/plugin-json": "^4.1.0",

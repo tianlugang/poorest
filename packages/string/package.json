@@ -1,6 +1,6 @@
 {
   "name": "@poorest/string",
-  "version": "2.1.0",
+  "version": "2.1.2",
   "description": "my string utils",
   "license": "MIT",
   "files": [
@@ -30,8 +30,8 @@
     "@poorest/base": "^2.1.0"
   },
   "devDependencies": {
-    "@poorest/rollup": "^2.1.0",
-    "@poorest/util": "^2.1.0",
+    "@poorest/rollup": "^2.1.2",
+    "@poorest/util": "^2.1.2",
     "@types/chai": "^3.4.35",
     "@types/mocha": "^2.2.39",
     "chai": "^3.5.0",
