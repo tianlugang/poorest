@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "@poorest/base": "^2.1.0",
-    "@poorest/util": "^2.1.2"
+    "@poorest/util": "^2.1.2",
+    "graceful-fs": "^4.2.6"
   }
 }

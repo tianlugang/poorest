@@ -2,11 +2,8 @@
   "excludeNotExported": true,
   "mode": "file",
   "target": "es5",
-  "module": "CommonJS",
-  "lib": [
-    "lib.es2015.d.ts"
-  ],
-  "out": "../../docs/fsw",
+  "module": "CommonJS", 
+  "out": "../../docs/markdown",
   "baseUrl": ".",
   "paths": {
     "@poorest/*": ["node_modules/@poorest/*"]

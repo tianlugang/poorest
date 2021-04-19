@@ -22,7 +22,10 @@ export const login: IRouterMiddleware<ILoginBody> = async (ctx, _next) => {
             })
         )
         if (token) {
-            ctx.cookies.set('token', `bearer ${token}`)
+            ctx.cookies.set('token', `bearer ${token}`, {
+                httpOnly: true,
+                path: '/'
+            })
             ctx.body = {
                 ok: true,
                 user

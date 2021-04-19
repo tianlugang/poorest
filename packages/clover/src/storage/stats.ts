@@ -1,5 +1,5 @@
 import crypto from 'crypto'
-import fs from 'fs'
+import fs from 'graceful-fs'
 import path from 'path'
 import { logger, mkdirp } from '@poorest/util'
 import { IRuntimeConfig } from '../rc'
