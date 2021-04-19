@@ -1,6 +1,6 @@
 {
   "name": "@poorest/simple-db-driver",
-  "version": "2.1.2",
+  "version": "2.2.0",
   "description": "a lightweight nodejs db driver.",
   "license": "MIT",
   "files": [
@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@poorest/base": "^2.1.0",
-    "@poorest/fsw": "^2.1.2",
+    "@poorest/fsw": "^2.2.0",
     "@poorest/is": "^2.1.0",
     "@poorest/util": "^2.1.2"
   }
