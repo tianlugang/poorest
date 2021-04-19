@@ -24,7 +24,7 @@ const uiConfig: Parameters<typeof createProductionConfig>[0] = {
     outputPath: resolve('./static'),
     publicPath: '/',
     chunkhash: 'chunkhash:6',
-    bundleAnalyzerReport: NODE_APP_ENVIRONMENT.isProd,
+    bundleAnalyzerReport: Boolean(process.env.BUNDLE_ANALYZER_REPORT),
     sourceMap: NODE_APP_ENVIRONMENT.isDev,
     entry: './assets/*.entry.ts',
     tsConfigPath: resolve('./tsconfig.assets.json'),
