@@ -33,11 +33,11 @@ function modifyXssDefaultWhiteList() {
 }
 
 export function mdRender(content: string, filterXss = false) {
-    let html = md.render(content);
+    let html = md.render(content)
     if (filterXss !== false) {
         modifyXssDefaultWhiteList()
         html = xss(html, xssOptions)
     }
 
-    return html;
+    return html
 }

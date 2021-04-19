@@ -1,7 +1,7 @@
-import { logger } from '@poorest/util'
+import { logger, HttpError, pedding } from '@poorest/util'
 import { Auth, Token, SYSTEM_USER_ROLE_MODE } from '../auth'
 import { IRouterMiddleware } from '../types'
-import { HttpError, pedding, CONSTANTS, validPasswd } from '../services'
+import { CONSTANTS, validPasswd } from '../services'
 import { IUserItem } from '../model'
 
 // GET /-/npm/v1/user
@@ -44,7 +44,7 @@ export const addUser: IRouterMiddleware<IAddUserBody> = async ctx => {
     const body = ctx.request.body || {}
     const account = body.name || ctx.params.name
     const password = body.password
- 
+
     if (typeof account !== 'string' || !validPasswd(password)) {
         const error = typeof body.password_sha === 'string' ?
             'your npm version is outdated\nPlease update to npm@1.4.5 or greater.' :

@@ -1,5 +1,5 @@
 import semver from 'semver'
-import { HttpError } from '../services'
+import { HttpError } from '@poorest/util'
 import { IPackage } from './package'
 export const DistTagsUtility = {
     validate(tags: IPackage.DistTags) {
@@ -17,7 +17,7 @@ export const DistTagsUtility = {
 
         return validTags > 0 ? tags : null
     },
-    
+
     normalize(metadata: IPackage.Metadata) {
         const distTags = metadata['dist-tags']
 

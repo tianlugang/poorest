@@ -1,12 +1,13 @@
 import fs from 'graceful-fs'
 import path from 'path'
 import { Stream, PassThrough } from 'stream'
-import { logger } from '@poorest/util'
+import { logger, HttpError } from '@poorest/util'
 import { noop } from '@poorest/base'
-import { HttpError } from './http-error'
-import { IErrorFirstCallback } from '../types'
 
 type JSONObject = Record<string, any>
+type IErrorFirstCallback<D = any> = {
+    (err: NodeJS.ErrnoException | null, data: D): void
+}
 export type IReadStreamModel = {
     length: number
     stream: fs.ReadStream
@@ -172,8 +173,6 @@ export const fsw: FileSystemWrapper = {
             return fs.rename(src, dest, cb);
         }
 
-        // windows can't remove opened file,
-        // but it seem to be able to rename it
         const tmp = fsw.temporary(dest);
         fs.rename(dest, tmp, function (err) {
             fs.rename(src, dest, cb);
@@ -296,7 +295,7 @@ export const fsw: FileSystemWrapper = {
         })
     },
     unlink(src: string, isDir?: boolean) {
-        const unlink = isDir ? fs.mkdir : fs.unlink
+        const unlink = isDir ? fs.rmdir : fs.unlink
 
         return new Promise((resolve, reject) => {
             unlink(src, err => {

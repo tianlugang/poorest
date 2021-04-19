@@ -3,9 +3,7 @@
     "include": [
         "packages/**/src/**/*",
         "packages/**/tests/**/*",
-        "build-utils/**/*",
         "tests/**/*",
-        "doc/**/*",
         ".eslintrc.js",
         "examples/**/*",
         "scripts/*"

@@ -6,8 +6,7 @@ import Stream, { PassThrough } from 'stream'
 import { SecureContextOptions } from 'tls'
 import zlib from 'zlib'
 import { getValueByDefault } from '@poorest/base'
-import { logger } from '@poorest/util'
-import { HttpError } from '../services/http-error'
+import { logger, HttpError } from '@poorest/util'
 import { IErrorFirstCallback } from '../types'
 
 const pkg = require('../../package.json')
@@ -331,10 +330,10 @@ export class Utility {
             cert: config.ssl.cert,
             key: config.ssl.key,
             ca: config.ssl.ca,
-            agent: this.getAgent(url.protocol), 
+            agent: this.getAgent(url.protocol),
             compress: params.compress
         }
- 
+
         const useCorgi = fullMetadata == null ? false : !fullMetadata
 
         // https://github.com/npm/registry/blob/master/docs/responses/package-metadata.md

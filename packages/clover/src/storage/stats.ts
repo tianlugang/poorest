@@ -16,9 +16,8 @@ export interface IStorageStatsJSON {
 
 export function readStorageStats() {
     const contents = fs.readFileSync(STORAGE_STATS_PATH, 'utf8')
-    
-    return    JSON.parse(contents) as IStorageStatsJSON
-     
+
+    return JSON.parse(contents) as IStorageStatsJSON
 }
 
 export function initStorageStats(rc: IRuntimeConfig) {

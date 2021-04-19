@@ -1,9 +1,9 @@
-import { logger } from '@poorest/util'
+import { logger, HttpError } from '@poorest/util'
 import { isObject } from '@poorest/is/lib/is-object'
 import { UserData, IUserAccount, IUserInitList } from '../model'
 import { IRuntimeConfig } from '../rc'
 import { Token, ITokenBody, ITokenParsed, IRuntimeUser } from './token'
-import { HttpError, CONSTANTS } from '../services'
+import { CONSTANTS } from '../services'
 export { IUserInitList }
 export type IAuthConfig = {
     maxUsers: number;
@@ -12,7 +12,7 @@ export type IAuthConfig = {
 export class AuthControllor {
     userData!: UserData
     init(root: string, opts: IAuthConfig) {
-        const userData = new UserData({ 
+        const userData = new UserData({
             maxUsers: opts.maxUsers,
             root,
             users: opts.users
@@ -93,7 +93,7 @@ export class AuthControllor {
     authenticate(account: IUserAccount, plaintext: string) {
         return this.userData.authenticate(account, plaintext)
     }
- 
+
     simulateUser(): IRuntimeUser {
         return {
             cidrWhitelist: [],

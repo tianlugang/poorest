@@ -1,6 +1,6 @@
 import { Storage } from '../storage'
 import { IRouterMiddleware } from '../types'
-import { pedding } from '../services';
+import { pedding } from '@poorest/util';
 import { isNotObject } from '@poorest/is/lib/is-not-object';
 
 export const starPackage: IRouterMiddleware = async ctx => {
@@ -26,7 +26,7 @@ export const starPackage: IRouterMiddleware = async ctx => {
         }
         return
     }
-    
+
     ctx.body = {
         message: 'operate succeeed.'
     }

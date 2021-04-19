@@ -1,14 +1,14 @@
-// import Stream from 'stream'
 import path from 'path'
-import { logger } from '@poorest/util'
-import { HttpError, fsw, IDateTimeNow, getDateNow, EMPTY_OBJECT } from '../services'
+import { Stats } from 'fs'
+import { logger, HttpError } from '@poorest/util'
+import { fsw } from '@poorest/fsw'
+import { IDateTimeNow, getDateNow, EMPTY_OBJECT } from '../services'
 import { StorageStats } from './stats'
 import { IPackage, Package } from './package'
 import { RegistryUtility } from './registry-init'
 import { PackageUtility } from './package-init'
 import { DistTagsUtility } from './dist-tags'
 import { Search } from './search'
-import { Stats } from 'fs'
 import { ISearchParams, ISearchResults } from './registry'
 
 type IPackageNamesObject = {
@@ -653,7 +653,7 @@ export class StorageService {
 
       const { versions, _inRegistry, _fromRegistry } = metadata
       const versionData = versions[version]
-      
+
       if (!versionData) {
         throw new HttpError(404, 'cannot find this package\'s version tarball, Now possible off-line. ' + version)
       }

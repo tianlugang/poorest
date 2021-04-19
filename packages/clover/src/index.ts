@@ -1,11 +1,10 @@
 import path from 'path'
-import { logger, getServerUrl } from '@poorest/util'
-import { getValueByDefault } from '@poorest/base'
-import { parseAddress } from '@poorest/base'
+import { logger, getServerUrl, HttpError, initLogger } from '@poorest/util'
+import { getValueByDefault, parseAddress } from '@poorest/base'
 import { initAuthorized } from './auth'
 import { getConfig, IAppArguments, IRuntimeConfig } from './rc'
 import { createRegistryApp } from './registry'
-import { Provider, serve, initLogger, hex, HttpError } from './services'
+import { Provider, serve, hex } from './services'
 import { initStorageStats, initRegistries, initPackages, initSearchEngine } from './storage'
 import { IServerAddress } from './types'
 import { createWebApp } from './web'
@@ -24,11 +23,11 @@ process.on('uncaughtException', err => {
     process.exit(255)
 })
 
-function getServerNetURL(addr: IServerAddress){
-    const regLocal = /(localhost)|(127\.0\.0)|(0\.0\.0)/i 
+function getServerNetURL(addr: IServerAddress) {
+    const regLocal = /(localhost)|(127\.0\.0)|(0\.0\.0)/i
 
     if (addr.host && !regLocal.test(addr.host)) {
-        return `${addr.proto}://${addr.host}` 
+        return `${addr.proto}://${addr.host}`
     }
     const urls = getServerUrl(addr.proto, addr.port)
 
@@ -37,7 +36,7 @@ function getServerNetURL(addr: IServerAddress){
             return url
         }
     }
-    
+
     return urls[0]
 }
 
@@ -79,7 +78,7 @@ export function initConfig(args: Partial<IAppArguments>) {
         maxUsers: getValueByDefault(ac.maxUsers, 1000),
         expire: getValueByDefault(ac.expire, '1d'),
         users: getValueByDefault(ac.users, {} as any),
-        language: getValueByDefault(ac.language, 'zh_CN'), 
+        language: getValueByDefault(ac.language, 'zh_CN'),
         maxBodySize: getValueByDefault(ac.maxBodySize, '50mb'),
         storage: path.resolve(root, ac.storage || 'storage'),
         prefix: getValueByDefault(ac.prefix, ''),
@@ -97,7 +96,7 @@ export function initConfig(args: Partial<IAppArguments>) {
         packages: Object.assign({}, ac.packages),
         CN_beianURL: ac.CN_beianURL,
         CN_licenseNumber: ac.CN_licenseNumber,
-        
+
         logs: Object.assign({}, ac.logs),
         registryAddress,
         registryHost: getServerNetURL(registryAddress),

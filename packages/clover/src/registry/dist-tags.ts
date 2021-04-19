@@ -2,8 +2,7 @@ import semver from 'semver'
 import { isNotObject } from '@poorest/is/lib/is-not-object'
 import { IRouterMiddleware } from '../types'
 import { Storage, IPackage, DistTagsUtility } from '../storage'
-import { pedding } from '../services'
-import { logger } from '@poorest/util'
+import { logger, pedding } from '@poorest/util'
 
 const CONSTANTS_MESSAGE = {
     verionsMustBeAString: '[dist-tags]: version must be a string.',
@@ -96,7 +95,7 @@ export const distTagsList: IRouterMiddleware = async ctx => {
 
 export const distTagsMerge: IRouterMiddleware = async (ctx) => {
     const version = ctx.request.body
- 
+
     if (!version || typeof version !== 'string') {
         ctx.status = 400;
         ctx.body = {

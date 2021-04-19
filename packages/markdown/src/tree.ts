@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import { isValidString } from '@poorest/is/lib/is-valid-string'
-import { mdRender } from '../services'
+import { mdRender } from './md-render'
 
 type INode = {
     name: string
@@ -12,7 +12,7 @@ type INode = {
 }
 type INodeList = INode[]
 
-export class Documents {
+export class MarkdownDirectory {
     private nodes!: INode[]
     private root!: string
     private exts = ['.md', '.MD', '.markdown']
@@ -86,13 +86,13 @@ export class Documents {
     }
 }
 
-export function renderDocsTree(current: string, nodes: INodeList) {
+export function generateMenuTree(current: string, nodes: INodeList) {
     const tree: string[] = []
 
     tree.push('<ul class="fileList">')
     nodes.forEach(file => {
         if (file.children) {
-            const leaf = renderDocsTree(current, file.children)
+            const leaf = generateMenuTree(current, file.children)
 
             tree.push(`<li><div><b>${file.name}</b></div>${leaf}</li>`)
             return

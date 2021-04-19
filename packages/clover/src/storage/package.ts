@@ -1,6 +1,7 @@
 import { pseudoRandomBytes } from 'crypto'
 import { isNotObject } from '@poorest/is/lib/is-not-object'
-import { fsw, IDateJSON, EMPTY_OBJECT } from '../services'
+import { fsw } from '@poorest/fsw'
+import { IDateJSON, EMPTY_OBJECT } from '../services'
 import { IErrorFirstCallback } from '../types'
 
 /**
@@ -244,7 +245,7 @@ export const Package = {
                 url: repoURL
             }
         }
-        
+
         return EMPTY_OBJECT
     }
 }

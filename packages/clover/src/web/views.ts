@@ -1,10 +1,12 @@
 import path from 'path'
 import { EJS } from '@poorest/ejs'
 import { NODE_APP_ENVIRONMENT } from '@poorest/util';
+import { paging } from '@poorest/paging'
+import { i18n } from '@poorest/i18n'
+import { generateMenuTree } from '@poorest/markdown'
 import { IAppMiddleware } from '../types'
-import { paging } from '../services/paging'
 import { svgIcons } from '../services/icons'
-import { timespan, i18n, renderDocsTree } from '../services'
+import { timespan } from '../services'
 import { Package } from '../storage/package'
 
 const defaults = {
@@ -31,7 +33,7 @@ export function views(opts: IKoaEJSMiddlewareOptions = defaults): IAppMiddleware
   scope.getPackageOwner = Package.getOwner
   scope.getPackageKeywords = Package.getKeywords
   scope.timespan = timespan
-  scope.renderDocsTree = renderDocsTree
+  scope.renderDocsTree = generateMenuTree
 
   EJS.configure({
     cache: NODE_APP_ENVIRONMENT.isProd,

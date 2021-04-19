@@ -1,0 +1,14 @@
+{
+  "excludeNotExported": true,
+  "mode": "file",
+  "target": "es5",
+  "module": "CommonJS",
+  "lib": [
+    "lib.es2015.d.ts"
+  ],
+  "out": "../../docs/fsw",
+  "baseUrl": ".",
+  "paths": {
+    "@poorest/*": ["node_modules/@poorest/*"]
+  }
+}

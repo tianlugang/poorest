@@ -1,7 +1,6 @@
 import path from 'path'
-import { logger, configFinder, colorize } from '@poorest/util'
+import { logger, configFinder, colorize, ILoggerConfig } from '@poorest/util'
 import { extend } from '@poorest/object'
-import { ILoggerConfig } from './services/logger'
 import { IRegistryConfigs, ILegacyPackageSpecList } from './storage'
 import { IHttpsConfig } from './services/serve'
 import { IUserInitList } from './auth'
@@ -21,20 +20,20 @@ export type IAppConfig = {
     maxBodySize: string
     users: IUserInitList
     title: string
-    prefix?: string 
+    prefix?: string
     listen: string | number
-    
+
     // 包的存储相关
     storage: string
     registry: IRegistryConfigs
     packages: ILegacyPackageSpecList
 
     // https
-    https: IHttpsConfig 
-    
+    https: IHttpsConfig
+
     // web
     webListen: string | number
-    webEnable: boolean 
+    webEnable: boolean
     canSearchFromNPM: boolean
     logo?: string
 
@@ -43,7 +42,7 @@ export type IAppConfig = {
 
     // relatedLinks
     relatedLinks: IRelatedLinks
-    
+
     // CN
     CN_beianURL: string
     CN_licenseNumber: string

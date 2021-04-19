@@ -1,5 +1,5 @@
-import { IRouterMiddleware } from '../types'
 import { logger } from '@poorest/util'
+import { IRouterMiddleware } from '../types'
 
 export const tolerant: IRouterMiddleware = async (ctx, next) => {
   await next()

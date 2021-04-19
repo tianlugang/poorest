@@ -1,6 +1,7 @@
 import { IAppMiddleware } from '../types'
 import { IRuntimeConfig } from '../rc'
-import { i18n, mergeRelatedLinks } from '../services'
+import { i18n } from '@poorest/i18n'
+import { mergeRelatedLinks } from '../services'
 
 export function mixState(rc: IRuntimeConfig): IAppMiddleware {
   const seo = {
@@ -27,7 +28,7 @@ export function mixState(rc: IRuntimeConfig): IAppMiddleware {
   ]
   const relatedLinks = mergeRelatedLinks(rc.relatedLinks)
 
-  return async (ctx, next) => { 
+  return async (ctx, next) => {
     ctx.state = {
       title: rc.title,
       registryBaseURL: rc.registryHost,

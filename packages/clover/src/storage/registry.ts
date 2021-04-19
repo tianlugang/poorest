@@ -1,8 +1,8 @@
 import assert from 'assert'
 import semver from 'semver'
-import { logger } from '@poorest/util'
+import { logger, HttpError } from '@poorest/util'
 import { getValueByDefault } from '@poorest/base'
-import { HttpError, fsw } from '../services'
+import { fsw } from '@poorest/fsw'
 import { IErrorFirstCallback } from '../types'
 import { PackageUtility } from './package-init'
 import { Utility, IRequestConfig, IRequestParams, ICredentials } from './registry-fetch'
@@ -14,7 +14,7 @@ export type ISearchObject = {
     package: IPackage.Version
     score: any
     searchScore: any
-    flags:any
+    flags: any
 }
 export type ISearchResults = {
     objects: ISearchObject[]

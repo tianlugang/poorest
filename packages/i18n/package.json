@@ -1,0 +1,23 @@
+{
+  "name": "@poorest/i18n",
+  "version": "2.1.0",
+  "description": "simple i18n.",
+  "license": "MIT",
+  "files": [
+    "lib/*"
+  ],
+  "main": "lib/index.js", 
+  "publishConfig": {
+    "access": "public"
+  }, 
+  "scripts": {
+    "api": "api-extractor run --local --verbose",
+    "build": "tsc --build",
+    "clean": "rimraf ./lib && rimraf *.tsbuildinfo && rimraf ./types",
+    "docs": "typedoc --options tdoptions.json src"
+  },
+  "dependencies": {
+    "@poorest/base": "^2.1.0",
+    "@poorest/util": "^2.1.0" 
+  }
+}

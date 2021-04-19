@@ -1,14 +1,13 @@
 import { Auth } from '../auth'
 import { IRouterMiddleware } from '../types'
-import { logger } from '@poorest/util';
-import { pedding } from '../services';
+import { logger, pedding } from '@poorest/util'
 
 export const authorize: IRouterMiddleware = async (ctx, next) => {
     if (ctx.user != null && ctx.user.name != null) {
         return await next()
     }
     logger.trace({ method: ctx.method, path: ctx.path }, 'verify token [@{method}]@{path}')
- 
+
     const authorization = (ctx.get('authorization') || '').trim()
     if (!authorization) {
         ctx.status = 401

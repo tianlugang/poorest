@@ -1,6 +1,6 @@
 import { Auth } from '../auth'
 import { IRouterMiddleware } from '../types'
-import { pedding } from '../services'
+import { pedding } from '@poorest/util'
 
 type ILoginBody = {
     user: string

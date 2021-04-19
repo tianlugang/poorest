@@ -1,3 +1,4 @@
+import path from 'path'
 import { logger } from '@poorest/util'
 import { isValidString } from '@poorest/is/lib/is-valid-string'
 
@@ -7,12 +8,18 @@ type IJSON = {
 let language: string // zh_CN
 let data: IJSON
 
-export const initI18n = (lang: string) => {
+export type II18nInitOptions = {
+    lang: string
+    root: string
+}
+
+export const initI18n = ({ lang, root }: II18nInitOptions) => {
     language = isValidString(lang) ? lang : ''
+    root = path.isAbsolute(root) ? root : path.join(process.cwd(), 'i18n')
     try {
-        data = require(`../../i18n/${language}`)
+        data = require(`${root}/${language}`)
     } catch (error) {
-        logger.error({ lang:language }, 'cannot find language(@{lang}) translation data, Use English.')
+        logger.error({ lang: language }, 'cannot find language(@{lang}) translation data, Use English.')
     }
 }
 export const i18n = {

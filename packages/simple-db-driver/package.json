@@ -1,0 +1,25 @@
+{
+  "name": "@poorest/simple-db-driver",
+  "version": "2.1.0",
+  "description": "a lightweight nodejs db driver.",
+  "license": "MIT",
+  "files": [
+    "lib/*"
+  ],
+  "main": "lib/index.js", 
+  "publishConfig": {
+    "access": "public"
+  }, 
+  "scripts": {
+    "api": "api-extractor run --local --verbose",
+    "build": "tsc --build",
+    "clean": "rimraf ./lib && rimraf *.tsbuildinfo && rimraf ./types",
+    "docs": "typedoc --options tdoptions.json src"
+  },
+  "dependencies": {
+    "@poorest/base": "^2.1.0",
+    "@poorest/util": "^2.1.0",
+    "@poorest/is": "^2.1.0",
+    "@poorest/fsw": "^2.1.0"
+  }
+}

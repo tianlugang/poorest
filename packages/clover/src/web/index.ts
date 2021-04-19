@@ -1,3 +1,4 @@
+import path from 'path'
 import Koa from 'koa'
 import KoaRouter from 'koa-router'
 import koaBody from 'koa-body'
@@ -7,6 +8,7 @@ import koaDevLogger from 'koa-logger'
 import koaHelmet from 'koa-helmet'
 import koaStatic from 'koa-static'
 import { NODE_APP_ENVIRONMENT } from '@poorest/util'
+import { initI18n } from '@poorest/i18n'
 import { isValidString } from '@poorest/is/lib/is-valid-string'
 import { IRuntimeConfig } from '../rc'
 import { Provider } from '../services'
@@ -23,15 +25,18 @@ import { redirect } from './redirect'
 import { tolerant } from './tolerant'
 import { login, logout } from './user'
 import { views } from './views'
-import { initI18n } from '../services/i18n'
 
+const appRoot = path.resolve(__dirname, '../..')
 export function createWebApp(rc: IRuntimeConfig) {
     const app = new Koa()
     const router = new KoaRouter<IContextState, IContextExtend<any>>()
 
     app.env = NODE_APP_ENVIRONMENT.env
     Provider.broadcast('web:start-before', app, router)
-    initI18n(rc.language)
+    initI18n({
+        root: appRoot,
+        lang: rc.language
+    })
 
     if (rc.prefix && isValidString(rc.prefix)) {
         router.prefix(rc.prefix)

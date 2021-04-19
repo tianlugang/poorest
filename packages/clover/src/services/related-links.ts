@@ -46,7 +46,7 @@ export function mergeRelatedLinks(configurabled: IRelatedLinks) {
 
                 return relatedLink.text === item.text && relatedLink.href === item.href
             })
-            
+
             if (same) {
                 continue
             }

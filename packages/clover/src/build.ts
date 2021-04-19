@@ -105,7 +105,7 @@ const startDevelopmentServer = async function () {
 if (NODE_APP_ENVIRONMENT.isProd) {
     logger.info({ appRoot, env: NODE_APP_ENVIRONMENT.env }, 'build app on @{env}, app root: @{appRoot}.')
     const webpackConfig = createProductionConfig(uiConfig)
- 
+
     koaSSRProductionBuild(webpackConfig)
 } else {
 

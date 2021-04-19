@@ -1,0 +1,19 @@
+{
+  "name": "@poorest/paging",
+  "version": "2.1.0",
+  "description": "server side paging utils",
+  "license": "MIT",
+  "files": [
+    "lib/*"
+  ],
+  "main": "lib/index.js", 
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "api": "api-extractor run --local --verbose",
+    "build": "tsc --build",
+    "clean": "rimraf ./lib && rimraf *.tsbuildinfo && rimraf ./types",
+    "docs": "typedoc --options tdoptions.json src"
+  }
+}

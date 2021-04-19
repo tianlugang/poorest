@@ -1,5 +1,5 @@
 import { dateFormat } from '@poorest/date'
-import { i18n } from './i18n'
+import { i18n } from '@poorest/i18n'
 
 /**
  * 1s = 1000ms
@@ -37,22 +37,27 @@ export function timespan(dateJSON: string, fmt: string = 'yyyy.MM.dd') {
     // 小于10天（含10天），显示x天前；
     return parseInt((differe / 864e5).toString(10), 10) + ' ' + i18n.t('days ago');
   }
+
   if (differe > 1728e5) {
     // 2天到3天之前前天；
     return i18n.t('the day before yesterday');
   }
+
   if (differe > 864e5) {
     // 1天到2天之间，显示昨天；
     return i18n.t('yesterday');
   }
+
   if (differe > 36e5) {
     // 小于一天，显示x小时前；
     return parseInt((differe / 36e5).toString(10), 10) + ' ' + i18n.t('hours ago');
   }
+
   if (differe > 6e4) {
     // 小于1小时，显示x分钟前；
     return parseInt((differe / 6e4).toString(10), 10) + ' ' + i18n.t('minutes ago');
   }
+
   // 小于1分钟，显示“刚刚”；
   return i18n.t('just');
 }

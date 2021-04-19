@@ -1,10 +1,10 @@
 import path from 'path'
 import semver from 'semver'
-import { logger } from '@poorest/util'
+import { logger, HttpError, pedding } from '@poorest/util'
+import { isObject } from '@poorest/is/lib/is-object'
 import { Storage, PackageUtility, IPackage } from '../storage'
 import { IRouterMiddleware } from '../types'
-import { pedding, HttpError, CONSTANTS } from '../services'
-import { isObject } from 'util'
+import { CONSTANTS } from '../services'
 
 const MESSAGE = {
     badPackageMetadata: 'bad incoming package data',

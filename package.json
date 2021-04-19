@@ -1,5 +1,5 @@
 {
-  "name": "gang",
+  "name": "clover",
   "version": "1.0.0",
   "devDependencies": {
     "@microsoft/api-extractor": "^7.6.0",
@@ -25,7 +25,7 @@
   "author": {
     "name": "LuGang Tian",
     "email": "541979581@qq.com",
-    "url": "http://blog.tianlugang.com"
+    "url": "http://blog.npmlite.com"
   },
   "publishConfig": {
     "access": "public"

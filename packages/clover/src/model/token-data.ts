@@ -1,5 +1,7 @@
 import { getValueByDefault } from '@poorest/base'
-import { HttpError, getDateNow, DBDriver, IDateTimeNow, getDateJSON, IDateJSON } from '../services'
+import { HttpError } from '@poorest/util'
+import { DBDriver } from '@poorest/simple-db-driver'
+import { getDateNow, IDateTimeNow, getDateJSON, IDateJSON } from '../services'
 
 const ANY_NULL = null as any
 type ITokenError = NodeJS.ErrnoException | null
@@ -38,7 +40,7 @@ export class TokenData {
         return Date.now() - updatedAt >= this.config.expire
     }
 
-    init(opts: ITokenInit) { 
+    init(opts: ITokenInit) {
         this.config.expire = getValueByDefault(opts.expire, 24 * 60 * 60 * 1000)
         this.driver = new DBDriver<ITokenItem>('token', {
             file: opts.file,

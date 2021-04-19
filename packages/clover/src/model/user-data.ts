@@ -1,5 +1,7 @@
 import { isNotString } from '@poorest/is/lib/is-not-string'
-import { HttpError, getDateJSON, DBDriver, IDateJSON, hex, createPasswd, verifyPasswd } from '../services'
+import { DBDriver } from '@poorest/simple-db-driver'
+import { HttpError } from '@poorest/util'
+import { getDateJSON, IDateJSON, hex, createPasswd, verifyPasswd } from '../services'
 
 type IUserDataConfig = {
   maxUsers?: null | number

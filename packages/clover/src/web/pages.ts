@@ -1,11 +1,12 @@
 import path from 'path'
-import { logger } from '@poorest/util'
+import { logger, HttpError, pedding } from '@poorest/util'
+import { mdRender, MarkdownDirectory } from '@poorest/markdown'
 import { Auth, PackageAuth } from '../auth'
-import { pedding, Documents, EMPTY_OBJECT, HttpError, CONSTANTS, mdRender } from '../services'
+import { EMPTY_OBJECT, CONSTANTS } from '../services'
 import { Storage, IPackage, PackageUtility, Package } from '../storage'
 import { IRouterMiddleware } from '../types'
 
-const docUtility = new Documents({
+const docUtility = new MarkdownDirectory({
     root: path.resolve(__dirname, '../../docs')
 })
 
@@ -45,7 +46,7 @@ export const sign: IRouterMiddleware = async (ctx) => {
 export const home: IRouterMiddleware = async (ctx, _next) => {
     const { user } = ctx
     const versions: IPackage.Version[] = []
-    
+
     await pedding(
         Storage.getLocalByCustomizer({
             filter: name => {

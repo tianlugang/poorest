@@ -1,7 +1,7 @@
 import { isIP } from '@poorest/is/lib/is-ip'
 import { IRouterMiddleware } from '../types'
 import { Auth } from '../auth'
-import { pedding } from '../services'
+import { pedding } from '@poorest/util'
 
 type ICreateTokenBody = {
   readonly: boolean

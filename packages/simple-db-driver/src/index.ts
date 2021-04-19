@@ -1,24 +1,12 @@
 import fs from 'fs'
 import path from 'path'
-import { logger } from '@poorest/util'
 import { getValueByDefault } from '@poorest/base'
+import { fsw } from '@poorest/fsw'
 import { isValidString } from '@poorest/is/lib/is-valid-string'
-import { fsw } from './fsw'
-import { HttpError } from './http-error'
+import { logger, HttpError } from '@poorest/util'
 
-type IDBDriverConfig = {
-    file: string
-    root: string
-    encoding: BufferEncoding
-    fields: IField[]
-}
-type IDBDriverErrnoException = NodeJS.ErrnoException | null
-type IDBDriverResult<T> = {
-    [id: string]: T
-}
-type IField = [string, any?]
 const ANY_NULL = null as any
-const formatFields = (fields?: IField[]) => {
+const formatFields = (fields?: IDBField[]) => {
     if (Array.isArray(fields)) {
         return fields.filter(field => {
             if (Array.isArray(field)) {
@@ -29,14 +17,24 @@ const formatFields = (fields?: IField[]) => {
     }
     return []
 }
-const getFieldNames = (fields: IField[]) => {
+const getFieldNames = (fields: IDBField[]) => {
     return fields.map(field => field[0])
 }
-
+export type IDBDriverConfig = {
+    file: string
+    root: string
+    encoding: BufferEncoding
+    fields: IDBField[]
+}
+export type IDBDriverErrnoException = NodeJS.ErrnoException | null
+export type IDBDriverResult<T> = {
+    [id: string]: T
+}
+export type IDBField = [string, any?]
 export class DBDriver<Item> {
     name!: string
     records: IDBDriverResult<Item> = Object.create(null)
-    private fields!: IField[]
+    private fields!: IDBField[]
     private fieldNames !: string[]
     private path!: string
     private lastModifyTime!: Date
@@ -44,14 +42,14 @@ export class DBDriver<Item> {
     private raw: string = ''
     private readonly breakline = '\n'
     constructor(name: string, opts: Partial<IDBDriverConfig>) {
-        if (opts.root == null) {
+        if (opts.root == null && typeof opts.root !== 'string') {
             throw new HttpError(500, 'should specify "DBDriver.root" in config')
         }
         const file = typeof opts.file === 'string' ? opts.file : './htpasswd'
 
         this.name = name
         this.path = path.isAbsolute(file) ? file : path.resolve(opts.root, file)
-        this.encoding = getValueByDefault(opts.encoding, 'utf8') as BufferEncoding
+        this.encoding = getValueByDefault(opts.encoding, 'utf8')
         this.fields = formatFields(opts.fields)
         this.fieldNames = getFieldNames(this.fields)
         this.records = Object.create(null) as IDBDriverResult<Item>
@@ -141,7 +139,7 @@ export class DBDriver<Item> {
                 if (!line) {
                     return
                 }
-                
+
                 const [_id] = JSON.parse(line)
                 raws.push(id === _id ? newline : line)
             })

@@ -1,5 +1,6 @@
 import { parseInterval } from '@poorest/base'
-import { createToken, HttpError, parseToken, toStringArray } from '../services'
+import { HttpError } from '@poorest/util'
+import { createToken, parseToken, toStringArray } from '../services'
 import { TokenData } from '../model'
 
 type ITokenConfig = {
