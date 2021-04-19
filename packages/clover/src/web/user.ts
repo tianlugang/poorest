@@ -22,6 +22,7 @@ export const login: IRouterMiddleware<ILoginBody> = async (ctx, _next) => {
             })
         )
         if (token) {
+            // token readonly
             ctx.cookies.set('token', `bearer ${token}`, {
                 httpOnly: true,
                 path: '/'
