@@ -1,6 +1,6 @@
 {
 	"name": "@poorest/clover",
-	"version": "2.2.1",
+	"version": "2.2.2",
 	"description": "Private npm repository serve",
 	"main": "./lib/index.js",
 	"files": [
